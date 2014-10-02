@@ -15,11 +15,12 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('lastname')
-            ->add('firstname')
-            ->add('photo')
-            ->add('bio')
-            ->add('studentid')
+
+            ->add('firstname', 'text', array('label'=> 'First name','attr' => array('class' => 'form-control')))
+            ->add('lastname', 'text', array('label'=> 'Last name','attr' => array('class' => 'form-control')))
+            ->add('photo', 'text', array('label'=> 'Photo URL','attr' => array('class' => 'form-control')))
+            ->add('bio', 'ckeditor', array('required' => false,'label'=> 'Bio','config_name' => 'editor_default',))
+            ->add('studentid', 'text', array('label'=> 'UGA Student ID','attr' => array('class' => 'form-control')))
         ;
     }
     

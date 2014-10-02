@@ -9,6 +9,7 @@
     {% block stylesheets %}
         {% stylesheets '@bootstrap_less' combine=true  output='css/compiled/main.css' %}
         <link href="{{ asset_url }}" type="text/css" rel="stylesheet"/>{% endstylesheets %}
+        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/sustainhome/css/local.css') }}">
     {% endblock %}
 
     {% block javascripts %}
@@ -63,7 +64,19 @@
         </div>
     </nav>
 
-    {% block body %}{% endblock %}
+    <div style="margin-top: 51px;">
+        {% block logo %}
+            <div class="col-sm-12 ">
+                <img src="{{ asset('bundles/sustainhome/images/sustain_logo.jpg') }}" class="img-responsive center" alt="Responsive Sustainability Logo">
+            </div>
+        {% endblock %}
+
+        <div class="col-sm-offset-1 col-sm-10">
+        {% block body %}
+        {% endblock %}
+        </div>
+    </div>
+
 
 </div>
 </body>

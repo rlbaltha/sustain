@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Sustain\UserBundle\SustainUserBundle(),
             new Sustain\CourseBundle\SustainCourseBundle(),
             new Sustain\AuthenticateBundle\SustainAuthenticateBundle(),
+            new Sustain\HomeBundle\SustainHomeBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

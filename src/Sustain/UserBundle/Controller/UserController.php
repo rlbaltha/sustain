@@ -144,6 +144,9 @@ class UserController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
+        elseif ($entity->getLastname()=='') {
+            return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
+        }
 
         $deleteForm = $this->createDeleteForm($id);
 
@@ -222,7 +225,7 @@ class UserController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('user_show', array('id' => $id)));
         }
 
         return array(
