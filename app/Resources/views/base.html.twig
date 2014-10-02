@@ -1,0 +1,70 @@
+{# sustain/app/Resources/views/base.html.twig #}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sustainability Certficate{% endblock %}</title>
+
+    {% block stylesheets %}
+        {% stylesheets '@bootstrap_less' combine=true  output='css/compiled/main.css' %}
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet"/>{% endstylesheets %}
+    {% endblock %}
+
+    {% block javascripts %}
+        {% javascripts '@jquery_js' '@jqueryui_js' '@bootstrap_js' combine=true output='js/compiled/main.js' %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
+</head>
+<body>
+<div class="col-sm-12">
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainnav">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a name="top"></a>
+
+            <a class="navbar-brand" href=""
+               title="Sustainability Certificate">Sustainability Certificate</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li id="skip">
+                    <a href="#main_content">Skip Navigation</a>
+                </li>
+                <li>
+                    <a title="Courses" href="">Requirements</a>
+                </li>
+                <li>
+                    <a title="Courses" href="">Resources</a>
+                </li>
+                <li>
+                    <a title="Courses" href="">Courses</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" id="account-dropdown">
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <li>
+                        <a title="Logout" href="{{ path('fos_user_security_logout') }}">Logout</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a title="Login" href="{{ path('fos_user_security_login') }}">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+        </div>
+    </nav>
+
+    {% block body %}{% endblock %}
+
+</div>
+</body>
+</html>
