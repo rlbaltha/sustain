@@ -1,6 +1,6 @@
 <?php
 
-namespace Sustain\CourseBundle\Tests\Controller;
+namespace Sustain\AppBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

@@ -1,5 +1,5 @@
-sustain_home:
-    resource: "@SustainHomeBundle/Controller/"
+app:
+    resource: "@AppBundle/Controller/"
     type:     annotation
     prefix:   /
 
@@ -24,11 +24,6 @@ fos_user_change_password:
 
 sustain_authenticate:
     resource: "@SustainAuthenticateBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-sustain_course:
-    resource: "@SustainCourseBundle/Controller/"
     type:     annotation
     prefix:   /
 

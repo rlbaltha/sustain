@@ -6,11 +6,11 @@
 
     <!--
     <parameters>
-        <parameter key="sustain_course.example.class">Sustain\CourseBundle\Example</parameter>
+        <parameter key="app.example.class">Sustain\AppBundle\Example</parameter>
     </parameters>
 
     <services>
-        <service id="sustain_course.example" class="%sustain_course.example.class%">
+        <service id="app.example" class="%app.example.class%">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>

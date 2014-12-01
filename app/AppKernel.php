@@ -25,9 +25,8 @@ class AppKernel extends Kernel
             new FR3D\LdapBundle\FR3DLdapBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Sustain\UserBundle\SustainUserBundle(),
-            new Sustain\CourseBundle\SustainCourseBundle(),
             new Sustain\AuthenticateBundle\SustainAuthenticateBundle(),
-            new Sustain\HomeBundle\SustainHomeBundle(),
+            new Sustain\AppBundle\AppBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -4,12 +4,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Sustainability Certficate{% endblock %}</title>
+    <title>{% block title %}Sustainability UGA{% endblock %}</title>
 
     {% block stylesheets %}
         {% stylesheets '@bootstrap_less' combine=true  output='css/compiled/main.css' %}
         <link href="{{ asset_url }}" type="text/css" rel="stylesheet"/>{% endstylesheets %}
-        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/sustainhome/css/local.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/sustainapp/css/local.css') }}">
     {% endblock %}
 
     {% block javascripts %}
@@ -67,7 +67,7 @@
     <div style="margin-top: 51px;">
         {% block logo %}
             <div class="col-sm-12 ">
-                <img src="{{ asset('bundles/sustainhome/images/sustain_logo.jpg') }}" class="img-responsive center" alt="Responsive Sustainability Logo">
+                <img src="{{ asset('bundles/sustainapp/images/sustain_logo.jpg') }}" class="img-responsive center" alt="Responsive Sustainability Logo">
             </div>
         {% endblock %}
 
