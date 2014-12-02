@@ -1,0 +1,21 @@
+{# Marca/FileBundle/Resources/views/layout.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ application_name }}{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar %}
+    <h1>
+        Resources
+    </h1>
+    <ul>
+        <li><a id='file_new_upload' title='Upload document' href="{{ path('file_new') }}"><i
+                        class="glyphicon glyphicon-upload"></i> Upload</a></li>
+        <li><a id='file_new_link' title='Create new link' href="javascript:void(0);"><i
+                        class="glyphicon glyphicon-adjust"></i> Link</a></li>
+    </ul>
+{% endblock %}

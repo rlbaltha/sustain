@@ -1,0 +1,42 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    <table id="file_list" class="col-sm-12 table">
+        <thead>
+        <tr class="file">
+            <th><span>Title</span></th>
+            <th class="hidden-xs">Module</th>
+            <th class="hidden-xs">Labels</th>
+            <th>Modified</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for file in files %}
+            <tr class="file">
+                <td>
+                    <a class="file_name" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
+                        {{ file.name|slice(0,20) }}{% if file.name|length > 20 %}...{% endif %}
+                    </a>
+                    <span class="label label-file pull-left" data-toggle="tooltip" title="This an {{ file.ext }} file ">{{ file.ext }}</span>
+
+                    {% if file.access==1 %}
+                        <span class="label label-success pull-right margin-left" title="This file is shared with the rest of the
+                            class.">Shared</span>
+                    {% endif %}
+
+                    <div class="hidden-xs">
+                        <div class="file-menu">
+
+                        </div>
+                    </div>
+                </td>
+
+                <td></td>
+                <td class="labels hidden-xs"></td>
+                <td>{{ file.updated|date('m/d/y, g:i a') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

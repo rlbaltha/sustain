@@ -9,7 +9,7 @@
     {% block stylesheets %}
         {% stylesheets '@bootstrap_less' combine=true  output='css/compiled/main.css' %}
         <link href="{{ asset_url }}" type="text/css" rel="stylesheet"/>{% endstylesheets %}
-        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/sustainapp/css/local.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/local.css') }}">
     {% endblock %}
 
     {% block javascripts %}
@@ -29,8 +29,7 @@
             </button>
             <a name="top"></a>
 
-            <a class="navbar-brand" href=""
-               title="Sustainability Certificate">Sustainability Certificate</a>
+            <a class="navbar-brand" href="#" >{{ application_name }}</a>
         </div>
 
         <div class="navbar-collapse collapse">
@@ -39,13 +38,7 @@
                     <a href="#main_content">Skip Navigation</a>
                 </li>
                 <li>
-                    <a title="Courses" href="">Requirements</a>
-                </li>
-                <li>
                     <a title="Courses" href="">Resources</a>
-                </li>
-                <li>
-                    <a title="Courses" href="">Courses</a>
                 </li>
             </ul>
 
@@ -64,14 +57,12 @@
         </div>
     </nav>
 
-    <div style="margin-top: 51px;">
-        {% block logo %}
-            <div class="col-sm-12 ">
-                <img src="{{ asset('bundles/sustainapp/images/sustain_logo.jpg') }}" class="img-responsive center" alt="Responsive Sustainability Logo">
-            </div>
-        {% endblock %}
-
-        <div class="col-sm-offset-1 col-sm-10">
+    <div style="margin-top: 60px;">
+        <div class="col-sm-2">
+            {% block sidebar %}
+            {% endblock %}
+        </div>
+        <div class="col-sm-10">
         {% block body %}
         {% endblock %}
         </div>
