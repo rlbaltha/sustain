@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Sustain\AppBundle\Entity\File;
 use Sustain\AppBundle\Form\FileType;
+use Sustain\AppBundle\Form\UploadType;
 
 /**
  * File controller.
@@ -54,7 +55,7 @@ class FileController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('file_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('file'));
         }
 
         return array(

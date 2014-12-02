@@ -84,20 +84,20 @@ class File
     protected $updated;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Module")
+     * @ORM\ManyToMany(targetEntity="Module", inversedBy="modules")
      */
-    protected $module;
+    protected $modules;
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="files")
      */
-    protected $tag;
+    protected $tags;
 
     public function __construct()
     {
-        $this->tag = new ArrayCollection();
-        $this->module = new ArrayCollection();
+        $this->tags = new ArrayCollection();
+        $this->modules = new ArrayCollection();
     }
 
 
@@ -282,69 +282,70 @@ class File
         return $this->updated;
     }
 
+
     /**
-     * Add module
+     * Get modules
      *
-     * @param \Sustain\AppBundle\Entity\Module $module
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getModules()
+    {
+        return $this->modules;
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Add modules
+     *
+     * @param \Sustain\AppBundle\Entity\Module $modules
      * @return File
      */
-    public function addModule(\Sustain\AppBundle\Entity\Module $module)
+    public function addModule(\Sustain\AppBundle\Entity\Module $modules)
     {
-        $this->module[] = $module;
+        $this->modules[] = $modules;
 
         return $this;
     }
 
     /**
-     * Remove module
+     * Remove modules
      *
-     * @param \Sustain\AppBundle\Entity\Module $module
+     * @param \Sustain\AppBundle\Entity\Module $modules
      */
-    public function removeModule(\Sustain\AppBundle\Entity\Module $module)
+    public function removeModule(\Sustain\AppBundle\Entity\Module $modules)
     {
-        $this->module->removeElement($module);
+        $this->modules->removeElement($modules);
     }
 
     /**
-     * Get module
+     * Add tags
      *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getModule()
-    {
-        return $this->module;
-    }
-
-    /**
-     * Add tag
-     *
-     * @param \Sustain\AppBundle\Entity\Tag $tag
+     * @param \Sustain\AppBundle\Entity\Tag $tags
      * @return File
      */
-    public function addTag(\Sustain\AppBundle\Entity\Tag $tag)
+    public function addTag(\Sustain\AppBundle\Entity\Tag $tags)
     {
-        $this->tag[] = $tag;
+        $this->tags[] = $tags;
 
         return $this;
     }
 
     /**
-     * Remove tag
+     * Remove tags
      *
-     * @param \Sustain\AppBundle\Entity\Tag $tag
+     * @param \Sustain\AppBundle\Entity\Tag $tags
      */
-    public function removeTag(\Sustain\AppBundle\Entity\Tag $tag)
+    public function removeTag(\Sustain\AppBundle\Entity\Tag $tags)
     {
-        $this->tag->removeElement($tag);
-    }
-
-    /**
-     * Get tag
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getTag()
-    {
-        return $this->tag;
+        $this->tags->removeElement($tags);
     }
 }

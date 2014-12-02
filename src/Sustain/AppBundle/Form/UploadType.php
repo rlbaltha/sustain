@@ -17,8 +17,13 @@ class UploadType extends AbstractType
         $builder
             ->add('file','file', array('label'  => 'File to Upload', 'attr' => array('class' => '')))
             ->add('name','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of your file'),))
-            ->add('access', 'choice', array('choices'   => array('0' => 'Private', '1' => 'Shared'),'required'  => true, 'expanded'=>true,'multiple'=>false,'label'  => 'Sharing', 'expanded' => true,'attr' => array('class' => 'radio'),))
-            ->add('tag', 'entity', array('class' => 'AppBundle:Tag','property'=>'name','query_builder' =>
+            ->add('modules', 'entity', array('class' => 'AppBundle:Module','property'=>'name','query_builder' =>
+                function(\Sustain\AppBundle\Entity\ModuleRepository $er) use ($options) {
+                    return $er->createQueryBuilder('m')
+                        ->orderBy('m.name', 'ASC');
+                }, 'expanded'=>true,'multiple'=>true, 'label'  => 'Select Modules', 'attr' => array('class' => 'checkbox'),
+            ))
+            ->add('tags', 'entity', array('class' => 'AppBundle:Tag','property'=>'name','query_builder' =>
                 function(\Sustain\AppBundle\Entity\TagRepository $er) use ($options) {
                     return $er->createQueryBuilder('t')
                         ->orderBy('t.name', 'ASC');

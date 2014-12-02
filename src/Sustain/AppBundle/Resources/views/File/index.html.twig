@@ -19,25 +19,25 @@
                     <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
                         {{ file.name|slice(0,20) }}{% if file.name|length > 20 %}...{% endif %}
                     </a>
-
-
-                    {% if file.access==1 %}
-                        <span class="label label-success pull-right margin-left" title="This file is shared with the rest of the
-                            class.">Shared</span>
-                    {% endif %}
                     <a class="pull-right" href="{{ path('file_edit', { 'id': file.id}) }}" title="Edit {{ file.name }}">
                         Settings
                     </a>
-
-                    <div class="hidden-xs">
-                        <div class="file-menu">
-
-                        </div>
-                    </div>
                 </td>
 
-                <td></td>
-                <td class="labels hidden-xs"></td>
+                <td>
+                    {% for module in file.modules %}
+                        <span class="label label-default margin-right">
+                                {{ module.name }}
+                        </span>
+                    {% endfor %}
+                </td>
+                <td class="labels hidden-xs">
+                    {% for tag in file.tags %}
+                        <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+                    {% endfor %}
+                </td>
                 <td>{{ file.updated|date('m/d/y, g:i a') }}</td>
             </tr>
         {% endfor %}

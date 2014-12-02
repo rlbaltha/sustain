@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Tag
  *
- * @ORM\Table()
+ * @ORM\Table(name="tag")
  * @ORM\Entity(repositoryClass="Sustain\AppBundle\Entity\TagRepository")
  */
 class Tag
@@ -41,6 +41,11 @@ class Tag
      * @ORM\Column(name="sortorder", type="integer")
      */
     private $sortorder;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="File", mappedBy="tags")
+     */
+    protected $files;
 
 
     /**
@@ -120,5 +125,45 @@ class Tag
     public function getSortorder()
     {
         return $this->sortorder;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->files = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add files
+     *
+     * @param \Sustain\AppBundle\Entity\File $files
+     * @return Tag
+     */
+    public function addFile(\Sustain\AppBundle\Entity\File $files)
+    {
+        $this->files[] = $files;
+
+        return $this;
+    }
+
+    /**
+     * Remove files
+     *
+     * @param \Sustain\AppBundle\Entity\File $files
+     */
+    public function removeFile(\Sustain\AppBundle\Entity\File $files)
+    {
+        $this->files->removeElement($files);
+    }
+
+    /**
+     * Get files
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFiles()
+    {
+        return $this->files;
     }
 }

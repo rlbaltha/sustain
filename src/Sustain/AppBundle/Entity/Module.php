@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Module
  *
- * @ORM\Table()
+ * @ORM\Table(name="module")
  * @ORM\Entity(repositoryClass="Sustain\AppBundle\Entity\ModuleRepository")
  */
 class Module
@@ -41,6 +41,11 @@ class Module
      * @ORM\Column(name="description", type="text")
      */
     private $description;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="File", mappedBy="modules")
+     */
+    protected $files;
 
 
     /**
@@ -120,5 +125,45 @@ class Module
     public function getDescription()
     {
         return $this->description;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->files = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add files
+     *
+     * @param \Sustain\AppBundle\Entity\File $files
+     * @return Module
+     */
+    public function addFile(\Sustain\AppBundle\Entity\File $files)
+    {
+        $this->files[] = $files;
+
+        return $this;
+    }
+
+    /**
+     * Remove files
+     *
+     * @param \Sustain\AppBundle\Entity\File $files
+     */
+    public function removeFile(\Sustain\AppBundle\Entity\File $files)
+    {
+        $this->files->removeElement($files);
+    }
+
+    /**
+     * Get files
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFiles()
+    {
+        return $this->files;
     }
 }

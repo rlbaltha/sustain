@@ -14,7 +14,7 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('tag_show', { 'id': entity.name }) }}">show</a></td>
+                <td><a href="{{ path('tag_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
                 <td>{{ entity.color }}</td>
                 <td>{{ entity.sortorder }}</td>
                 <td>

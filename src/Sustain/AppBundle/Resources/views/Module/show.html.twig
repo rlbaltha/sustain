@@ -1,40 +1,48 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block body -%}
-    <h1>Module</h1>
+    <h1>Module:  {{ entity.name }}</h1>
 
-    <table class="record_properties">
+    <table id="file_list" class="col-sm-12 table">
+        <thead>
+        <tr class="file">
+            <th><span>Title</span></th>
+            <th class="hidden-xs">Module</th>
+            <th class="hidden-xs">Labels</th>
+            <th>Modified</th>
+        </tr>
+        </thead>
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
+
+        {% for file in entity.files %}
+            <tr class="file">
+                <td>
+                    <span class="label label-info" data-toggle="tooltip" title="This an {{ file.ext }} file ">{{ file.ext }}</span>
+                    <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
+                        {{ file.name|slice(0,20) }}{% if file.name|length > 20 %}...{% endif %}
+                    </a>
+                    <a class="pull-right" href="{{ path('file_edit', { 'id': file.id}) }}" title="Edit {{ file.name }}">
+                        Settings
+                    </a>
+                </td>
+
+                <td>
+                    {% for module in file.modules %}
+                        <span class="label label-default margin-right">
+                                {{ module.name }}
+                        </span>
+                    {% endfor %}
+                </td>
+                <td class="labels hidden-xs">
+                    {% for tag in file.tags %}
+                        <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+                    {% endfor %}
+                </td>
+                <td>{{ file.updated|date('m/d/y, g:i a') }}</td>
             </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ entity.name }}</td>
-            </tr>
-            <tr>
-                <th>Sortorder</th>
-                <td>{{ entity.sortorder }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ entity.description }}</td>
-            </tr>
+        {% endfor %}
         </tbody>
     </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('module') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('module_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
 {% endblock %}
