@@ -15,15 +15,19 @@
         {% for file in files %}
             <tr class="file">
                 <td>
-                    <a class="file_name" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
+                    <span class="label label-info" data-toggle="tooltip" title="This an {{ file.ext }} file ">{{ file.ext }}</span>
+                    <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
                         {{ file.name|slice(0,20) }}{% if file.name|length > 20 %}...{% endif %}
                     </a>
-                    <span class="label label-file pull-left" data-toggle="tooltip" title="This an {{ file.ext }} file ">{{ file.ext }}</span>
+
 
                     {% if file.access==1 %}
                         <span class="label label-success pull-right margin-left" title="This file is shared with the rest of the
                             class.">Shared</span>
                     {% endif %}
+                    <a class="pull-right" href="{{ path('file_edit', { 'id': file.id}) }}" title="Edit {{ file.name }}">
+                        Settings
+                    </a>
 
                     <div class="hidden-xs">
                         <div class="file-menu">

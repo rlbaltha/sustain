@@ -83,6 +83,23 @@ class File
      */
     protected $updated;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Module")
+     */
+    protected $module;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Tag")
+     */
+    protected $tag;
+
+    public function __construct()
+    {
+        $this->tag = new ArrayCollection();
+        $this->module = new ArrayCollection();
+    }
+
 
     /**
      * Get id
@@ -263,5 +280,71 @@ class File
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * Add module
+     *
+     * @param \Sustain\AppBundle\Entity\Module $module
+     * @return File
+     */
+    public function addModule(\Sustain\AppBundle\Entity\Module $module)
+    {
+        $this->module[] = $module;
+
+        return $this;
+    }
+
+    /**
+     * Remove module
+     *
+     * @param \Sustain\AppBundle\Entity\Module $module
+     */
+    public function removeModule(\Sustain\AppBundle\Entity\Module $module)
+    {
+        $this->module->removeElement($module);
+    }
+
+    /**
+     * Get module
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getModule()
+    {
+        return $this->module;
+    }
+
+    /**
+     * Add tag
+     *
+     * @param \Sustain\AppBundle\Entity\Tag $tag
+     * @return File
+     */
+    public function addTag(\Sustain\AppBundle\Entity\Tag $tag)
+    {
+        $this->tag[] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Remove tag
+     *
+     * @param \Sustain\AppBundle\Entity\Tag $tag
+     */
+    public function removeTag(\Sustain\AppBundle\Entity\Tag $tag)
+    {
+        $this->tag->removeElement($tag);
+    }
+
+    /**
+     * Get tag
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTag()
+    {
+        return $this->tag;
     }
 }

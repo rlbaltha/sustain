@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Response;
 use Sustain\AppBundle\Entity\File;
 use Sustain\AppBundle\Form\FileType;
 
@@ -71,7 +72,7 @@ class FileController extends Controller
      */
     private function createCreateForm(File $entity)
     {
-        $form = $this->createForm(new FileType(), $entity, array(
+        $form = $this->createForm(new UploadType(), $entity, array(
             'action' => $this->generateUrl('file_create'),
             'method' => 'POST',
         ));
@@ -135,12 +136,15 @@ class FileController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
-        $file = $em->getRepository('MarcaFileBundle:File')->find($id);
+        $file = $em->getRepository('AppBundle:File')->find($id);
+
         $name = $file->getName();
+
         $helper = $this->container->get('vich_uploader.templating.helper.uploader_helper');
-        $path = $helper->asset($file, 'file');
+        $path = $helper->asset($file, 'property_file');
         $ext = strtolower($file->getExt());
         $filename = $name . '.' . $ext;
+
 
         $response = new Response();
 
@@ -259,7 +263,7 @@ class FileController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Post', 'attr' => array('class' => 'btn btn-primary'),));
 
         return $form;
     }
@@ -287,7 +291,7 @@ class FileController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('file_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('file'));
         }
 
         return array(
@@ -334,7 +338,7 @@ class FileController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('file_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Delete', 'attr' => array('class' => 'btn btn-warning'),))
             ->getForm()
         ;
     }
