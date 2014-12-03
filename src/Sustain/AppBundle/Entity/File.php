@@ -52,6 +52,13 @@ class File
     /**
      * @var string
      *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="path", type="string", length=255)
      */
     private $path = 'test';
@@ -84,7 +91,7 @@ class File
     protected $updated;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Module", inversedBy="modules")
+     * @ORM\ManyToMany(targetEntity="Module", inversedBy="files")
      */
     protected $modules;
 
@@ -142,7 +149,28 @@ class File
         return pathinfo($filename, PATHINFO_EXTENSION);
     }
 
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Module
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
 
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 
     /**
      * Set name

@@ -126,6 +126,7 @@ class Module
     {
         return $this->description;
     }
+
     /**
      * Constructor
      */

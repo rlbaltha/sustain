@@ -9,14 +9,21 @@
 {% endblock %}
 
 {% block sidebar %}
-    <h1>
-        Resources
-    </h1>
+
     <ul>
-        <li><a id='file_new_upload' title='Upload document' href="{{ path('file_new') }}"><i
-                        class="glyphicon glyphicon-upload"></i> Upload</a></li>
         <li><a  href="{{ path('module') }}"> Modules</a></li>
         <li><a  href="{{ path('tag') }}"> Labels</a></li>
         <li><a  href="{{ path('file') }}"> Files</a></li>
+        <li><a  href="{{ path('sample') }}"> Samples</a></li>
     </ul>
+
+
+    <ul>
+        <li><a id='file_new_upload' title='Upload document' href="{{ path('file_new') }}"><i
+                        class="glyphicon glyphicon-upload"></i> Upload file</a></li>
+        <li><a  href="{{ path('module_new') }}"> New Module</a></li>
+        <li><a  href="{{ path('tag_new') }}"> New Label</a></li>
+        <li><a  href="{{ path('sample_new') }}"> New Sample</a></li>
+    </ul>
+
 {% endblock %}

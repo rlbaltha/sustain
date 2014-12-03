@@ -19,11 +19,12 @@
                 <td>
                     <span class="label label-info" data-toggle="tooltip" title="This an {{ file.ext }} file ">{{ file.ext }}</span>
                     <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
-                        {{ file.name|slice(0,20) }}{% if file.name|length > 20 %}...{% endif %}
+                        {{ file.name }}
                     </a>
                     <a class="pull-right" href="{{ path('file_edit', { 'id': file.id}) }}" title="Edit {{ file.name }}">
                         Settings
                     </a>
+                    {{ file.description|raw }}
                 </td>
 
                 <td>

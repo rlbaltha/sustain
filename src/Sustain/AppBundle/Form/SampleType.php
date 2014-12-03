@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ModuleType extends AbstractType
+class SampleType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,9 +15,14 @@ class ModuleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of your module'),))
-            ->add('sortorder','number', array('attr' => array('class' => 'form-control')))
-            ->add('description', 'ckeditor', array('config_name' => 'editor_simple',))
+            ->add('facility')
+            ->add('sysLoc')
+            ->add('param')
+            ->add('date')
+            ->add('paramValue')
+            ->add('paraUnit')
+            ->add('ebatch')
+            ->add('task')
         ;
     }
     
@@ -27,7 +32,7 @@ class ModuleType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sustain\AppBundle\Entity\Module'
+            'data_class' => 'Sustain\AppBundle\Entity\Sample'
         ));
     }
 
@@ -36,6 +41,6 @@ class ModuleType extends AbstractType
      */
     public function getName()
     {
-        return 'sustain_appbundle_module';
+        return 'sustain_appbundle_sample';
     }
 }

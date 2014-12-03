@@ -1,0 +1,60 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Sample</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Facility</th>
+                <td>{{ entity.facility }}</td>
+            </tr>
+            <tr>
+                <th>Sysloc</th>
+                <td>{{ entity.sysLoc }}</td>
+            </tr>
+            <tr>
+                <th>Param</th>
+                <td>{{ entity.param }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Paramvalue</th>
+                <td>{{ entity.paramValue }}</td>
+            </tr>
+            <tr>
+                <th>Paraunit</th>
+                <td>{{ entity.paraUnit }}</td>
+            </tr>
+            <tr>
+                <th>Ebatch</th>
+                <td>{{ entity.ebatch }}</td>
+            </tr>
+            <tr>
+                <th>Task</th>
+                <td>{{ entity.task }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('sample') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('sample_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

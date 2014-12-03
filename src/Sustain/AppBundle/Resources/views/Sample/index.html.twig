@@ -1,0 +1,46 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body -%}
+    <h1>Sample list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Facility</th>
+                <th>Sysloc</th>
+                <th>Param</th>
+                <th>Date</th>
+                <th>Paramvalue</th>
+                <th>Paraunit</th>
+                <th>Ebatch</th>
+                <th>Task</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.facility }}</td>
+                <td>{{ entity.sysLoc }}</td>
+                <td>{{ entity.param }}</td>
+                <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.paramValue }}</td>
+                <td>{{ entity.paraUnit }}</td>
+                <td>{{ entity.ebatch }}</td>
+                <td>{{ entity.task }}</td>
+                <td>
+                        <a href="{{ path('sample_edit', { 'id': entity.id }) }}">edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('sample_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}
