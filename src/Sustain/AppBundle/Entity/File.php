@@ -95,7 +95,11 @@ class File
      */
     protected $modules;
 
-
+    /**
+     * @ORM\ManyToMany(targetEntity="Objective", inversedBy="files")
+     */
+    protected $objectives;
+    
     /**
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="files")
      */
@@ -105,6 +109,7 @@ class File
     {
         $this->tags = new ArrayCollection();
         $this->modules = new ArrayCollection();
+        $this->objectives = new ArrayCollection();
     }
 
 
@@ -375,5 +380,38 @@ class File
     public function removeTag(\Sustain\AppBundle\Entity\Tag $tags)
     {
         $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Add objectives
+     *
+     * @param \Sustain\AppBundle\Entity\Objective $objectives
+     * @return File
+     */
+    public function addObjective(\Sustain\AppBundle\Entity\Objective $objectives)
+    {
+        $this->objectives[] = $objectives;
+
+        return $this;
+    }
+
+    /**
+     * Remove objectives
+     *
+     * @param \Sustain\AppBundle\Entity\Objective $objectives
+     */
+    public function removeObjective(\Sustain\AppBundle\Entity\Objective $objectives)
+    {
+        $this->objectives->removeElement($objectives);
+    }
+
+    /**
+     * Get objectives
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getObjectives()
+    {
+        return $this->objectives;
     }
 }
