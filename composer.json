@@ -21,7 +21,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "stof/doctrine-extensions-bundle": "dev-master",
-        "vich/uploader-bundle": "dev-master",
+        "vich/uploader-bundle": "0.9.0",
         "knplabs/knp-gaufrette-bundle": "0.2.*@dev",
         "knplabs/gaufrette": "0.2.*@dev",
         "knplabs/knp-paginator-bundle": "dev-master",
