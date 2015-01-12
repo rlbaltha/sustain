@@ -1,0 +1,24 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body -%}
+    <h1>Pages</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Menu Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('page_show', { 'id': entity.id }) }}">{{ entity.menuName }}</a></td>
+                <td>
+                        <a class="btn btn-default" href="{{ path('page_edit', { 'id': entity.id }) }}">edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}

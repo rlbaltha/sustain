@@ -12,4 +12,9 @@ use Doctrine\ORM\EntityRepository;
  */
 class PageRepository extends EntityRepository
 {
+    public function findHome()
+    {
+        return $this->getEntityManager()
+            ->createQuery('SELECT p FROM AppBundle:Page p WHERE p.homepage = true ORDER BY p.updated DESC')->getResult();
+    }
 }
