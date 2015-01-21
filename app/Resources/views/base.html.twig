@@ -44,6 +44,7 @@
                     <a title="Courses" href="{{ path('sample') }}">Water Samples</a>
                 </li>
                 {% endif %}
+                <li></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right" id="account-dropdown">
@@ -62,7 +63,7 @@
     </nav>
 
     <div style="margin-top: 70px;">
-        {% if 'home' not in app.request.attributes.get('_route') %}
+        {% if 'default' not in app.request.attributes.get('_route')%}
             <div class="col-sm-2">
                 {% block sidebar %}
                 {% endblock %}
