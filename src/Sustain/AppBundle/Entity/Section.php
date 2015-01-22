@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Section
  *
- * @ORM\Table()
+ * @ORM\Table(name="section")
  * @ORM\Entity(repositoryClass="Sustain\AppBundle\Entity\SectionRepository")
  */
 class Section
