@@ -6,6 +6,7 @@
     <div class="list-group">
         {% for entity in entities %}
             <a href="{{ path('module_show', { 'id': entity.id }) }}" class="list-group-item">
+                <p class="list-group-item-heading">{{ entity.name|raw }}</p>
                 <p class="list-group-item-text">{{ entity.description|raw }}</p>
             </a>
         {% endfor %}
