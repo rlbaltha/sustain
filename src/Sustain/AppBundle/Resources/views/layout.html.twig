@@ -20,7 +20,7 @@
         <li><a  href="{{ path('page') }}"> Pages</a></li>
     </ul>
 
-
+{% if is_granted('ROLE_ADMIN') %}
     <ul>
         <li><a id='file_new_upload' title='Upload document' href="{{ path('file_new') }}"><i
                         class="glyphicon glyphicon-upload"></i> Upload file</a></li>
@@ -31,5 +31,5 @@
         <li><a href="{{ path('section_new') }}">New Section</a></li>
         <li><a href="{{ path('page_new') }}">New Page</a></li>
     </ul>
-
+{% endif %}
 {% endblock %}

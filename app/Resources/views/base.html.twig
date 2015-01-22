@@ -36,15 +36,10 @@
                 <li id="skip">
                     <a href="#main_content">Skip Navigation</a>
                 </li>
-                {% if is_granted('ROLE_USER') %}
-                <li>
-                    <a title="Courses" href="{{ path('file') }}">Resources</a>
-                </li>
-                <li>
-                    <a title="Courses" href="{{ path('sample') }}">Water Samples</a>
-                </li>
-                {% endif %}
-                <li></li>
+
+                <li><a title="Courses" href="{{ path('file') }}">Resources</a></li>
+                <li><a  href="{{ path('objective') }}"> Objectives</a></li>
+                <li><a  href="{{ path('module') }}"> Modules</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right" style="padding-right: 20px">
