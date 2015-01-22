@@ -70,7 +70,7 @@
             </div>
 
         {% endif %}
-        <div class="{% if 'home' not in app.request.attributes.get('_route') %}col-sm-10{% else %}col-sm-12{% endif %}">
+        <div class="{% if 'default' not in app.request.attributes.get('_route') %}col-sm-10{% else %}col-sm-12{% endif %}">
         {% block body %}
         {% endblock %}
             </div>
