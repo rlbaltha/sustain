@@ -9,7 +9,7 @@
     {% for entity in entities %}
 
         <div class="col-sm-4">
-            <img src="{{ entity.teaserImage }}" class="img-responsive img-thumbnail" alt="{{ entity.menuName }}">
+            <a href="{{ path('page_show', {id:entity.id}) }}" title="Read more about {{ entity.menuName }} " ><img src="{{ entity.teaserImage }}" class="img-responsive img-thumbnail" alt="{{ entity.menuName }}"></a>
             {{ entity.teaser|raw }}
         </div>
     {% endfor %}
