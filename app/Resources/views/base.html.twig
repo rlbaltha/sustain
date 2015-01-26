@@ -28,7 +28,7 @@
             </button>
             <a name="top"></a>
 
-            <a class="navbar-brand" href="#" >{{ application_name }}</a>
+            <a class="navbar-brand" href="{{ path('default') }}" >{{ application_name }}</a>
         </div>
 
         <div class="navbar-collapse collapse">
@@ -58,7 +58,8 @@
     </nav>
 
     <div style="margin-top: 70px;">
-        {% if 'default' not in app.request.attributes.get('_route')%}
+        {% if 'default' in app.request.attributes.get('_route')  or 'page_show' in app.request.attributes.get('_route')  %}
+            {% else %}
             <div class="col-sm-2">
                 {% block sidebar %}
                 {% endblock %}
