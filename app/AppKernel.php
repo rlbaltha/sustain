@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new FR3D\LdapBundle\FR3DLdapBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
             new Sustain\UserBundle\SustainUserBundle(),
             new Sustain\AuthenticateBundle\SustainAuthenticateBundle(),
             new Sustain\AppBundle\AppBundle(),
