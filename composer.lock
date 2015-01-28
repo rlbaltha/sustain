@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c3b6bf316e780e123bb32398c54c9019",
+    "hash": "5348dc8533b44b6c768662c7150256ea",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1019,16 +1019,16 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v2.3.10",
+            "version": "v2.3.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "4e9bbd54ebb22bb004b2ec71b1b0ce3ed5b992d0"
+                "reference": "5e19886a64ef7e3540bb362eacfdf7d60c5608e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/4e9bbd54ebb22bb004b2ec71b1b0ce3ed5b992d0",
-                "reference": "4e9bbd54ebb22bb004b2ec71b1b0ce3ed5b992d0",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/5e19886a64ef7e3540bb362eacfdf7d60c5608e6",
+                "reference": "5e19886a64ef7e3540bb362eacfdf7d60c5608e6",
                 "shasum": ""
             },
             "require": {
@@ -1093,7 +1093,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2015-01-21 20:55:10"
+            "time": "2015-01-28 09:12:46"
         },
         {
             "name": "h4cc/wkhtmltopdf-amd64",
@@ -2616,38 +2616,26 @@
         },
         {
             "name": "symfony/serializer",
-            "version": "dev-master",
+            "version": "v2.6.3",
             "target-dir": "Symfony/Component/Serializer",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Serializer.git",
-                "reference": "a6fe3b268566b8df98359926aae6e14b667e8ff5"
+                "reference": "b147d408f7121b3f3b8f76d37f0e0e42abed7cc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Serializer/zipball/a6fe3b268566b8df98359926aae6e14b667e8ff5",
-                "reference": "a6fe3b268566b8df98359926aae6e14b667e8ff5",
+                "url": "https://api.github.com/repos/symfony/Serializer/zipball/b147d408f7121b3f3b8f76d37f0e0e42abed7cc4",
+                "reference": "b147d408f7121b3f3b8f76d37f0e0e42abed7cc4",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9"
-            },
-            "require-dev": {
-                "doctrine/annotations": "~1.0",
-                "doctrine/cache": "~1.0",
-                "symfony/config": "~2.7|~3.0",
-                "symfony/yaml": "~2.7|~3.0"
-            },
-            "suggest": {
-                "doctrine/annotations": "For using the annotation mapping. You will also need doctrine/cache.",
-                "doctrine/cache": "For using the default cached annotation reader and metadata cache.",
-                "symfony/config": "For using the XML mapping loader.",
-                "symfony/yaml": "For using the default YAML mapping loader."
+                "php": ">=5.3.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "2.6-dev"
                 }
             },
             "autoload": {
@@ -2671,7 +2659,7 @@
             ],
             "description": "Symfony Serializer Component",
             "homepage": "http://symfony.com",
-            "time": "2015-01-25 04:42:01"
+            "time": "2015-01-03 08:01:59"
         },
         {
             "name": "symfony/swiftmailer-bundle",
@@ -3157,7 +3145,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "symfony/serializer": 20,
         "jms/serializer-bundle": 20,
         "friendsofsymfony/user-bundle": 20,
         "stof/doctrine-extensions-bundle": 20,
