@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sustain\AppBundle\Entity\Map;
 use Sustain\AppBundle\Form\MapType;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Map controller.
@@ -41,18 +41,18 @@ class MapController extends Controller
     /**
      * Lists all Map entities.
      *
-     * @Route("/map_json", name="json")
+     * @Route("/{map}/map_json", name="json")
      * @Method("GET")
      * @Template()
      */
-    public function jsonAction()
+    public function jsonAction($map)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Map')->findAll();
+        $entities = $em->getRepository('AppBundle:Map')->map_json($map);
         $serializer = $this->container->get('serializer');
-        $map_json = $serializer->serialize($entities, 'json');
-        return new JsonResponse($map_json);
+        $response = new Response($serializer->serialize($entities, 'json'));
+        return $response;
     }
 
 

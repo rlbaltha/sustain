@@ -38,14 +38,14 @@ class Map
     /**
      * @var string
      *
-     * @ORM\Column(name="lat", type="decimal")
+     * @ORM\Column(name="lat", type="string", length=255)
      */
     private $lat;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lng", type="decimal")
+     * @ORM\Column(name="lng", type="string", length=255)
      */
     private $lng;
 
