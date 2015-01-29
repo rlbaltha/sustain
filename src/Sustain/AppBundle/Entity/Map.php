@@ -56,6 +56,11 @@ class Map
      */
     private $description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Mapset", inversedBy="points")
+     */
+    protected $mapset;
+
 
     /**
      * Get id
@@ -180,5 +185,28 @@ class Map
     public function getMap()
     {
         return $this->map;
+    }
+
+    /**
+     * Set mapset
+     *
+     * @param \Sustain\AppBundle\Entity\Mapset $mapset
+     * @return Map
+     */
+    public function setMapset(\Sustain\AppBundle\Entity\Mapset $mapset = null)
+    {
+        $this->mapset = $mapset;
+
+        return $this;
+    }
+
+    /**
+     * Get mapset
+     *
+     * @return \Sustain\AppBundle\Entity\Mapset 
+     */
+    public function getMapset()
+    {
+        return $this->mapset;
     }
 }

@@ -47,6 +47,10 @@ class Module
      */
     protected $files;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Theme", inversedBy="modules")
+     */
+    protected $theme;
 
     /**
      * Get id
@@ -166,5 +170,28 @@ class Module
     public function getFiles()
     {
         return $this->files;
+    }
+
+    /**
+     * Set theme
+     *
+     * @param \Sustain\AppBundle\Entity\Theme $theme
+     * @return Module
+     */
+    public function setTheme(\Sustain\AppBundle\Entity\Theme $theme = null)
+    {
+        $this->theme = $theme;
+
+        return $this;
+    }
+
+    /**
+     * Get theme
+     *
+     * @return \Sustain\AppBundle\Entity\Theme 
+     */
+    public function getTheme()
+    {
+        return $this->theme;
     }
 }

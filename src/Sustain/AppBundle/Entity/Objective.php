@@ -40,6 +40,11 @@ class Objective
      */
     protected $files;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Theme", inversedBy="objectives")
+     */
+    protected $theme;
+
 
     /**
      * Get id
@@ -135,5 +140,28 @@ class Objective
     public function getFiles()
     {
         return $this->files;
+    }
+
+    /**
+     * Set theme
+     *
+     * @param \Sustain\AppBundle\Entity\Theme $theme
+     * @return Objective
+     */
+    public function setTheme(\Sustain\AppBundle\Entity\Theme $theme = null)
+    {
+        $this->theme = $theme;
+
+        return $this;
+    }
+
+    /**
+     * Get theme
+     *
+     * @return \Sustain\AppBundle\Entity\Theme 
+     */
+    public function getTheme()
+    {
+        return $this->theme;
     }
 }

@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class MapType extends AbstractType
+class MapsetType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,13 +15,8 @@ class MapType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of the map point'),))
-            ->add('lat','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of the map point'),))
-            ->add('lng','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of the map point'),))
+            ->add('name','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of the map point'),))
             ->add('description', 'ckeditor', array('config_name' => 'editor_simple',))
-            ->add('mapset', 'entity', array('class' => 'AppBundle:Mapset',
-                'property' => 'name','expanded'=>false,'multiple'=>false,'label'  => 'Map', 'required'=> false,'attr' => array('class' =>
-                    'form-control'),))
         ;
     }
     
@@ -31,7 +26,7 @@ class MapType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sustain\AppBundle\Entity\Map'
+            'data_class' => 'Sustain\AppBundle\Entity\Mapset'
         ));
     }
 
@@ -40,6 +35,6 @@ class MapType extends AbstractType
      */
     public function getName()
     {
-        return 'sustain_appbundle_map';
+        return 'sustain_appbundle_mapset';
     }
 }
