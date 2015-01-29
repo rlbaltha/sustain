@@ -15,6 +15,6 @@ class MapRepository extends EntityRepository
     public function map_json($map)
     {
         return $this->getEntityManager()
-            ->createQuery('SELECT m.lat as latitude, m.lng as longitude, m.title, m.description as content FROM AppBundle:Map m WHERE m.map = ?1 ')->setParameter('1', $map)->getResult();
+            ->createQuery('SELECT m.lat as latitude, m.lng as longitude, m.title, m.description as content FROM AppBundle:Map m WHERE m.mapset = ?1 ')->setParameter('1', $map)->getResult();
     }
 }

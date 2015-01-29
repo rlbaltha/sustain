@@ -21,12 +21,6 @@ class Map
      */
     private $id;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="map", type="integer")
-     */
-    private $map;
 
     /**
      * @var string
@@ -164,28 +158,6 @@ class Map
         return $this->description;
     }
 
-    /**
-     * Set map
-     *
-     * @param integer $map
-     * @return Map
-     */
-    public function setMap($map)
-    {
-        $this->map = $map;
-
-        return $this;
-    }
-
-    /**
-     * Get map
-     *
-     * @return integer 
-     */
-    public function getMap()
-    {
-        return $this->map;
-    }
 
     /**
      * Set mapset
