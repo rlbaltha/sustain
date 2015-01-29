@@ -19,6 +19,7 @@ class MapType extends AbstractType
             ->add('lat','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of the map point'),))
             ->add('lng','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of the map point'),))
             ->add('description','textarea', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of the map point'),))
+            ->add('description', 'ckeditor', array('config_name' => 'editor_simple',))
             ->add('map','number', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of the map point'),))
         ;
     }
