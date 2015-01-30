@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ObjectiveType extends AbstractType
+class ThemeType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,10 +15,9 @@ class ObjectiveType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('objective','textarea', array('attr' => array('class' => 'text form-control'),))
-            ->add('description', 'ckeditor', array('config_name' => 'editor_simple',))
-            ->add('theme', 'entity', array('class' => 'AppBundle:Theme',
-                'property' => 'name','expanded'=>false,'multiple'=>false,'label'  => 'Theme', 'attr' => array('class' => 'form-control'),))
+            ->add('name')
+            ->add('description')
+            ->add('image')
         ;
     }
     
@@ -28,7 +27,7 @@ class ObjectiveType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sustain\AppBundle\Entity\Objective'
+            'data_class' => 'Sustain\AppBundle\Entity\Theme'
         ));
     }
 
@@ -37,6 +36,6 @@ class ObjectiveType extends AbstractType
      */
     public function getName()
     {
-        return 'sustain_appbundle_objective';
+        return 'sustain_appbundle_theme';
     }
 }

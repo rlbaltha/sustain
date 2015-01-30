@@ -21,12 +21,6 @@ class Map
      */
     private $id;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="map", type="integer")
-     */
-    private $map;
 
     /**
      * @var string
@@ -55,6 +49,11 @@ class Map
      * @ORM\Column(name="description", type="text")
      */
     private $description;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Mapset", inversedBy="points")
+     */
+    protected $mapset;
 
 
     /**
@@ -159,26 +158,27 @@ class Map
         return $this->description;
     }
 
+
     /**
-     * Set map
+     * Set mapset
      *
-     * @param integer $map
+     * @param \Sustain\AppBundle\Entity\Mapset $mapset
      * @return Map
      */
-    public function setMap($map)
+    public function setMapset(\Sustain\AppBundle\Entity\Mapset $mapset = null)
     {
-        $this->map = $map;
+        $this->mapset = $mapset;
 
         return $this;
     }
 
     /**
-     * Get map
+     * Get mapset
      *
-     * @return integer 
+     * @return \Sustain\AppBundle\Entity\Mapset 
      */
-    public function getMap()
+    public function getMapset()
     {
-        return $this->map;
+        return $this->mapset;
     }
 }
