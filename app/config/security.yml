@@ -18,6 +18,12 @@ security:
         main:
             pattern: ^/
             fr3d_ldap:  ~
+            trusted_sso:
+                manager: admin_sso
+                login_action: BeSimpleSsoAuthBundle:TrustedSso:login
+                logout_action: BeSimpleSsoAuthBundle:TrustedSso:logout
+                create_users: true
+                created_users_roles: [ROLE_USER, ROLE_ADMIN]
             form_login:
                 csrf_provider: form.csrf_provider
                 default_target_path: /user/profile

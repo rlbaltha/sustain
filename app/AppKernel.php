@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new FR3D\LdapBundle\FR3DLdapBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new BeSimple\SsoAuthBundle\BeSimpleSsoAuthBundle(),
             new Sustain\UserBundle\SustainUserBundle(),
             new Sustain\AuthenticateBundle\SustainAuthenticateBundle(),
             new Sustain\AppBundle\AppBundle(),
