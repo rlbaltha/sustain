@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Sustainability UGA{% endblock %}</title>
+    <title>{% block title %}Watershed UGA{% endblock %}</title>
 
     {% block stylesheets %}
         {% stylesheets '@bootstrap_less' combine=true  output='css/compiled/main.css' %}
@@ -17,6 +17,8 @@
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
     {% endblock %}
+
+    <link rel="icon" href="{{ asset('bundles/app/images/favicon.ico') }}" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
