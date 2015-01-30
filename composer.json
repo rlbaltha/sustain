@@ -35,7 +35,7 @@
         "oyejorge/less.php": "~1.5",
         "packagist/yuicompressor-bin": "dev-master",
         "h4cc/wkhtmltopdf-amd64" : "0.12.1",
-        "besimple/sso-auth-bundle": "*"
+        "besimple/sso-auth-bundle": "1.0.*@dev"
     },
     "scripts": {
         "post-install-cmd": [
