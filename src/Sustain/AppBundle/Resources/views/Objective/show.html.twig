@@ -1,8 +1,10 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block body -%}
-    <h1>Objective:  </h1>
-    <a href="{{ path('objective_edit', { 'id': entity.id }) }}" class="btn btn-default pull-right">Edit</a>
+    <h1>Objective: </h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('objective_edit', { 'id': entity.id }) }}" class="btn btn-default pull-right">Edit</a>
+    {% endif %}
     <p>{{ entity.objective|raw }}</p>
     <p>{{ entity.description|raw }}</p>
 
