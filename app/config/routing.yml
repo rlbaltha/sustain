@@ -2,12 +2,6 @@ default:
     pattern:  /
     defaults: { _controller: AppBundle:Page:home }
 
-login:
-     pattern:   /login
-
-login_check:
-     pattern:   /login_check
-
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
