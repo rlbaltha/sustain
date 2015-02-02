@@ -142,7 +142,7 @@ class FileController extends Controller
         $name = $file->getName();
 
         $helper = $this->container->get('vich_uploader.templating.helper.uploader_helper');
-        $path = $helper->asset($file, 'property_file');
+        $path = $helper->asset($file, 'file');
         $ext = strtolower($file->getExt());
         $filename = $name . '.' . $ext;
 

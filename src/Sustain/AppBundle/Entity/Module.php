@@ -48,6 +48,11 @@ class Module
     protected $files;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Objective", inversedBy="modules")
+     */
+    protected $objectives;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Theme", inversedBy="modules")
      */
     protected $theme;
@@ -193,5 +198,40 @@ class Module
     public function getTheme()
     {
         return $this->theme;
+    }
+
+
+
+    /**
+     * Add objectives
+     *
+     * @param \Sustain\AppBundle\Entity\Objective $objectives
+     * @return Module
+     */
+    public function addObjective(\Sustain\AppBundle\Entity\Objective $objectives)
+    {
+        $this->objectives[] = $objectives;
+
+        return $this;
+    }
+
+    /**
+     * Remove objectives
+     *
+     * @param \Sustain\AppBundle\Entity\Objective $objectives
+     */
+    public function removeObjective(\Sustain\AppBundle\Entity\Objective $objectives)
+    {
+        $this->objectives->removeElement($objectives);
+    }
+
+    /**
+     * Get objectives
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getObjectives()
+    {
+        return $this->objectives;
     }
 }

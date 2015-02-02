@@ -4,12 +4,12 @@
     <h1>Learning Objectives</h1>
 
     <div class="list-group">
-    {% for entity in entities %}
-        <a href="{{ path('objective_show', { 'id': entity.id }) }}" class="list-group-item">
-            <p class="list-group-item-heading">{{ entity.objective|raw }}</p>
-            <p class="list-group-item-text">{{ entity.description|raw }}</p>
-        </a>
-    {% endfor %}
+        {% for entity in entities %}
+            <a href="{{ path('objective_show', { 'id': entity.id }) }}" class="list-group-item">
+                <p class="list-group-item-heading">{{ entity.objective|raw }}</p>
+                <p class="list-group-item-text">{{ entity.description|raw }}</p>
+            </a>
+        {% endfor %}
     </div>
 
 {% endblock %}

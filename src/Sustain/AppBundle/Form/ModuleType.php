@@ -18,6 +18,8 @@ class ModuleType extends AbstractType
             ->add('name','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of your module'),))
             ->add('sortorder','number', array('attr' => array('class' => 'form-control')))
             ->add('description', 'ckeditor', array('config_name' => 'editor_simple',))
+            ->add('objectives', 'entity', array('class' => 'AppBundle:Objective',
+                'property' => 'objective','expanded'=>true,'multiple'=>true,'label'  => 'Objectives', 'attr' => array('class' => 'form-control'),))
             ->add('theme', 'entity', array('class' => 'AppBundle:Theme',
                 'property' => 'name','expanded'=>false,'multiple'=>false,'label'  => 'Theme', 'attr' => array('class' => 'form-control'),))
         ;
