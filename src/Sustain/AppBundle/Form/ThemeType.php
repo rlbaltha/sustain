@@ -15,9 +15,9 @@ class ThemeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('description')
-            ->add('image')
+            ->add('name','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Title of the theme'),))
+            ->add('description', 'ckeditor', array('config_name' => 'editor_default',))
+            ->add('image','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Image URL for the theme'),))
         ;
     }
     
