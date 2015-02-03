@@ -17,6 +17,7 @@ class UploadType extends AbstractType
         $builder
             ->add('file','file', array('label'  => 'File to Upload', 'attr' => array('class' => '')))
             ->add('name','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of your file'),))
+            ->add('url','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Url for resource'),))
             ->add('description', 'ckeditor', array('config_name' => 'editor_simple',))
             ->add('modules', 'entity', array('class' => 'AppBundle:Module','property'=>'name','query_builder' =>
                 function(\Sustain\AppBundle\Entity\ModuleRepository $er) use ($options) {
