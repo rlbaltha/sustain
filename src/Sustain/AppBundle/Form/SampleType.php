@@ -15,14 +15,14 @@ class SampleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('facility')
-            ->add('sysLoc')
-            ->add('param')
-            ->add('date')
-            ->add('paramValue')
-            ->add('paraUnit')
-            ->add('ebatch')
-            ->add('task')
+            ->add('facility','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of facility'),))
+            ->add('sysLoc','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of location'),))
+            ->add('param','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Parameter'),))
+            ->add('date','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Date'),))
+            ->add('paramValue','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Parameter Value'),))
+            ->add('paraUnit','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Parameter Unit'),))
+            ->add('ebatch','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Data Batch'),))
+            ->add('task','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Task'),))
         ;
     }
     

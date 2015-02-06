@@ -64,4 +64,14 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <h1>Maps</h1>
+    <div class="list-group">
+        {% for entity in entity.mapsets %}
+            <a href="{{ path('mapset_show', { 'id': entity.id }) }}" class="list-group-item">
+                <p class="list-group-item-heading">{{ entity.name|raw }}</p>
+                <p class="list-group-item-text">{{ entity.description|raw }}</p>
+            </a>
+        {% endfor %}
+    </div>
 {% endblock %}

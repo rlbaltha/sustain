@@ -239,4 +239,37 @@ class Module
     {
         return $this->objectives;
     }
+
+    /**
+     * Add mapsets
+     *
+     * @param \Sustain\AppBundle\Entity\Mapset $mapsets
+     * @return Module
+     */
+    public function addMapset(\Sustain\AppBundle\Entity\Mapset $mapsets)
+    {
+        $this->mapsets[] = $mapsets;
+
+        return $this;
+    }
+
+    /**
+     * Remove mapsets
+     *
+     * @param \Sustain\AppBundle\Entity\Mapset $mapsets
+     */
+    public function removeMapset(\Sustain\AppBundle\Entity\Mapset $mapsets)
+    {
+        $this->mapsets->removeElement($mapsets);
+    }
+
+    /**
+     * Get mapsets
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMapsets()
+    {
+        return $this->mapsets;
+    }
 }

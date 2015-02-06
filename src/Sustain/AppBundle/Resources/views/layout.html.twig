@@ -8,27 +8,36 @@
     {{ parent() }}
 {% endblock %}
 
+
 {% block sidebar %}
+    {% if tags is defined %}
+        <h2  style="font-size: medium">Labels</h2>
+        {% for tag in tags %}
+            <span class="label label-default margin-right" style="background-color: {{ tag.color }};">{{ tag.name }}</span>
+        {% endfor %}
+    {% endif %}
+
     {% if is_granted('ROLE_ADMIN') %}
-    <ul>
-        <li><a  href="{{ path('tag') }}"> Labels</a></li>
-        <li><a  href="{{ path('sample') }}"> Samples</a></li>
-        <li><a  href="{{ path('section') }}"> Sections</a></li>
-        <li><a  href="{{ path('page') }}"> Pages</a></li>
-        <li><a  href="{{ path('map') }}"> Map Points</a></li>
-    </ul>
-
-
-    <ul>
-        <li><a id='file_new_upload' title='Upload document' href="{{ path('file_new') }}"><i
-                        class="glyphicon glyphicon-upload"></i> Upload file</a></li>
-        <li><a  href="{{ path('module_new') }}"> New Module</a></li>
-        <li><a  href="{{ path('tag_new') }}"> New Label</a></li>
-        <li><a  href="{{ path('objective_new') }}"> New Objective</a></li>
-        <li><a  href="{{ path('sample_new') }}"> New Sample</a></li>
-        <li><a href="{{ path('section_new') }}">New Section</a></li>
-        <li><a href="{{ path('page_new') }}">New Page</a></li>
-        <li><a href="{{ path('theme_new') }}">New Theme</a></li>
-    </ul>
-{% endif %}
+        <h2  style="font-size: medium">Admin</h2>
+        <ul class="list-unstyled">
+            <li><a href="{{ path('tag') }}"> Labels</a></li>
+            <li><a href="{{ path('sample') }}"> Samples</a></li>
+            <li><a href="{{ path('section') }}"> Sections</a></li>
+            <li><a href="{{ path('page') }}"> Pages</a></li>
+            <li><a href="{{ path('map') }}"> Map Points</a></li>
+        </ul>
+        <ul class="list-unstyled">
+            <li><a id='file_new_upload' title='Upload document' href="{{ path('file_new') }}"><i
+                            class="glyphicon glyphicon-upload"></i> Upload file</a></li>
+            <li><a href="{{ path('module_new') }}"> New Module</a></li>
+            <li><a href="{{ path('tag_new') }}"> New Label</a></li>
+            <li><a href="{{ path('objective_new') }}"> New Objective</a></li>
+            <li><a href="{{ path('sample_new') }}"> New Sample</a></li>
+            <li><a href="{{ path('section_new') }}">New Section</a></li>
+            <li><a href="{{ path('page_new') }}">New Page</a></li>
+            <li><a href="{{ path('theme_new') }}">New Theme</a></li>
+            <li><a href="{{ path('mapset_new') }}">New Map</a></li>
+            <li><a href="{{ path('map_new') }}">New Map Pin</a></li>
+        </ul>
+    {% endif %}
 {% endblock %}

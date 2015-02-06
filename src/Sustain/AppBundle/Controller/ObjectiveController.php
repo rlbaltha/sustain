@@ -30,9 +30,11 @@ class ObjectiveController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('AppBundle:Objective')->findAll();
+        $tags = $em->getRepository('AppBundle:Tag')->findAll();
 
         return array(
             'entities' => $entities,
+            'tags' => $tags,
         );
     }
     /**
