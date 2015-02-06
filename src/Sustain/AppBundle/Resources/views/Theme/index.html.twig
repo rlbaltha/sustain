@@ -4,9 +4,9 @@
     <h1>Getting Started</h1>
 
     {% for entity in entities %}
-        <div class="col-sm-2 well" style="background-color: #82D3EE;height:80vh;">
+        <div class="col-sm-2 well" style="height:80vh;">
             <a href="{{ path('theme_show', { 'id': entity.id }) }}" class="">
-            <img src="{{ entity.image }}" class="img-responsive" alt="Watershed UGA logo">
+            <img src="{{ entity.image }}" class="img-responsive img-rounded" alt="Watershed UGA logo">
             <h2>
                 {{ entity.name }}
             </h2>
