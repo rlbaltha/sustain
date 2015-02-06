@@ -53,6 +53,11 @@ class Module
     protected $objectives;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Mapset", inversedBy="modules")
+     */
+    protected $mapsets;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Theme", inversedBy="modules")
      */
     protected $theme;

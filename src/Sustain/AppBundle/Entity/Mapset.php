@@ -41,6 +41,12 @@ class Mapset
      */
     protected $points;
 
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Module", mappedBy="mapsets")
+     */
+    protected $modules;
+
     /**
      * Get id
      *
