@@ -32,9 +32,11 @@ class FileController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $files = $em->getRepository('AppBundle:File')->findAll();
+        $tags = $em->getRepository('AppBundle:Tag')->findAll();
 
         return array(
             'files' => $files,
+            'tags' => $tags,
         );
     }
     /**

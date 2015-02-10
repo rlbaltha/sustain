@@ -19,7 +19,9 @@ class ModuleType extends AbstractType
             ->add('sortorder','number', array('attr' => array('class' => 'form-control')))
             ->add('description', 'ckeditor', array('config_name' => 'editor_simple',))
             ->add('objectives', 'entity', array('class' => 'AppBundle:Objective',
-                'property' => 'objective','expanded'=>true,'multiple'=>true,'label'  => 'Objectives', 'attr' => array('class' => ''),))
+                'property' => 'objective','expanded'=>true,'multiple'=>true,'label'  => 'Objectives', 'attr' => array('class' => 'checkbox'),))
+            ->add('mapsets', 'entity', array('class' => 'AppBundle:Mapset',
+                'property' => 'name','expanded'=>true,'multiple'=>true,'label'  => 'Maps', 'attr' => array('class' => 'checkbox'),))
             ->add('theme', 'entity', array('class' => 'AppBundle:Theme',
                 'property' => 'name','expanded'=>false,'multiple'=>false,'label'  => 'Theme', 'attr' => array('class' => 'form-control'),))
         ;

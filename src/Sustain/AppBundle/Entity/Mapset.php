@@ -41,6 +41,12 @@ class Mapset
      */
     protected $points;
 
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Module", mappedBy="mapsets")
+     */
+    protected $modules;
+
     /**
      * Get id
      *
@@ -135,5 +141,38 @@ class Mapset
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Add modules
+     *
+     * @param \Sustain\AppBundle\Entity\Module $modules
+     * @return Mapset
+     */
+    public function addModule(\Sustain\AppBundle\Entity\Module $modules)
+    {
+        $this->modules[] = $modules;
+
+        return $this;
+    }
+
+    /**
+     * Remove modules
+     *
+     * @param \Sustain\AppBundle\Entity\Module $modules
+     */
+    public function removeModule(\Sustain\AppBundle\Entity\Module $modules)
+    {
+        $this->modules->removeElement($modules);
+    }
+
+    /**
+     * Get modules
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getModules()
+    {
+        return $this->modules;
     }
 }
