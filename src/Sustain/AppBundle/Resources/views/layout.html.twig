@@ -13,7 +13,12 @@
     {% if tags is defined %}
         <h2  style="font-size: medium">Labels</h2>
         {% for tag in tags %}
+        {%  if 'file' in app.request.attributes.get('_route') %}
+            <a href="{{ path('files_by_tag', {'tag': tag.id}) }}"><span class="label label-default margin-right" style="background-color: {{ tag.color }};
+                        ">{{ tag.name }}</span></a>
+            {% else %}
             <span class="label label-default margin-right" style="background-color: {{ tag.color }};">{{ tag.name }}</span>
+            {% endif %}
         {% endfor %}
     {% endif %}
 

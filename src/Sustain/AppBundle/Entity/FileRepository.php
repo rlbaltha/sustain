@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class FileRepository extends EntityRepository
 {
+    /**
+     * Find files by tag
+     */
+    public function filesByTag($tag)
+    {
+        return $this->getEntityManager()
+            ->createQuery('SELECT f FROM AppBundle:File f JOIN  f.tags t WHERE t.id = ?1 ')
+            ->setParameter('1',$tag)->getResult();
+    }
 }

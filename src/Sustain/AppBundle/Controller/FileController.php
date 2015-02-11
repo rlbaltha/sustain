@@ -39,6 +39,26 @@ class FileController extends Controller
             'tags' => $tags,
         );
     }
+
+    /**
+     * Lists all File entities.
+     *
+     * @Route("/{tag}/files_by_tag", name="files_by_tag")
+     * @Method("GET")
+     * @Template("AppBundle:File:index.html.twig")
+     */
+    public function findByTagAction($tag)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $files = $em->getRepository('AppBundle:File')->filesByTag($tag);
+        $tags = $em->getRepository('AppBundle:Tag')->findAll();
+
+        return array(
+            'files' => $files,
+            'tags' => $tags,
+        );
+    }
+
     /**
      * Creates a new File entity.
      *
