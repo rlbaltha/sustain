@@ -63,6 +63,11 @@ class Module
     protected $theme;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Sustain\UserBundle\Entity\User", inversedBy="modules")
+     */
+    protected $user;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -271,5 +276,28 @@ class Module
     public function getMapsets()
     {
         return $this->mapsets;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Sustain\UserBundle\Entity\User $user
+     * @return Module
+     */
+    public function setUser(\Sustain\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Sustain\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

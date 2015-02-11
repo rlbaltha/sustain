@@ -28,6 +28,15 @@ div.radio > label {
     margin-left: 10px;
 }
 
+.caption > h3 {
+    color:black
+}
+
+.caption > p {
+    color:black
+}
+
+
 /**********  Accessibility **********/
 #skip a, #skip a:hover, #skip a:visited
 {

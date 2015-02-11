@@ -91,6 +91,11 @@ class File
     protected $updated;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Sustain\UserBundle\Entity\User", inversedBy="files")
+     */
+    protected $user;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Module", inversedBy="files")
      */
     protected $modules;
@@ -413,5 +418,28 @@ class File
     public function getObjectives()
     {
         return $this->objectives;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Sustain\UserBundle\Entity\User $user
+     * @return File
+     */
+    public function setUser(\Sustain\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Sustain\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

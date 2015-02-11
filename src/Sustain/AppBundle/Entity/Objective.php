@@ -50,6 +50,10 @@ class Objective
      */
     protected $theme;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Sustain\UserBundle\Entity\User", inversedBy="objectives")
+     */
+    protected $user;
 
     /**
      * Get id
@@ -203,5 +207,28 @@ class Objective
     public function getModules()
     {
         return $this->modules;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Sustain\UserBundle\Entity\User $user
+     * @return Objective
+     */
+    public function setUser(\Sustain\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Sustain\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

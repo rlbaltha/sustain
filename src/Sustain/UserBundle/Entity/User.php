@@ -61,6 +61,40 @@ class User extends BaseUser
      */
     private $studentid;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Sustain\AppBundle\Entity\Page", mappedBy="user")
+     */
+    private $pages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Sustain\AppBundle\Entity\File", mappedBy="user")
+     */
+    private $files;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Sustain\AppBundle\Entity\Map", mappedBy="user")
+     */
+    private $maps;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Sustain\AppBundle\Entity\Mapset", mappedBy="user")
+     */
+    private $mapsets;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Sustain\AppBundle\Entity\Module", mappedBy="user")
+     */
+    private $modules;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Sustain\AppBundle\Entity\Objective", mappedBy="user")
+     */
+    private $objectives;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Sustain\AppBundle\Entity\Sample", mappedBy="user")
+     */
+    private $samples;
 
     /**
      * Get id

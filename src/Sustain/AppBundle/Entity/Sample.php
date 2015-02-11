@@ -77,6 +77,11 @@ class Sample
      */
     private $task;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Sustain\UserBundle\Entity\User", inversedBy="samples")
+     */
+    protected $user;
+
 
     /**
      * Get id
@@ -270,5 +275,28 @@ class Sample
     public function getTask()
     {
         return $this->task;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Sustain\UserBundle\Entity\User $user
+     * @return Sample
+     */
+    public function setUser(\Sustain\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Sustain\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
