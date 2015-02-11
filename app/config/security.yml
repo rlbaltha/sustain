@@ -17,13 +17,14 @@ security:
     firewalls:
         main:
             pattern: ^/
-            fr3d_ldap:  ~
-            form_login:
-                csrf_provider: form.csrf_provider
-                default_target_path: /theme
-            logout:
-                path:   /logout
-                target: /
+            trusted_sso:
+                manager: admin_sso
+                create_users: false
+                login_action: false
+                logout_action: false
+                login_path: /login
+                check_path: /login
+                failure_path: /theme
             anonymous:    true
             switch_user: true
 
