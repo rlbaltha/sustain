@@ -1,5 +1,21 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script language="javascript">
+        $(document).ready(function () {
+            $('#sustain_appbundle_sample_date').datepicker({
+                showButtonPanel: true
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/jquery-ui.theme.min.css') }}">
+{% endblock %}
+
 {% block body -%}
     <h1>Sample edit</h1>
 

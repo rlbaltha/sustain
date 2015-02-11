@@ -16,8 +16,7 @@
             <tr>
                 <td><a href="{{ path('section_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
                 <td>{{ entity.info|raw }}</td>
-                <td>
-                        <a class="btn btn-default" href="{{ path('section_edit', { 'id': entity.id }) }}">Edit</a>
+                <td>{% if is_granted('ROLE_ADMIN') %}<a class="btn btn-default" href="{{ path('section_edit', { 'id': entity.id }) }}">Edit</a>{% endif %}
                 </td>
             </tr>
         {% endfor %}

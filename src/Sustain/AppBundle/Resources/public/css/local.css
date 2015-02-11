@@ -36,6 +36,14 @@ div.radio > label {
     color:black
 }
 
+h1 {
+    font-size: 28px;
+}
+
+h2 {
+    font-size: 22px;
+}
+
 
 /**********  Accessibility **********/
 #skip a, #skip a:hover, #skip a:visited

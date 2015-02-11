@@ -28,11 +28,13 @@ class SampleController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
 
         $entities = $em->getRepository('AppBundle:Sample')->findAll();
 
         return array(
             'entities' => $entities,
+            'user' => $user,
         );
     }
     /**
@@ -51,6 +53,8 @@ class SampleController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
+            $user = $this->getUser();
+            $entity->setUser($user);
             $em->flush();
 
             return $this->redirect($this->generateUrl('sample_show', array('id' => $entity->getId())));

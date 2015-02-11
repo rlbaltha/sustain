@@ -5,17 +5,17 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Facility</th>
-                <th>Sysloc</th>
-                <th>Param</th>
-                <th>Date</th>
-                <th>Paramvalue</th>
-                <th>Paraunit</th>
-                <th>Ebatch</th>
-                <th>Task</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Facility</th>
+            <th>Sysloc</th>
+            <th>Param</th>
+            <th>Date</th>
+            <th>Paramvalue</th>
+            <th>Paraunit</th>
+            <th>Ebatch</th>
+            <th>Task</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
@@ -28,19 +28,15 @@
                 <td>{{ entity.paraUnit }}</td>
                 <td>{{ entity.ebatch }}</td>
                 <td>{{ entity.task }}</td>
-                <td>
-                        <a href="{{ path('sample_edit', { 'id': entity.id }) }}">edit</a>
+                <td>{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
+                            <a class="btn btn-default" href="{{ path('sample_edit', { 'id': entity.id }) }}">Edit</a>
+                        {% endif %}
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('sample_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+    
+{% endblock %}

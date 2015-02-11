@@ -6,16 +6,16 @@
 
     <script language="javascript">
         $(document).ready(function () {
-            $('#map_canvas').gmap().bind('init', function() {
+            $('#map_canvas').gmap().bind('init', function () {
                 // This URL won't work on your localhost, so you need to change it
                 // see http://en.wikipedia.org/wiki/Same_origin_policy
-                $.getJSON( '{{ path('json', {'map':entity.id}) }}', function(data) {
-                    $.each( data, function(i, marker) {
+                $.getJSON('{{ path('json', {'map':entity.id}) }}', function (data) {
+                    $.each(data, function (i, marker) {
                         $('#map_canvas').gmap('addMarker', {
                             'position': new google.maps.LatLng(marker.latitude, marker.longitude),
                             'bounds': true
-                        }).click(function() {
-                            $('#map_canvas').gmap('openInfoWindow', { 'content': marker.content }, this);
+                        }).click(function () {
+                            $('#map_canvas').gmap('openInfoWindow', {'content': marker.content}, this);
                         });
                     });
                 });
@@ -24,8 +24,19 @@
     </script>
 {% endblock %}
 {% block body -%}
+    <div class="col-sm-offset-1  col-sm-10">
+        <h2>{{ entity.name }}</h2>
 
-    <div id="map_canvas" class="col-lg-offset-1 col-sm-10" style="height:85vh;">
+        <p class="">{{ entity.description|raw }}</p>
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-default pull-right" href="{{ path('mapset_edit', { 'id':
+                    entity.id }) }}">Edit</a>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <div id="map_canvas" class="col-sm-offset-1 col-sm-10" style="height:85vh;">
 
     </div>
 

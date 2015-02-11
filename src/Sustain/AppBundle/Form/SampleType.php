@@ -18,7 +18,7 @@ class SampleType extends AbstractType
             ->add('facility','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of facility'),))
             ->add('sysLoc','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of location'),))
             ->add('param','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Parameter'),))
-            ->add('date','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Date'),))
+            ->add('date', 'date', array('widget' => 'single_text','format' => 'MM/dd/yyyy','label'  => 'Date','attr' => array('class' => 'text form-control')))
             ->add('paramValue','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Parameter Value'),))
             ->add('paraUnit','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Parameter Unit'),))
             ->add('ebatch','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Data Batch'),))

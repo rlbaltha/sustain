@@ -19,9 +19,13 @@
                     <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
                         {{ file.name }}
                     </a>
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    {% if file.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
                     <a class="pull-right" href="{{ path('file_edit', { 'id': file.id}) }}" title="Edit {{ file.name }}">
                         Settings
                     </a>
+                    {% endif %}
+                    {% endif %}
                     {{ file.description|raw }}
                 </td>
 

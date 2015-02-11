@@ -1,9 +1,11 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block body -%}
-    <h1>Module:  {{ entity.name }}</h1>
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('module_edit', { 'id': entity.id }) }}" class="btn btn-default pull-right">Edit</a>
+    <h1>{{ entity.name }}</h1>
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('module_edit', { 'id': entity.id }) }}" class="btn btn-default pull-right">Edit</a>
+        {% endif %}
     {% endif %}
     <h2>Learning Objectives</h2>
 
@@ -70,6 +72,7 @@
         {% for entity in entity.mapsets %}
             <a href="{{ path('mapset_show', { 'id': entity.id }) }}" class="list-group-item">
                 <p class="list-group-item-heading">{{ entity.name|raw }}</p>
+
                 <p class="list-group-item-text">{{ entity.description|raw }}</p>
             </a>
         {% endfor %}
