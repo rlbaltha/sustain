@@ -15,6 +15,6 @@ class PageRepository extends EntityRepository
     public function findHome()
     {
         return $this->getEntityManager()
-            ->createQuery('SELECT p FROM AppBundle:Page p WHERE p.homepage = true ORDER BY p.updated DESC')->getResult();
+            ->createQuery('SELECT p FROM AppBundle:Page p WHERE p.homepage = true ORDER BY p.sortorder ASC')->getResult();
     }
 }
