@@ -4,17 +4,24 @@
     <h1>Getting Started</h1>
 
     {% for entity in entities %}
-        <div class="col-sm-2 well" style="height:80vh;">
+        <div class="col-sm-12 well">
             <a href="{{ path('theme_show', { 'id': entity.id }) }}" class="">
-            <img src="{{ entity.image }}" class="img-responsive img-rounded" alt="Watershed UGA logo">
-            <h2>
-                {{ entity.name }}
-            </h2>
-            <p>
-                {{ entity.description|raw }}
-            </p>
+                <div class="col-sm-2">
+                    <img src="{{ entity.image }}" class="img-responsive img-rounded" style="height:100px;"
+                         alt="Watershed UGA logo">
+                </div>
+                <div class="col-sm-10">
+                    <h2 style="display:inline">
+                        {{ entity.name }}
+                    </h2>
+
+                    <p>
+                        {{ entity.description|raw }}
+                    </p>
+                </div>
             </a>
-            {% if is_granted('ROLE_ADMIN') %}<a class="btn btn-default" href="{{ path('theme_edit', { 'id': entity.id }) }}">Edit</a>{% endif %}
+            {% if is_granted('ROLE_ADMIN') %}<a class="btn btn-default"
+                                                href="{{ path('theme_edit', { 'id': entity.id }) }}">Edit</a>{% endif %}
         </div>
     {% endfor %}
 
