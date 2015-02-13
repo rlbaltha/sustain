@@ -28,24 +28,33 @@
     {% if is_granted('ROLE_ADMIN') %}
         <h2 style="font-size: medium">Admin</h2>
         <ul class="list-unstyled">
-            <li><a href="{{ path('tag') }}"> Labels</a></li>
-            <li><a href="{{ path('sample') }}"> Samples</a></li>
-            <li><a href="{{ path('section') }}"> Sections</a></li>
-            <li><a href="{{ path('page') }}"> Pages</a></li>
-            <li><a href="{{ path('map') }}"> Map Points</a></li>
-        </ul>
-        <ul class="list-unstyled">
-            <li><a id='file_new_upload' title='Upload document' href="{{ path('file_new') }}"><i
-                            class="glyphicon glyphicon-upload"></i> Upload file</a></li>
+            <li><a href="{{ path('module') }}"> List Modules</a></li>
             <li><a href="{{ path('module_new') }}"> New Module</a></li>
-            <li><a href="{{ path('tag_new') }}"> New Label</a></li>
+            <hr/>
+            <li><a href="{{ path('objective') }}"> List Objectives</a></li>
             <li><a href="{{ path('objective_new') }}"> New Objective</a></li>
-            <li><a href="{{ path('sample_new') }}"> New Sample</a></li>
-            <li><a href="{{ path('section_new') }}">New Section</a></li>
-            <li><a href="{{ path('page_new') }}">New Page</a></li>
-            <li><a href="{{ path('theme_new') }}">New Theme</a></li>
+            <hr/>
+            <li><a href="{{ path('file') }}"> List Resources</a></li>
+            <li><a id='file_new_upload' title='Upload document' href="{{ path('file_new') }}"><i class="glyphicon glyphicon-upload"></i> Upload file</a></li>
+            <hr/>
+            <li><a href="{{ path('mapset') }}"> List Maps</a></li>
             <li><a href="{{ path('mapset_new') }}">New Map</a></li>
+            <li><a href="{{ path('map') }}"> List Map Points</a></li>
             <li><a href="{{ path('map_new') }}">New Map Pin</a></li>
+            <hr/>
+            <li><a href="{{ path('sample') }}"> List Samples</a></li>
+            <li><a href="{{ path('sample_new') }}"> New Sample</a></li>
+            <hr/>
+            <li><a href="{{ path('theme') }}">List Themes</a></li>
+            <li><a href="{{ path('theme_new') }}">New Theme</a></li>
+            <hr/>
+            <li><a href="{{ path('tag') }}"> List Labels</a></li>
+            <li><a href="{{ path('tag_new') }}"> New Label</a></li>
+            <hr/>
+            <li><a href="{{ path('section') }}"> List Sections</a></li>
+            <li><a href="{{ path('section_new') }}">New Section</a></li>
+            <li><a href="{{ path('page') }}"> List Pages</a></li>
+            <li><a href="{{ path('page_new') }}">New Page</a></li>
         </ul>
     {% endif %}
 {% endblock %}
