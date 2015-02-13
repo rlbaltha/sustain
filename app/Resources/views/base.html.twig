@@ -64,10 +64,10 @@
 </nav>
 
 
-    <div style="margin-top: 50px;">
+    <div style="margin-top: 70px;">
         {% if 'default' in app.request.attributes.get('_route') or app.request.attributes.get('_route') == 'theme'   %}
             {% else %}
-            <div class="col-sm-2 sidebar">
+            <div class="col-sm-2 sidebar hidden-xs">
                 {% block sidebar %}
                 {% endblock %}
             </div>

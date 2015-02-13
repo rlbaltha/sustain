@@ -47,6 +47,7 @@ h2 {
 .sidebar {
     background-color: lightcyan;
     height: 95vh;
+    margin-top: -20px;
 }
 
 
