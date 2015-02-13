@@ -7,7 +7,6 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Color</th>
                 <th>Sortorder</th>
                 <th></th>
             </tr>
@@ -15,8 +14,11 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('tag_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
-                <td>{{ entity.color }}</td>
+                <td>
+                    <a style="font-size: large" href="{{ path('tag_show', { 'id': entity.id }) }}"><span class="label label-default margin-right"
+                                                                                            style="background-color: {{
+                        entity
+                        .color }};">{{ entity.name }}</span></a></td>
                 <td>{{ entity.sortorder }}</td>
                 <td>{% if is_granted('ROLE_ADMIN') %}<a class="btn btn-default" href="{{ path('tag_edit', { 'id': entity.id }) }}">Edit</a>{% endif %}</td>
             </tr>
