@@ -21,19 +21,22 @@
     <link rel="icon" href="{{ asset('bundles/app/images/favicon.ico') }}" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainnav">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a name="top"></a>
-
             <a class="navbar-brand" href="{{ path('default') }}" >{{ application_name }}</a>
         </div>
 
-        <div class="navbar-collapse collapse">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li id="skip">
                     <a href="#main_content">Skip Navigation</a>
@@ -45,7 +48,7 @@
                 <li><a  href="{{ path('mapset') }}"> Maps</a></li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right" style="padding-right: 20px">
+            <ul class="nav navbar-nav navbar-right">
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     <li>
                         <a title="Logout" href="{{ path('fos_user_security_logout') }}">Logout</a>
@@ -56,14 +59,15 @@
                     </li>
                 {% endif %}
             </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
 
-        </div>
-    </nav>
 
-    <div style="margin-top: 70px;">
+    <div style="margin-top: 50px;">
         {% if 'default' in app.request.attributes.get('_route') or app.request.attributes.get('_route') == 'theme'   %}
             {% else %}
-            <div class="col-sm-2">
+            <div class="col-sm-2 sidebar">
                 {% block sidebar %}
                 {% endblock %}
             </div>

@@ -44,6 +44,11 @@ h2 {
     font-size: 22px;
 }
 
+.sidebar {
+    background-color: lightcyan;
+    height: 95vh;
+}
+
 
 /**********  Accessibility **********/
 #skip a, #skip a:hover, #skip a:visited
