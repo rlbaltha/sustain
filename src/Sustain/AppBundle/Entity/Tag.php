@@ -49,6 +49,11 @@ class Tag
 
 
     /**
+     * @ORM\ManyToMany(targetEntity="File", mappedBy="modules")
+     */
+    protected $modules;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -165,5 +170,38 @@ class Tag
     public function getFiles()
     {
         return $this->files;
+    }
+
+    /**
+     * Add modules
+     *
+     * @param \Sustain\AppBundle\Entity\File $modules
+     * @return Tag
+     */
+    public function addModule(\Sustain\AppBundle\Entity\File $modules)
+    {
+        $this->modules[] = $modules;
+
+        return $this;
+    }
+
+    /**
+     * Remove modules
+     *
+     * @param \Sustain\AppBundle\Entity\File $modules
+     */
+    public function removeModule(\Sustain\AppBundle\Entity\File $modules)
+    {
+        $this->modules->removeElement($modules);
+    }
+
+    /**
+     * Get modules
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getModules()
+    {
+        return $this->modules;
     }
 }

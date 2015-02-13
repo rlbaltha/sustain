@@ -6,10 +6,17 @@
     <div class="list-group">
         {% for entity in entities %}
             <a href="{{ path('module_show', { 'id': entity.id }) }}" class="list-group-item">
-                <p class="list-group-item-heading">{{ entity.name|raw }}</p>
+                <p class="list-group-item-heading">{{ entity.name|raw }}
+                    {% for tag in entity.tags %}
+                        <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+                    {% endfor %}
+                </p>
+
                 <p class="list-group-item-text">{{ entity.description|raw }}</p>
             </a>
         {% endfor %}
     </div>
 
-    {% endblock %}
+{% endblock %}

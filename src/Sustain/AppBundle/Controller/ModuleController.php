@@ -37,6 +37,27 @@ class ModuleController extends Controller
             'tags' => $tags,
         );
     }
+
+    /**
+     * Lists Modules entities by tag.
+     *
+     * @Route("/{tag}/modules_by_tag", name="modules_by_tag")
+     * @Method("GET")
+     * @Template("AppBundle:Module:index.html.twig")
+     */
+    public function findByTagAction($tag)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('AppBundle:Module')->modulesByTag($tag);
+        $tags = $em->getRepository('AppBundle:Tag')->findAll();
+
+        return array(
+            'entities' => $entities,
+            'tags' => $tags,
+        );
+    }
+
+
     /**
      * Creates a new Module entity.
      *
