@@ -30,7 +30,7 @@ class ModuleController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('AppBundle:Module')->findAll();
-        $tags = $em->getRepository('AppBundle:Tag')->findAll();
+        $tags = $em->getRepository('AppBundle:Tag')->sortedTags();
 
         return array(
             'entities' => $entities,
@@ -49,7 +49,7 @@ class ModuleController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('AppBundle:Module')->modulesByTag($tag);
-        $tags = $em->getRepository('AppBundle:Tag')->findAll();
+        $tags = $em->getRepository('AppBundle:Tag')->sortedTags();
 
         return array(
             'entities' => $entities,

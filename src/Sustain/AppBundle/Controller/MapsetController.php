@@ -30,7 +30,7 @@ class MapsetController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('AppBundle:Mapset')->findAll();
-        $tags = $em->getRepository('AppBundle:Tag')->findAll();
+        $tags = $em->getRepository('AppBundle:Tag')->sortedTags();
 
         return array(
             'entities' => $entities,
