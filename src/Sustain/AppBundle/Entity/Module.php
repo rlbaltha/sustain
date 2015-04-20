@@ -48,6 +48,11 @@ class Module
     protected $files;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Activity", mappedBy="modules")
+     */
+    protected $activities;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Objective", inversedBy="modules")
      */
     protected $objectives;
@@ -347,5 +352,40 @@ class Module
     public function getTags()
     {
         return $this->tags;
+    }
+
+
+
+    /**
+     * Add activities
+     *
+     * @param \Sustain\AppBundle\Entity\Activity $activities
+     * @return Module
+     */
+    public function addActivity(\Sustain\AppBundle\Entity\Activity $activities)
+    {
+        $this->activities[] = $activities;
+
+        return $this;
+    }
+
+    /**
+     * Remove activities
+     *
+     * @param \Sustain\AppBundle\Entity\Activity $activities
+     */
+    public function removeActivity(\Sustain\AppBundle\Entity\Activity $activities)
+    {
+        $this->activities->removeElement($activities);
+    }
+
+    /**
+     * Get activities
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getActivities()
+    {
+        return $this->activities;
     }
 }

@@ -1,0 +1,38 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    <table id="file_list" class="col-sm-12 table">
+        <thead>
+        <tr>
+            <th><span>Title</span></th>
+            <th class="hidden-xs">Labels</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for entity in entities %}
+            <tr>
+                <td>
+                    {{ entity.title }}
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
+                            <a class="pull-right" href="{{ path('activity_edit', { 'id': entity.id}) }}" title="Edit {{ entity.title }}">
+                                Settings
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                    {{ entity.description|raw }}
+                </td>
+                <td class="labels hidden-xs">
+                    {% for tag in entity.tags %}
+                        <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+                    {% endfor %}
+                </td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

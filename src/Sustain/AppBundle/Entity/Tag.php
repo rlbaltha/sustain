@@ -49,9 +49,14 @@ class Tag
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="File", mappedBy="modules")
+     * @ORM\ManyToMany(targetEntity="Module", mappedBy="tags")
      */
     protected $modules;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Activity", mappedBy="tags")
+     */
+    protected $activities;
 
     /**
      * Get id
@@ -203,5 +208,38 @@ class Tag
     public function getModules()
     {
         return $this->modules;
+    }
+
+    /**
+     * Add activities
+     *
+     * @param \Sustain\AppBundle\Entity\Activity $activities
+     * @return Tag
+     */
+    public function addActivity(\Sustain\AppBundle\Entity\Activity $activities)
+    {
+        $this->activities[] = $activities;
+
+        return $this;
+    }
+
+    /**
+     * Remove activities
+     *
+     * @param \Sustain\AppBundle\Entity\Activity $activities
+     */
+    public function removeActivity(\Sustain\AppBundle\Entity\Activity $activities)
+    {
+        $this->activities->removeElement($activities);
+    }
+
+    /**
+     * Get activities
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getActivities()
+    {
+        return $this->activities;
     }
 }

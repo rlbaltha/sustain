@@ -97,6 +97,12 @@ class User extends BaseUser
     private $samples;
 
     /**
+     * @ORM\OneToMany(targetEntity="Sustain\AppBundle\Entity\Activity", mappedBy="user")
+     */
+    private $activities;
+
+
+    /**
      * Get id
      *
      * @return integer 
@@ -219,5 +225,271 @@ class User extends BaseUser
     public function getStudentid()
     {
         return $this->studentid;
+    }
+
+    /**
+     * Add pages
+     *
+     * @param \Sustain\AppBundle\Entity\Page $pages
+     * @return User
+     */
+    public function addPage(\Sustain\AppBundle\Entity\Page $pages)
+    {
+        $this->pages[] = $pages;
+
+        return $this;
+    }
+
+    /**
+     * Remove pages
+     *
+     * @param \Sustain\AppBundle\Entity\Page $pages
+     */
+    public function removePage(\Sustain\AppBundle\Entity\Page $pages)
+    {
+        $this->pages->removeElement($pages);
+    }
+
+    /**
+     * Get pages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPages()
+    {
+        return $this->pages;
+    }
+
+    /**
+     * Add files
+     *
+     * @param \Sustain\AppBundle\Entity\File $files
+     * @return User
+     */
+    public function addFile(\Sustain\AppBundle\Entity\File $files)
+    {
+        $this->files[] = $files;
+
+        return $this;
+    }
+
+    /**
+     * Remove files
+     *
+     * @param \Sustain\AppBundle\Entity\File $files
+     */
+    public function removeFile(\Sustain\AppBundle\Entity\File $files)
+    {
+        $this->files->removeElement($files);
+    }
+
+    /**
+     * Get files
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFiles()
+    {
+        return $this->files;
+    }
+
+    /**
+     * Add maps
+     *
+     * @param \Sustain\AppBundle\Entity\Map $maps
+     * @return User
+     */
+    public function addMap(\Sustain\AppBundle\Entity\Map $maps)
+    {
+        $this->maps[] = $maps;
+
+        return $this;
+    }
+
+    /**
+     * Remove maps
+     *
+     * @param \Sustain\AppBundle\Entity\Map $maps
+     */
+    public function removeMap(\Sustain\AppBundle\Entity\Map $maps)
+    {
+        $this->maps->removeElement($maps);
+    }
+
+    /**
+     * Get maps
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMaps()
+    {
+        return $this->maps;
+    }
+
+    /**
+     * Add mapsets
+     *
+     * @param \Sustain\AppBundle\Entity\Mapset $mapsets
+     * @return User
+     */
+    public function addMapset(\Sustain\AppBundle\Entity\Mapset $mapsets)
+    {
+        $this->mapsets[] = $mapsets;
+
+        return $this;
+    }
+
+    /**
+     * Remove mapsets
+     *
+     * @param \Sustain\AppBundle\Entity\Mapset $mapsets
+     */
+    public function removeMapset(\Sustain\AppBundle\Entity\Mapset $mapsets)
+    {
+        $this->mapsets->removeElement($mapsets);
+    }
+
+    /**
+     * Get mapsets
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMapsets()
+    {
+        return $this->mapsets;
+    }
+
+    /**
+     * Add modules
+     *
+     * @param \Sustain\AppBundle\Entity\Module $modules
+     * @return User
+     */
+    public function addModule(\Sustain\AppBundle\Entity\Module $modules)
+    {
+        $this->modules[] = $modules;
+
+        return $this;
+    }
+
+    /**
+     * Remove modules
+     *
+     * @param \Sustain\AppBundle\Entity\Module $modules
+     */
+    public function removeModule(\Sustain\AppBundle\Entity\Module $modules)
+    {
+        $this->modules->removeElement($modules);
+    }
+
+    /**
+     * Get modules
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getModules()
+    {
+        return $this->modules;
+    }
+
+    /**
+     * Add objectives
+     *
+     * @param \Sustain\AppBundle\Entity\Objective $objectives
+     * @return User
+     */
+    public function addObjective(\Sustain\AppBundle\Entity\Objective $objectives)
+    {
+        $this->objectives[] = $objectives;
+
+        return $this;
+    }
+
+    /**
+     * Remove objectives
+     *
+     * @param \Sustain\AppBundle\Entity\Objective $objectives
+     */
+    public function removeObjective(\Sustain\AppBundle\Entity\Objective $objectives)
+    {
+        $this->objectives->removeElement($objectives);
+    }
+
+    /**
+     * Get objectives
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getObjectives()
+    {
+        return $this->objectives;
+    }
+
+    /**
+     * Add samples
+     *
+     * @param \Sustain\AppBundle\Entity\Sample $samples
+     * @return User
+     */
+    public function addSample(\Sustain\AppBundle\Entity\Sample $samples)
+    {
+        $this->samples[] = $samples;
+
+        return $this;
+    }
+
+    /**
+     * Remove samples
+     *
+     * @param \Sustain\AppBundle\Entity\Sample $samples
+     */
+    public function removeSample(\Sustain\AppBundle\Entity\Sample $samples)
+    {
+        $this->samples->removeElement($samples);
+    }
+
+    /**
+     * Get samples
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSamples()
+    {
+        return $this->samples;
+    }
+
+
+
+    /**
+     * Add activities
+     *
+     * @param \Sustain\AppBundle\Entity\Activity $activities
+     * @return User
+     */
+    public function addActivity(\Sustain\AppBundle\Entity\Activity $activities)
+    {
+        $this->activities[] = $activities;
+
+        return $this;
+    }
+
+    /**
+     * Remove activities
+     *
+     * @param \Sustain\AppBundle\Entity\Activity $activities
+     */
+    public function removeActivity(\Sustain\AppBundle\Entity\Activity $activities)
+    {
+        $this->activities->removeElement($activities);
+    }
+
+    /**
+     * Get activities
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getActivities()
+    {
+        return $this->activities;
     }
 }
