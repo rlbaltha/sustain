@@ -28,7 +28,7 @@ class File
 
     /**
      * @Assert\File(
-     *     maxSize="10M",
+     *     maxSize="30M",
      *     mimeTypes={"audio/mpeg", "application/vnd.ms-office", "image/gif", "image/png", "image/jpeg", "image/pjpeg", "application/pdf",
      * "application/vnd.oasis.opendocument.text", "application/vnd.oasis.opendocument.presentation",
      * "application/vnd.oasis.opendocument.spreadsheet", "application/msword", "application/mspowerpoint",

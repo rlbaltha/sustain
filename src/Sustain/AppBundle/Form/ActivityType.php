@@ -17,11 +17,11 @@ class ActivityType extends AbstractType
         $builder
             ->add('title','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Title of your activity'),))
             ->add('description', 'ckeditor', array('config_name' => 'editor_simple',))
-            ->add('modules', 'entity', array('class' => 'AppBundle:Module','property'=>'name','query_builder' =>
-                function(\Sustain\AppBundle\Entity\ModuleRepository $er) use ($options) {
-                    return $er->createQueryBuilder('m')
-                        ->orderBy('m.name', 'ASC');
-                }, 'expanded'=>true,'multiple'=>true, 'label'  => 'Select Modules', 'attr' => array('class' => 'checkbox'),
+            ->add('objectives', 'entity', array('class' => 'AppBundle:Objective','property'=>'objective','query_builder' =>
+                function(\Sustain\AppBundle\Entity\ObjectiveRepository $er) use ($options) {
+                    return $er->createQueryBuilder('o')
+                        ->orderBy('o.objective', 'ASC');
+                }, 'expanded'=>true,'multiple'=>true, 'label'  => 'Select Objectives', 'attr' => array('class' => 'checkbox'),
             ))
             ->add('tags', 'entity', array('class' => 'AppBundle:Tag','property'=>'name','query_builder' =>
                 function(\Sustain\AppBundle\Entity\TagRepository $er) use ($options) {

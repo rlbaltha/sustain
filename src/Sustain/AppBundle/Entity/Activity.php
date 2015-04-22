@@ -36,9 +36,9 @@ class Activity
     private $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Module", inversedBy="activities")
+     * @ORM\ManyToMany(targetEntity="Objective", inversedBy="activities")
      */
-    protected $modules;
+    protected $objectives;
 
 
     /**
@@ -177,42 +177,42 @@ class Activity
      */
     public function __construct()
     {
-        $this->modules = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
 
+
     /**
-     * Add modules
+     * Add objectives
      *
-     * @param \Sustain\AppBundle\Entity\Module $modules
+     * @param \Sustain\AppBundle\Entity\Objective $objectives
      * @return Activity
      */
-    public function addModule(\Sustain\AppBundle\Entity\Module $modules)
+    public function addObjective(\Sustain\AppBundle\Entity\Objective $objectives)
     {
-        $this->modules[] = $modules;
+        $this->objectives[] = $objectives;
 
         return $this;
     }
 
     /**
-     * Remove modules
+     * Remove objectives
      *
-     * @param \Sustain\AppBundle\Entity\Module $modules
+     * @param \Sustain\AppBundle\Entity\Objective $objectives
      */
-    public function removeModule(\Sustain\AppBundle\Entity\Module $modules)
+    public function removeObjective(\Sustain\AppBundle\Entity\Objective $objectives)
     {
-        $this->modules->removeElement($modules);
+        $this->objectives->removeElement($objectives);
     }
 
     /**
-     * Get modules
+     * Get objectives
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getModules()
+    public function getObjectives()
     {
-        return $this->modules;
+        return $this->objectives;
     }
 }
