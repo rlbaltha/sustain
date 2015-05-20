@@ -54,6 +54,28 @@ class User extends BaseUser
      */
     private $bio;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="college", type="string", length=255, nullable=true)
+     */
+    private $college;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="research", type="text", nullable=true)
+     */
+    private $research;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mentor", type="string", length=255, nullable=true)
+     */
+    private $mentor;
+
     /**
      * @var string
      *
@@ -491,5 +513,74 @@ class User extends BaseUser
     public function getActivities()
     {
         return $this->activities;
+    }
+
+    /**
+     * Set research
+     *
+     * @param string $research
+     * @return User
+     */
+    public function setResearch($research)
+    {
+        $this->research = $research;
+
+        return $this;
+    }
+
+    /**
+     * Get research
+     *
+     * @return string 
+     */
+    public function getResearch()
+    {
+        return $this->research;
+    }
+
+    /**
+     * Set mentor
+     *
+     * @param string $mentor
+     * @return User
+     */
+    public function setMentor($mentor)
+    {
+        $this->mentor = $mentor;
+
+        return $this;
+    }
+
+    /**
+     * Get mentor
+     *
+     * @return string 
+     */
+    public function getMentor()
+    {
+        return $this->mentor;
+    }
+
+    /**
+     * Set college
+     *
+     * @param string $college
+     * @return User
+     */
+    public function setCollege($college)
+    {
+        $this->college = $college;
+
+        return $this;
+    }
+
+    /**
+     * Get college
+     *
+     * @return string 
+     */
+    public function getCollege()
+    {
+        return $this->college;
     }
 }

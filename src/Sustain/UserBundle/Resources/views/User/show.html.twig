@@ -1,44 +1,21 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>User</h1>
+        {% if app.user.username==entity.username or is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-default pull-right"href="{{ path('user_edit', { 'id': entity.id }) }}">Edit</a>
+        {% endif %}
 
-    <table class="table">
-        <tbody>
-        <tr>
-            <th>Lastname</th>
-            <td>{{ entity.lastname }}</td>
-        </tr>
-        <tr>
-            <th>Firstname</th>
-            <td>{{ entity.firstname }}</td>
-        </tr>
-        <tr>
-            <th>Photo</th>
-            <td><img src="{{ entity.photo }}" class="img-rounded img-responsive" alt="Responsive image of {{ entity.firstname }} {{ entity.lastname }}"></td>
-        </tr>
-        <tr>
-            <th>Bio</th>
-            <td>{{ entity.bio|raw }}</td>
-        </tr>
-        <tr>
-            <th>Studentid</th>
-            <td>{{ entity.studentid }}</td>
-        </tr>
-        </tbody>
-    </table>
+        <h1>{{ entity.firstname }} {{ entity.lastname }}</h1>
 
-    <ul class="list-unstyled">
-        <li>
-            <a href="{{ path('user') }}">
-                Back to the list
-            </a>
-        </li>
-        <li>
-            <a href="{{ path('user_edit', { 'id': entity.id }) }}">
-                Edit
-            </a>
-        </li>
-        <li>{{ form(delete_form) }}</li>
-    </ul>
+        <img src="{{ entity.photo }}" class="pull-right img-rounded img-responsive" alt="Responsive image of {{ entity.firstname }} {{ entity.lastname
+}}">
+        <h2>Bio</h2>
+        {{ entity.bio|raw }}
+        <h2>School/College</h2>
+        {{ entity.college|raw }}
+        <h2>Research</h2>
+        {{ entity.research|raw }}
+
+        {% if entity.mentor == 0 %}<p><strong>I am willing to mentor research projects</strong></p>{% endif %}
+
 {% endblock %}
