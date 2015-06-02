@@ -30,11 +30,34 @@ class ActivityController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('AppBundle:Activity')->findAll();
+        $tags = $em->getRepository('AppBundle:Tag')->sortedTags();
 
         return array(
             'entities' => $entities,
+            'tags' => $tags,
         );
     }
+
+    /**
+     * Lists Modules entities by tag.
+     *
+     * @Route("/{tag}/activities_by_tag", name="activities_by_tag")
+     * @Method("GET")
+     * @Template("AppBundle:Activity:index.html.twig")
+     */
+    public function findByTagAction($tag)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('AppBundle:Activity')->activitiesByTag($tag);
+        $tags = $em->getRepository('AppBundle:Tag')->sortedTags();
+
+        return array(
+            'entities' => $entities,
+            'tags' => $tags,
+        );
+    }
+
+
     /**
      * Creates a new Activity entity.
      *
@@ -111,6 +134,7 @@ class ActivityController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AppBundle:Activity')->find($id);
+        $tags = $em->getRepository('AppBundle:Tag')->sortedTags();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Activity entity.');
@@ -120,6 +144,7 @@ class ActivityController extends Controller
 
         return array(
             'entity'      => $entity,
+            'tags' => $tags,
             'delete_form' => $deleteForm->createView(),
         );
     }

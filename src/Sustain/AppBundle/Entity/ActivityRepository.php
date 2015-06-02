@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class ActivityRepository extends EntityRepository
 {
+    /**
+     * Find activities by tag
+     */
+    public function activitiesByTag($tag)
+    {
+        return $this->getEntityManager()
+            ->createQuery('SELECT a FROM AppBundle:Activity a JOIN  a.tags t WHERE t.id = ?1 ')
+            ->setParameter('1',$tag)->getResult();
+    }
 }
