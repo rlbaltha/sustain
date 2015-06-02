@@ -37,6 +37,28 @@ class ObjectiveController extends Controller
             'tags' => $tags,
         );
     }
+
+
+    /**
+     * Lists Modules entities by tag.
+     *
+     * @Route("/{tag}/objectives_by_tag", name="objectives_by_tag")
+     * @Method("GET")
+     * @Template("AppBundle:Objective:index.html.twig")
+     */
+    public function findByTagAction($tag)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('AppBundle:Objective')->objectivesByTag($tag);
+        $tags = $em->getRepository('AppBundle:Tag')->sortedTags();
+
+        return array(
+            'entities' => $entities,
+            'tags' => $tags,
+        );
+    }
+
+
     /**
      * Creates a new Objective entity.
      *
