@@ -69,6 +69,15 @@ class User extends BaseUser
      */
     private $research;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="involvement", type="text", nullable=true)
+     */
+    private $involvement;
+
+
     /**
      * @var string
      *
@@ -582,5 +591,28 @@ class User extends BaseUser
     public function getCollege()
     {
         return $this->college;
+    }
+
+    /**
+     * Set involvement
+     *
+     * @param string $involvement
+     * @return User
+     */
+    public function setInvolvement($involvement)
+    {
+        $this->involvement = $involvement;
+
+        return $this;
+    }
+
+    /**
+     * Get involvement
+     *
+     * @return string 
+     */
+    public function getInvolvement()
+    {
+        return $this->involvement;
     }
 }
