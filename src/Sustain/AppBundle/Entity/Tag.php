@@ -47,6 +47,10 @@ class Tag
      */
     protected $files;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Objective", mappedBy="tags")
+     */
+    protected $objectives;
 
     /**
      * @ORM\ManyToMany(targetEntity="Module", mappedBy="tags")
@@ -241,5 +245,38 @@ class Tag
     public function getActivities()
     {
         return $this->activities;
+    }
+
+    /**
+     * Add objectives
+     *
+     * @param \Sustain\AppBundle\Entity\Objective $objectives
+     * @return Tag
+     */
+    public function addObjective(\Sustain\AppBundle\Entity\Objective $objectives)
+    {
+        $this->objectives[] = $objectives;
+
+        return $this;
+    }
+
+    /**
+     * Remove objectives
+     *
+     * @param \Sustain\AppBundle\Entity\Objective $objectives
+     */
+    public function removeObjective(\Sustain\AppBundle\Entity\Objective $objectives)
+    {
+        $this->objectives->removeElement($objectives);
+    }
+
+    /**
+     * Get objectives
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getObjectives()
+    {
+        return $this->objectives;
     }
 }

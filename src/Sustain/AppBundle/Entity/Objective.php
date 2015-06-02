@@ -56,6 +56,11 @@ class Objective
     protected $theme;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="objectives")
+     */
+    protected $tags;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Sustain\UserBundle\Entity\User", inversedBy="objectives")
      */
     protected $user;
@@ -278,5 +283,38 @@ class Objective
     public function getActivities()
     {
         return $this->activities;
+    }
+
+    /**
+     * Add tags
+     *
+     * @param \Sustain\AppBundle\Entity\Tag $tags
+     * @return Objective
+     */
+    public function addTag(\Sustain\AppBundle\Entity\Tag $tags)
+    {
+        $this->tags[] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \Sustain\AppBundle\Entity\Tag $tags
+     */
+    public function removeTag(\Sustain\AppBundle\Entity\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }
