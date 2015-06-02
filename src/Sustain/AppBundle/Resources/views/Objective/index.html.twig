@@ -7,7 +7,14 @@
         {% for entity in entities %}
             <a href="{{ path('objective_show', { 'id': entity.id }) }}" class="list-group-item">
                 <p class="list-group-item-heading">{{ entity.objective|raw }}</p>
-                <p class="list-group-item-text">{{ entity.description|raw }}</p>
+                <p class="list-group-item-text">{{ entity.description|raw }}
+
+                    {% for tag in entity.tags %}
+                        <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+                    {% endfor %}
+                </p>
             </a>
         {% endfor %}
     </div>
