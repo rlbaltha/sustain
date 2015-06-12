@@ -1,12 +1,16 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
+{% block title %}Objectives{% endblock %}
+
 {% block body -%}
-    <div class="alert alert-warning alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>How to use Objectives </strong>
-    </div>
 
     <h1>Learning Objectives</h1>
+
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        Objectives are associated with specific modules, but can be stand-alone. They are labeled from Basic to Advanced and according to levels of Bloom’s
+        and Fink’s Taxonomy. Click on the title for access to associated activities and resources.
+    </div>
 
     <div class="list-group">
         {% for entity in entities %}

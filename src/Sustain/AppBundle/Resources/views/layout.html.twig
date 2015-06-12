@@ -32,34 +32,23 @@
     {% endif %}
 
     {% if is_granted('ROLE_ADMIN') %}
-        <h2 style="font-size: medium">Admin</h2>
+        <hr/>
         <ul class="list-unstyled">
-            <li><a href="{{ path('module') }}"> List Modules</a></li>
+            <li><a href="{{ path('theme_new') }}">New Theme</a></li>
             <li><a href="{{ path('module_new') }}"> New Module</a></li>
-            <hr/>
-            <li><a href="{{ path('objective') }}"> List Objectives</a></li>
             <li><a href="{{ path('objective_new') }}"> New Objective</a></li>
-            <hr/>
-            <li><a href="{{ path('file') }}"> List Resources</a></li>
-            <li><a id='file_new_upload' title='Upload document' href="{{ path('file_new') }}"><i class="glyphicon glyphicon-upload"></i> Upload file</a></li>
-            <hr/>
-            <li><a href="{{ path('activity') }}"> List Activities</a></li>
+            <li><a id='file_new_upload' title='Upload Resource' href="{{ path('file_new') }}"><i class="glyphicon glyphicon-upload"></i> Upload
+                    Resource</a></li>
             <li><a title='New Activity' href="{{ path('activity_new') }}">New Activity</a></li>
+
+            <li><a href="{{ path('tag_new') }}"> New Label</a></li>
             <hr/>
-            <li><a href="{{ path('mapset') }}"> List Maps</a></li>
+            Maps
             <li><a href="{{ path('mapset_new') }}">New Map</a></li>
             <li><a href="{{ path('map') }}"> List Map Points</a></li>
             <li><a href="{{ path('map_new') }}">New Map Pin</a></li>
             <hr/>
-            <li><a href="{{ path('sample') }}"> List Samples</a></li>
-            <li><a href="{{ path('sample_new') }}"> New Sample</a></li>
-            <hr/>
-            <li><a href="{{ path('theme') }}">List Themes</a></li>
-            <li><a href="{{ path('theme_new') }}">New Theme</a></li>
-            <hr/>
-            <li><a href="{{ path('tag') }}"> List Labels</a></li>
-            <li><a href="{{ path('tag_new') }}"> New Label</a></li>
-            <hr/>
+            Pages
             <li><a href="{{ path('section') }}"> List Sections</a></li>
             <li><a href="{{ path('section_new') }}">New Section</a></li>
             <li><a href="{{ path('page') }}"> List Pages</a></li>

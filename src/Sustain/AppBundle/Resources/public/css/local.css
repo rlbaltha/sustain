@@ -1,3 +1,14 @@
+.full  {
+    background: url('/images/background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+body {
+    background: transparent;
+}
 
 .center {
     margin: 0 auto;
@@ -45,11 +56,44 @@ h2 {
 }
 
 .sidebar {
-    background-color: lightcyan;
+    background-color: #f8f8f8;
     height: 95vh;
     margin-top: -20px;
 }
 
+.navbar-default .navbar-brand {
+    color: #4d4b4b;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #4d4b4b;
+
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+a {
+    color: #2d2d2d;
+}
+
+a:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+.table {
+    background-color: #f8f8f8;
+}
+
+form {
+    padding: 10px;
+    background-color: #f8f8f8;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+}
 
 /**********  Accessibility **********/
 #skip a, #skip a:hover, #skip a:visited

@@ -1,9 +1,13 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
+{% block title %}Activities{% endblock %}
+
 {% block body %}
-    <div class="alert alert-warning alert-dismissible" role="alert">
+    <h1>Activities</h1>
+
+    <div class="alert alert-info alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>How to use Activities </strong>
+        Activities are associated with Learning Objectives and Modules. They are labeled according to Bloom’s and Fink’s Taxonomy. Click on a title to pull up the content and other resources for download.
     </div>
 
     <table id="file_list" class="col-sm-12 table">

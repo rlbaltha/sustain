@@ -1,13 +1,16 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
+{% block title %}Maps{% endblock %}
+
 {% block body -%}
-    <div class="alert alert-warning alert-dismissible" role="alert">
+    <h1>Maps</h1>
+
+    <div class="alert alert-info alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>How to use Maps </strong>
+        Click on the title to pull up a Google Map with labeled points.
     </div>
 
 
-    <h1>Maps</h1>
     <div class="list-group">
         {% for entity in entities %}
             <a href="{{ path('mapset_show', { 'id': entity.id }) }}" class="list-group-item">

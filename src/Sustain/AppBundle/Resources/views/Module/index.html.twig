@@ -1,12 +1,15 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block body -%}
-    <div class="alert alert-warning alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>How to use Modules</strong>
-    </div>
+{% block title %}Modules{% endblock %}
 
+{% block body -%}
     <h1>Modules</h1>
+
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        There are four modules currently being designed for one to three class periods. Click on a title for access to learning objectives,
+        activities, resources, assessments, and lecture content.
+    </div>
 
     <div class="list-group">
         {% for entity in entities %}

@@ -1,6 +1,6 @@
 {# sustain/app/Resources/views/base.html.twig #}
 <!DOCTYPE html>
-<html>
+<html {% if 'default' not in app.request.attributes.get('_route') %}class="full"{% endif %}>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,11 +48,11 @@
                 <li><a  href="{{ path('mapset') }}"> Maps</a></li>
                 <li><a href="{{ path('activity') }}"> Activities</a></li>
                 <li><a href="{{ path('user') }}"> Profiles</a></li>
-                <li><a href="{{ path('sample') }}"> Samples</a></li>
+                <!-- <li><a href="{{ path('sample') }}"> Samples</a></li> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                    <li><a href="{{ path('user_profile') }}">Profile</a></li>
+                    <li><a href="{{ path('user_profile') }}">My Profile</a></li>
                     <li>
                         <a title="Logout" href="{{ path('fos_user_security_logout') }}">Logout</a>
                     </li>
