@@ -50,9 +50,9 @@
                 <li><a href="{{ path('user') }}"> Profiles</a></li>
                 <li><a href="{{ path('sample') }}"> Samples</a></li>
             </ul>
-
             <ul class="nav navbar-nav navbar-right">
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <li><a href="{{ path('user_profile') }}">Profile</a></li>
                     <li>
                         <a title="Logout" href="{{ path('fos_user_security_logout') }}">Logout</a>
                     </li>

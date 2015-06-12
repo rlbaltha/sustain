@@ -102,33 +102,7 @@ class UserController extends Controller
     /**
      * Finds and displays a User entity.
      *
-     * @Route("/{id}", name="user_show")
-     * @Method("GET")
-     * @Template()
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('SustainUserBundle:User')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-
-    /**
-     * Finds and displays a User entity.
-     *
-     * @Route("/{id}", name="user_show")
+     * @Route("/profile", name="user_profile")
      * @Method("GET")
      * @Template("SustainUserBundle:User:show.html.twig")
      */
@@ -148,13 +122,35 @@ class UserController extends Controller
             return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        return array(
+            'entity'      => $entity,
+        );
+    }
+
+    /**
+     * Finds and displays a User entity.
+     *
+     * @Route("/{id}", name="user_show")
+     * @Method("GET")
+     * @Template()
+     */
+    public function showAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('SustainUserBundle:User')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find User entity.');
+        }
 
         return array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
         );
     }
+
+
+
 
     /**
      * Displays a form to edit an existing User entity.

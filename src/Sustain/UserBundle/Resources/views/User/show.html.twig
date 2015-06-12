@@ -1,21 +1,20 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-        {% if app.user.username==entity.username or is_granted('ROLE_ADMIN') %}
-        <a class="btn btn-default pull-right"href="{{ path('user_edit', { 'id': entity.id }) }}">Edit</a>
-        {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-default pull-right" href="{{ path('user_edit', { 'id': entity.id }) }}">Edit</a>
+    {% endif %}
 
-        <h1>{{ entity.firstname }} {{ entity.lastname }}</h1>
+    <h1>{{ entity.firstname }} {{ entity.lastname }}</h1>
 
-        <img src="{{ entity.photo }}" class="pull-right img-rounded img-responsive" alt="Responsive image of {{ entity.firstname }} {{ entity.lastname
-}}">
-        <h2>Bio</h2>
-        {{ entity.bio|raw }}
-        <h2>School/College</h2>
-        {{ entity.college|raw }}
-        <h2>Research</h2>
-        {{ entity.research|raw }}
+    <img src="{{ entity.photo }}" class="pull-right img-rounded img-responsive" alt="Responsive image of {{ entity.firstname }} {{ entity.lastname }}">
+    <h2>Bio</h2>
+    {{ entity.bio|raw }}
+    <h2>School/College</h2>
+    {{ entity.college|raw }}
+    <h2>Research</h2>
+    {{ entity.research|raw }}
 
-        {% if entity.mentor == 0 %}<p><strong>I am willing to mentor research projects</strong></p>{% endif %}
+    {% if entity.mentor == 0 %}<p><strong>I am willing to mentor research projects</strong></p>{% endif %}
 
 {% endblock %}
