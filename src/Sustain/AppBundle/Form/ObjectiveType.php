@@ -17,6 +17,12 @@ class ObjectiveType extends AbstractType
         $builder
             ->add('objective','textarea', array('attr' => array('class' => 'text form-control'),))
             ->add('description', 'ckeditor', array('config_name' => 'editor_simple',))
+            ->add('tags', 'entity', array('class' => 'AppBundle:Tag','property'=>'name','query_builder' =>
+                function(\Sustain\AppBundle\Entity\TagRepository $er) use ($options) {
+                    return $er->createQueryBuilder('t')
+                        ->orderBy('t.name', 'ASC');
+                }, 'expanded'=>true,'multiple'=>true, 'label'  => 'Select Labels', 'attr' => array('class' => 'checkbox'),
+            ))
             ->add('theme', 'entity', array('class' => 'AppBundle:Theme',
                 'property' => 'name','expanded'=>false,'multiple'=>false,'label'  => 'Theme', 'attr' => array('class' => 'form-control'),))
         ;

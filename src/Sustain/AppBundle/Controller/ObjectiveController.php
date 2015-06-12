@@ -37,6 +37,28 @@ class ObjectiveController extends Controller
             'tags' => $tags,
         );
     }
+
+
+    /**
+     * Lists Modules entities by tag.
+     *
+     * @Route("/{tag}/objectives_by_tag", name="objectives_by_tag")
+     * @Method("GET")
+     * @Template("AppBundle:Objective:index.html.twig")
+     */
+    public function findByTagAction($tag)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('AppBundle:Objective')->objectivesByTag($tag);
+        $tags = $em->getRepository('AppBundle:Tag')->sortedTags();
+
+        return array(
+            'entities' => $entities,
+            'tags' => $tags,
+        );
+    }
+
+
     /**
      * Creates a new Objective entity.
      *
@@ -115,6 +137,7 @@ class ObjectiveController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AppBundle:Objective')->find($id);
+        $tags = $em->getRepository('AppBundle:Tag')->sortedTags();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Objective entity.');
@@ -124,6 +147,7 @@ class ObjectiveController extends Controller
 
         return array(
             'entity'      => $entity,
+            'tags' => $tags,
             'delete_form' => $deleteForm->createView(),
         );
     }

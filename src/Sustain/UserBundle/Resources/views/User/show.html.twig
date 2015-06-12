@@ -1,6 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
+
     {% if is_granted('ROLE_ADMIN') %}
         <a class="btn btn-default pull-right" href="{{ path('user_edit', { 'id': entity.id }) }}">Edit</a>
     {% endif %}
@@ -14,7 +15,10 @@
     {{ entity.college|raw }}
     <h2>Research</h2>
     {{ entity.research|raw }}
+    <h2>Involvement in WatershedUGA</h2>
+    {{ entity.involvement|raw }}
+    <hr/>
 
-    {% if entity.mentor == 0 %}<p><strong>I am willing to mentor research projects</strong></p>{% endif %}
+    {% if entity.mentor == 0 %}<p><strong>I am willing to mentor CURO projects</strong></p>{% endif %}
 
 {% endblock %}

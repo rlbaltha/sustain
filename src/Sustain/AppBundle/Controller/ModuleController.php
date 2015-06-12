@@ -136,6 +136,7 @@ class ModuleController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AppBundle:Module')->find($id);
+        $tags = $em->getRepository('AppBundle:Tag')->sortedTags();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Module entity.');
@@ -145,6 +146,7 @@ class ModuleController extends Controller
 
         return array(
             'entity'      => $entity,
+            'tags' => $tags,
             'delete_form' => $deleteForm->createView(),
         );
     }

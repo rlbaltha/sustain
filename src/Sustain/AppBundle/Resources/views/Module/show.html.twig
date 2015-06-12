@@ -7,6 +7,14 @@
             <a href="{{ path('module_edit', { 'id': entity.id }) }}" class="btn btn-default pull-right">Edit</a>
         {% endif %}
     {% endif %}
+
+    {% for tag in entity.tags %}
+        <span class="label label-default" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+    {% endfor %}
+    <hr/>
+
     <h2>Learning Objectives</h2>
 
     <div class="list-group">

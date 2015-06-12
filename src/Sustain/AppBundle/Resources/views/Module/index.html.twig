@@ -1,20 +1,25 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block body -%}
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>How to use Modules</strong>
+    </div>
+
     <h1>Modules</h1>
 
     <div class="list-group">
         {% for entity in entities %}
             <a href="{{ path('module_show', { 'id': entity.id }) }}" class="list-group-item">
-                <p class="list-group-item-heading">{{ entity.name|raw }}
-                    {% for tag in entity.tags %}
-                        <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
-                                {{ tag.name }}
-                                </span>
-                    {% endfor %}
-                </p>
+                <p class="list-group-item-heading">{{ entity.name|raw }}</p>
 
                 <p class="list-group-item-text">{{ entity.description|raw }}</p>
+
+                {% for tag in entity.tags %}
+                    <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+                {% endfor %}
             </a>
         {% endfor %}
     </div>

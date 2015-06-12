@@ -1,13 +1,24 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block body -%}
+
+
+
     <h1>{{ entity.objective|raw }}</h1>
+
+
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
         {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
             <a href="{{ path('objective_edit', { 'id': entity.id }) }}" class="btn btn-default pull-right">Edit</a>
         {% endif %}
     {% endif %}
-    <p>{{ entity.description|raw }}</p>
+    <p>{{ entity.description|raw }} </p>
+    {% for tag in entity.tags %}
+        <span class="label label-default" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+    {% endfor %}
+    <hr/>
 
     <h2>Files</h2>
 
@@ -23,7 +34,8 @@
         {% for file in entity.files %}
             <tr class="file">
                 <td>
-                    <span class="label label-info" data-toggle="tooltip" title="This an {{ file.ext }} file ">{{ file.ext }}</span>
+                    <span class="label label-info" data-toggle="tooltip"
+                          title="This an {{ file.ext }} file ">{{ file.ext }}</span>
                     <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
                         {{ file.name }}
                     </a>
@@ -63,7 +75,8 @@
                     {{ entity.title }}
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                         {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
-                            <a class="pull-right" href="{{ path('activity_edit', { 'id': entity.id}) }}" title="Edit {{ entity.title }}">
+                            <a class="pull-right" href="{{ path('activity_edit', { 'id': entity.id}) }}"
+                               title="Edit {{ entity.title }}">
                                 Settings
                             </a>
                         {% endif %}

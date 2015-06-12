@@ -20,10 +20,11 @@ class UserType extends AbstractType
             ->add('lastname', 'text', array('label'=> 'Last name','attr' => array('class' => 'form-control')))
             ->add('college', 'text', array('label'=> 'School/College','attr' => array('class' => 'form-control')))
             ->add('photo', 'text', array('label'=> 'Photo URL','attr' => array('class' => 'form-control')))
-            ->add('bio', 'ckeditor', array('required' => false,'label'=> 'Bio','config_name' => 'editor_default',))
-            ->add('research', 'ckeditor', array('required' => false,'label'=> 'Research','config_name' => 'editor_default',))
+            ->add('bio', 'ckeditor', array('required' => false,'label'=> 'Bio','config_name' => 'editor_simple',))
+            ->add('research', 'ckeditor', array('required' => false,'label'=> 'Research interests','config_name' => 'editor_simple',))
+            ->add('involvement', 'ckeditor', array('required' => false,'label'=> 'Involvement in WatershedUGA','config_name' => 'editor_simple',))
             ->add('mentor', 'choice', array('choices'   => array('0' => 'Yes', '1' => 'No'),'required'  => true,'label'  => 'I am willing to mentor
-            students',
+            Curo students',
                 'expanded' => true,'attr' => array('class' => 'radio'),))
 
 

@@ -130,7 +130,7 @@ class UserController extends Controller
     /**
      * Finds and displays a User entity.
      *
-     * @Route("/{id}", name="user_show")
+     * @Route("/{id}/profile", name="user_profile")
      * @Method("GET")
      * @Template()
      */
