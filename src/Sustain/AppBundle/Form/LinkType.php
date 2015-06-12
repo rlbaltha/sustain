@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class FileType extends AbstractType
+class LinkType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,7 +15,8 @@ class FileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of your file'),))
+            ->add('url','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Url for resource'),))
+            ->add('name','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Display name for link'),))
             ->add('description', 'ckeditor', array('config_name' => 'editor_simple',))
             ->add('modules', 'entity', array('class' => 'AppBundle:Module','property'=>'name','query_builder' =>
                 function(\Sustain\AppBundle\Entity\ModuleRepository $er) use ($options) {
@@ -28,12 +29,6 @@ class FileType extends AbstractType
                     return $er->createQueryBuilder('t')
                         ->orderBy('t.name', 'ASC');
                 }, 'expanded'=>true,'multiple'=>true, 'label'  => 'Select Labels', 'attr' => array('class' => 'checkbox'),
-            ))
-            ->add('objectives', 'entity', array('class' => 'AppBundle:Objective','property'=>'objective','query_builder' =>
-                function(\Sustain\AppBundle\Entity\ObjectiveRepository $er) use ($options) {
-                    return $er->createQueryBuilder('o')
-                        ->orderBy('o.objective', 'ASC');
-                }, 'expanded'=>true,'multiple'=>true, 'label'  => 'Select Objectives', 'attr' => array('class' => 'checkbox'),
             ))
         ;
     }

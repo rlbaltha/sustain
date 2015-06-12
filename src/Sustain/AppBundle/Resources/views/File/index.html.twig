@@ -20,12 +20,20 @@
         <tbody>
 
         {% for file in files %}
+
             <tr class="file">
                 <td>
+                    {% if file.url is null %}
                     <span class="label label-info" data-toggle="tooltip" title="This an {{ file.ext }} file ">{{ file.ext }}</span>
                     <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
                         {{ file.name }}
                     </a>
+                    {% else %}
+                        <span class="label label-info" data-toggle="tooltip" title="This an link to a resource">Link</span>
+                        <a class="" href="{{ file.url }}" title="Go to  {{ file.name }}" target="_blank">
+                            {{ file.name }}
+                        </a>
+                    {% endif %}
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     {% if file.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
                     <a class="pull-right" href="{{ path('file_edit', { 'id': file.id}) }}" title="Edit {{ file.name }}">

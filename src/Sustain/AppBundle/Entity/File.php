@@ -68,7 +68,7 @@ class File
      *
      * @ORM\Column(name="url", type="string", length=255, nullable=true)
      */
-    private $url = 'http://resource.edu/resource.pdf';
+    private $url;
 
     /**
      * @var integer

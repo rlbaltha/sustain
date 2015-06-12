@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Sustain\AppBundle\Entity\File;
 use Sustain\AppBundle\Form\FileType;
 use Sustain\AppBundle\Form\UploadType;
+use Sustain\AppBundle\Form\LinkType;
 
 /**
  * File controller.
@@ -62,14 +63,14 @@ class FileController extends Controller
     /**
      * Creates a new File entity.
      *
-     * @Route("/", name="file_create")
+     * @Route("/{type}/new", name="file_create", defaults={"type" = "upload"})
      * @Method("POST")
      * @Template("AppBundle:File:new.html.twig")
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, $type)
     {
         $entity = new File();
-        $form = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity, $type);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -95,12 +96,20 @@ class FileController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(File $entity)
+    private function createCreateForm(File $entity, $type)
     {
-        $form = $this->createForm(new UploadType(), $entity, array(
-            'action' => $this->generateUrl('file_create'),
-            'method' => 'POST',
-        ));
+        if ($type=='upload') {
+            $form = $this->createForm(new UploadType(), $entity, array(
+                'action' => $this->generateUrl('file_create'),
+                'method' => 'POST',
+            ));
+        }
+        else {
+            $form = $this->createForm(new LinkType(), $entity, array(
+                'action' => $this->generateUrl('file_create', array('type' => $type)),
+                'method' => 'POST',
+            ));
+        }
 
         $form->add('submit', 'submit', array('label' => 'Post', 'attr' => array('class' => 'btn btn-primary'),));
 
@@ -110,14 +119,14 @@ class FileController extends Controller
     /**
      * Displays a form to create a new File entity.
      *
-     * @Route("/new", name="file_new")
+     * @Route("/{type}/new", name="file_new" , defaults={"type" = "upload"})
      * @Method("GET")
      * @Template()
      */
-    public function newAction()
+    public function newAction($type)
     {
         $entity = new File();
-        $form   = $this->createCreateForm($entity);
+        $form   = $this->createCreateForm($entity, $type);
 
         return array(
             'entity' => $entity,
@@ -259,12 +268,19 @@ class FileController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AppBundle:File')->find($id);
+        if (is_null($entity->getUrl()))
+        {
+            $type='upload';
+        }
+        else {
+            $type='link';
+        }
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find File entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($entity, $type);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -281,12 +297,21 @@ class FileController extends Controller
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(File $entity)
+    private function createEditForm(File $entity, $type)
     {
-        $form = $this->createForm(new FileType(), $entity, array(
-            'action' => $this->generateUrl('file_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
+        if ($type=='upload') {
+            $form = $this->createForm(new FileType(), $entity, array(
+                'action' => $this->generateUrl('file_update', array('id' => $entity->getId(),'type'=>$type)),
+                'method' => 'PUT',
+            ));
+        }
+        else {
+            $form = $this->createForm(new LinkType(), $entity, array(
+                'action' => $this->generateUrl('file_update', array('id' => $entity->getId(),'type'=>$type)),
+                'method' => 'PUT',
+            ));
+        }
+
 
         $form->add('submit', 'submit', array('label' => 'Post', 'attr' => array('class' => 'btn btn-primary'),));
 
@@ -304,13 +329,21 @@ class FileController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AppBundle:File')->find($id);
+        if (is_null($entity->getUrl()))
+        {
+            $type='upload';
+        }
+        else {
+            $type='link';
+        }
+
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find File entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($entity, $type);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
