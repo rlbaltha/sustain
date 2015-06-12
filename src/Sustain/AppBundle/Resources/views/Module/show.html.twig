@@ -1,79 +1,85 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
+{% block title %}Modules{% endblock %}
+
 {% block body -%}
-    <h1>{{ entity.name }}</h1>
-    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-        {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('module_edit', { 'id': entity.id }) }}" class="btn btn-default pull-right">Edit</a>
+    <div class="col-sm-12 well">
+        <h1>{{ entity.name }}</h1>
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('module_edit', { 'id': entity.id }) }}" class="btn btn-default pull-right">Edit</a>
+            {% endif %}
         {% endif %}
-    {% endif %}
 
-    {% for tag in entity.tags %}
-        <span class="label label-default" style="background-color: {{ tag.color }};">
+        {% for tag in entity.tags %}
+            <span class="label label-default" style="background-color: {{ tag.color }};">
                                 {{ tag.name }}
                                 </span>
-    {% endfor %}
-    <hr/>
-
-    <h2>Learning Objectives</h2>
-
-    <div class="list-group">
-        {% for entity in entity.objectives %}
-            <a href="{{ path('objective_show', { 'id': entity.id }) }}" class="list-group-item">
-                <p class="list-group-item-heading">{{ entity.objective|raw }}</p>
-
-                <p class="list-group-item-text">{{ entity.description|raw }}</p>
-            </a>
-        {% else %}
-            There are no Learning Objectives for this Module.
         {% endfor %}
-    </div>
+        <hr/>
 
-    <h2>Resources</h2>
+        <h2>Learning Objectives</h2>
 
-    <table id="file_list" class="col-sm-12 table">
-        <thead>
-        <tr class="file">
-            <th><span>Title</span></th>
-            <th class="hidden-xs">Labels</th>
-        </tr>
-        </thead>
-        <tbody>
+        <div class="list-group">
+            {% for entity in entity.objectives %}
+                <a href="{{ path('objective_show', { 'id': entity.id }) }}" class="list-group-item">
+                    <p class="list-group-item-heading">{{ entity.objective|raw }}</p>
 
-        {% for file in entity.files %}
+                    <p class="list-group-item-text">{{ entity.description|raw }}</p>
+                </a>
+            {% else %}
+                There are no Learning Objectives for this Module.
+            {% endfor %}
+        </div>
+
+        <h2>Resources</h2>
+
+        <table id="file_list" class="col-sm-12 table">
+            <thead>
             <tr class="file">
-                <td>
-                    <span class="label label-info" data-toggle="tooltip" title="This an {{ file.ext }} file ">{{ file.ext }}</span>
-                    <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
-                        {{ file.name }}
-                    </a>
-                    <a class="pull-right" href="{{ path('file_edit', { 'id': file.id}) }}" title="Edit {{ file.name }}">
-                        Settings
-                    </a>
-                    {{ file.description|raw }}
-                </td>
-                <td class="labels hidden-xs">
-                    {% for tag in file.tags %}
-                        <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                <th><span>Title</span></th>
+                <th class="hidden-xs">Labels</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for file in entity.files %}
+                <tr class="file">
+                    <td>
+                        <span class="label label-info" data-toggle="tooltip" title="This an {{ file.ext }} file ">{{ file.ext }}</span>
+                        <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
+                            {{ file.name }}
+                        </a>
+                        <a class="pull-right" href="{{ path('file_edit', { 'id': file.id}) }}" title="Edit {{ file.name }}">
+                            Settings
+                        </a>
+                        {{ file.description|raw }}
+                    </td>
+                    <td class="labels hidden-xs">
+                        {% for tag in file.tags %}
+                            <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
                                 {{ tag.name }}
                                 </span>
-                    {% endfor %}
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
 
 
-    <h1>Maps</h1>
-    <div class="list-group">
-        {% for entity in entity.mapsets %}
-            <a href="{{ path('mapset_show', { 'id': entity.id }) }}" class="list-group-item">
-                <p class="list-group-item-heading">{{ entity.name|raw }}</p>
+        <h1>Maps</h1>
+        <div class="list-group">
+            {% for entity in entity.mapsets %}
+                <a href="{{ path('mapset_show', { 'id': entity.id }) }}" class="list-group-item">
+                    <p class="list-group-item-heading">{{ entity.name|raw }}</p>
 
-                <p class="list-group-item-text">{{ entity.description|raw }}</p>
-            </a>
-        {% endfor %}
+                    <p class="list-group-item-text">{{ entity.description|raw }}</p>
+                </a>
+            {% endfor %}
+        </div>
+
     </div>
+
 {% endblock %}

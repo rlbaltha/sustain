@@ -8,7 +8,13 @@
 
 body {
     background: transparent;
+    font-family: 'Open Sans', 'Arial', 'sans-serif';
 }
+
+.navbar-brand, h1, h2, h3 {
+    font-family: 'Josefin Sans', 'Arial', 'sans-serif';
+}
+
 
 .center {
     margin: 0 auto;

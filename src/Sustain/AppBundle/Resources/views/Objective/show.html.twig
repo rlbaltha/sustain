@@ -1,98 +1,104 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
+
+{% block title %}Objectives{% endblock %}
+
+
 {% block body -%}
 
+    <div class="col-sm-12 well">
+
+        <h1>{{ entity.objective|raw }}</h1>
 
 
-    <h1>{{ entity.objective|raw }}</h1>
-
-
-    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-        {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('objective_edit', { 'id': entity.id }) }}" class="btn btn-default pull-right">Edit</a>
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('objective_edit', { 'id': entity.id }) }}" class="btn btn-default pull-right">Edit</a>
+            {% endif %}
         {% endif %}
-    {% endif %}
-    <p>{{ entity.description|raw }} </p>
-    {% for tag in entity.tags %}
-        <span class="label label-default" style="background-color: {{ tag.color }};">
+        <p>{{ entity.description|raw }} </p>
+        {% for tag in entity.tags %}
+            <span class="label label-default" style="background-color: {{ tag.color }};">
                                 {{ tag.name }}
                                 </span>
-    {% endfor %}
-    <hr/>
+        {% endfor %}
+        <hr/>
 
-    <h2>Files</h2>
+        <h2>Files</h2>
 
-    <table id="file_list" class="col-sm-12 table">
-        <thead>
-        <tr class="file">
-            <th><span>Title</span></th>
-            <th class="hidden-xs">Labels</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        {% for file in entity.files %}
+        <table id="file_list" class="col-sm-12 table">
+            <thead>
             <tr class="file">
-                <td>
+                <th><span>Title</span></th>
+                <th class="hidden-xs">Labels</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for file in entity.files %}
+                <tr class="file">
+                    <td>
                     <span class="label label-info" data-toggle="tooltip"
                           title="This an {{ file.ext }} file ">{{ file.ext }}</span>
-                    <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
-                        {{ file.name }}
-                    </a>
-                    <a class="pull-right" href="{{ path('file_edit', { 'id': file.id}) }}" title="Edit {{ file.name }}">
-                        Settings
-                    </a>
-                    {{ file.description|raw }}
-                </td>
-                <td class="labels hidden-xs">
-                    {% for tag in file.tags %}
-                        <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                        <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
+                            {{ file.name }}
+                        </a>
+                        <a class="pull-right" href="{{ path('file_edit', { 'id': file.id}) }}" title="Edit {{ file.name }}">
+                            Settings
+                        </a>
+                        {{ file.description|raw }}
+                    </td>
+                    <td class="labels hidden-xs">
+                        {% for tag in file.tags %}
+                            <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
                                 {{ tag.name }}
                                 </span>
-                    {% endfor %}
-                </td>
-            </tr>
-        {% endfor %}
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
 
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <h2>Activities</h2>
+        <h2>Activities</h2>
 
-    <table id="file_list" class="col-sm-12 table">
-        <thead>
-        <tr>
-            <th><span>Title</span></th>
-            <th class="hidden-xs">Labels</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        {% for entity in entity.activities %}
+        <table id="file_list" class="col-sm-12 table">
+            <thead>
             <tr>
-                <td>
-                    {{ entity.title }}
-                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                        {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
-                            <a class="pull-right" href="{{ path('activity_edit', { 'id': entity.id}) }}"
-                               title="Edit {{ entity.title }}">
-                                Settings
-                            </a>
+                <th><span>Title</span></th>
+                <th class="hidden-xs">Labels</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for entity in entity.activities %}
+                <tr>
+                    <td>
+                        {{ entity.title }}
+                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                            {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
+                                <a class="pull-right" href="{{ path('activity_edit', { 'id': entity.id}) }}"
+                                   title="Edit {{ entity.title }}">
+                                    Settings
+                                </a>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
-                    {{ entity.description|raw }}
-                </td>
-                <td class="labels hidden-xs">
-                    {% for tag in entity.tags %}
-                        <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                        {{ entity.description|raw }}
+                    </td>
+                    <td class="labels hidden-xs">
+                        {% for tag in entity.tags %}
+                            <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
                                 {{ tag.name }}
                                 </span>
-                    {% endfor %}
-                </td>
-            </tr>
+                        {% endfor %}
+                    </td>
+                </tr>
 
-        {% endfor %}
-        </tbody>
-    </table>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
 {% endblock %}
