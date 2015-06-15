@@ -22,7 +22,8 @@
         {% for entity in entities %}
             <tr>
                 <td>
-                    {{ entity.title }}
+                    <a href="{{ path('activity_show', { 'id': entity.id}) }}" title="Show details for this activity">{{
+                        entity.title }}</a>
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                         {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
                             <a class="pull-right" href="{{ path('activity_edit', { 'id': entity.id}) }}" title="Edit {{ entity.title }}">

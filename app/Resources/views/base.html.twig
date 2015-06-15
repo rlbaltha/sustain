@@ -17,6 +17,20 @@
     {% block javascripts %}
         {% javascripts '@jquery_js' '@jqueryui_js' '@bootstrap_js' combine=true output='js/compiled/main.js' %}
         <script src="{{ asset_url }}"></script>
+
+        <script language="javascript">
+            $(document).ready(function () {
+                var active_route = '{{ app.request.attributes.get('_route') }}';
+                if (active_route.includes("_")) {
+                    var currentactive= '#' + active_route.substring(0, active_route.indexOf('_'));
+                }
+                else {
+                    var currentactive = '#' + active_route;
+                }
+                $('.active').removeClass('active');
+                $(currentactive).addClass('active');
+            });
+        </script>
         {% endjavascripts %}
     {% endblock %}
 
@@ -34,7 +48,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ path('default') }}" >{{ application_name }}</a>
+            <a class="navbar-brand" href="{{ path('default') }}">{{ application_name }}</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -43,13 +57,13 @@
                 <li id="skip">
                     <a href="#main_content">Skip Navigation</a>
                 </li>
-                <li><a title="Courses" href="{{ path('theme') }}">Getting Started</a></li>
-                <li><a  href="{{ path('module') }}"> Modules</a></li>
-                <li><a  href="{{ path('objective') }}"> Objectives</a></li>
-                <li><a href="{{ path('activity') }}"> Activities</a></li>
-                <li><a title="Courses" href="{{ path('file') }}">Resources</a></li>
-                <li><a  href="{{ path('mapset') }}"> Maps</a></li>
-                <li><a href="{{ path('user') }}"> Profiles</a></li>
+                <li id="theme" class=""><a title="Courses" href="{{ path('theme') }}">Getting Started</a></li>
+                <li id="module"><a href="{{ path('module') }}"> Modules</a></li>
+                <li id="objective"><a href="{{ path('objective') }}"> Objectives</a></li>
+                <li id="activity"><a href="{{ path('activity') }}"> Activities</a></li>
+                <li id="file"><a title="Courses" href="{{ path('file') }}">Resources</a></li>
+                <li id="mapset"><a href="{{ path('mapset') }}"> Maps</a></li>
+                <li id="user"><a href="{{ path('user') }}"> Profiles</a></li>
                 <!-- <li><a href="{{ path('sample') }}"> Samples</a></li> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -64,26 +78,28 @@
                     </li>
                 {% endif %}
             </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
 </nav>
 
 
-    <div style="margin-top: 70px;">
-        {% if 'default' in app.request.attributes.get('_route') or app.request.attributes.get('_route') == 'theme' or 'page' in app.request.attributes.get
-        ('_route')  %}
-            {% else %}
-            <div class="col-sm-2 sidebar hidden-xs">
-                {% block sidebar %}
-                {% endblock %}
-            </div>
+<div style="margin-top: 70px;">
+    {% if 'default' in app.request.attributes.get('_route') or app.request.attributes.get('_route') == 'theme' or 'page' in app.request.attributes.get
+    ('_route') %}
+    {% else %}
+        <div class="col-sm-2 sidebar hidden-xs">
+            {% block sidebar %}
+            {% endblock %}
+        </div>
 
-        {% endif %}
-        <div class="{% if 'default' in app.request.attributes.get('_route')  or app.request.attributes.get('_route') == 'theme'  %}col-sm-12{% else %}col-sm-10{% endif %}">
+    {% endif %}
+    <div class="{% if 'default' in app.request.attributes.get('_route')  or app.request.attributes.get('_route') == 'theme' %}col-sm-12{% else %}col-sm-10{% endif %}">
         {% block body %}
         {% endblock %}
-            </div>
     </div>
+</div>
 
 </body>
 </html>

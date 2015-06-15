@@ -3,36 +3,48 @@
 {% block title %}Activities{% endblock %}
 
 {% block body -%}
-    <h1>Activity</h1>
+    <div class="col-sm-12 well">
+        <h1>{{ entity.title }}</h1>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ entity.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ entity.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <p>{{ entity.description|raw }} </p>
+        {% for tag in entity.tags %}
+            <span class="label label-default" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+        {% endfor %}
+        <hr/>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('activity') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('activity_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+        <h2>Objectives</h2>
+
+        <table id="file_list" class="col-sm-12 table">
+            <thead>
+            <tr>
+                <th><span>Title</span></th>
+                <th class="hidden-xs">Labels</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for entity in entity.objectives %}
+                <tr>
+                    <td>
+                        <a href="{{ path('objective_show', { 'id': entity.id}) }}" title="Show {{ entity.objective }}">
+                            {{ entity.objective|raw }}
+                        </a>
+
+                        {{ entity.description|raw }}
+                    </td>
+                    <td class="labels hidden-xs">
+                        {% for tag in entity.tags %}
+                            <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+                        {% endfor %}
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
