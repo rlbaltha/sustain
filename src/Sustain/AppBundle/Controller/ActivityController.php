@@ -41,7 +41,7 @@ class ActivityController extends Controller
     /**
      * Lists Modules entities by tag.
      *
-     * @Route("/{tag}/activities_by_tag", name="activities_by_tag")
+     * @Route("/{tag}/activity_by_tag", name="activity_by_tag")
      * @Method("GET")
      * @Template("AppBundle:Activity:index.html.twig")
      */
