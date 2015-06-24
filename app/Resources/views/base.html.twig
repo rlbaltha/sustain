@@ -58,6 +58,7 @@
                     <a href="#main_content">Skip Navigation</a>
                 </li>
                 <li id="theme" class=""><a title="Courses" href="{{ path('theme') }}">Getting Started</a></li>
+                <li id="event" class=""><a title="Events" href="{{ path('event') }}">Events</a></li>
                 <li id="module"><a href="{{ path('module') }}"> Modules</a></li>
                 <li id="objective"><a href="{{ path('objective') }}"> Objectives</a></li>
                 <li id="activity"><a href="{{ path('activity') }}"> Activities</a></li>
@@ -87,7 +88,7 @@
 
 <div style="margin-top: 70px;">
     {% if 'default' in app.request.attributes.get('_route') or app.request.attributes.get('_route') == 'theme' or 'page' in app.request.attributes.get
-    ('_route') %}
+    ('_route') or 'event' in app.request.attributes.get('_route')%}
     {% else %}
         <div class="col-sm-2 sidebar hidden-xs">
             {% block sidebar %}
@@ -95,7 +96,8 @@
         </div>
 
     {% endif %}
-    <div class="{% if 'default' in app.request.attributes.get('_route')  or app.request.attributes.get('_route') == 'theme' %}col-sm-12{% else %}col-sm-10{% endif %}">
+    <div class="{% if 'default' in app.request.attributes.get('_route')  or app.request.attributes.get('_route') == 'theme' or 'page' in app.request.attributes.get
+    ('_route') or 'event' in app.request.attributes.get('_route') %}col-sm-12{% else %}col-sm-10{% endif %}">
         {% block body %}
         {% endblock %}
     </div>

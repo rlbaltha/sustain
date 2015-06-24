@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Event edit</h1>
+
+    <div class="col=sm-12 well">
+
+        {{ form(edit_form) }}
+
+        <a class="btn btn-default" href="{{ path('event') }}">
+            Back to the list
+        </a>
+
+        {{ form(delete_form) }}
+
+    </div>
+
+
+{% endblock %}
