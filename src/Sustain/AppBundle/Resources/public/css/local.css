@@ -101,6 +101,18 @@ form {
     border-radius: 4px;
 }
 
+
+/**********  Google search display *******/
+
+. gsc-control-wrapper-cse {
+    padding:0;
+}
+
+.gsc-control-wrapper-cse {
+    padding:0;
+}
+
+
 /**********  Accessibility **********/
 #skip a, #skip a:hover, #skip a:visited
 {

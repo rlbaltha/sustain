@@ -29,6 +29,16 @@
                 }
                 $('.active').removeClass('active');
                 $(currentactive).addClass('active');
+                (function() {
+                    var cx = '000502081467924493637:_i_ajtr6taa';
+                    var gcse = document.createElement('script');
+                    gcse.type = 'text/javascript';
+                    gcse.async = true;
+                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                    '//cse.google.com/cse.js?cx=' + cx;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(gcse, s);
+                })();
             });
         </script>
         {% endjavascripts %}
@@ -68,6 +78,7 @@
                 <!-- <li><a href="{{ path('sample') }}"> Samples</a></li> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li style="max-width: 300px; max-height: 20px;"><gcse:search></gcse:search></li>
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     <li><a href="{{ path('user_profile') }}">My Profile</a></li>
                     <li>
