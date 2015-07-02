@@ -9,6 +9,7 @@
 
 
         <div class="col-sm-4">
+            <h3>Watershed Stories</h3>
             {% for page in pages %}
                 <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
                     <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail" alt="{{ page.menuName }}">
