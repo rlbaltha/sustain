@@ -104,14 +104,51 @@ form {
 
 /**********  Google search display *******/
 
-. gsc-control-wrapper-cse {
-    padding:0;
+.gsc-control-cse {
+    max-height: 30px;
+
 }
 
-.gsc-control-wrapper-cse {
-    padding:0;
+.gsc-input-box {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555555;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
 }
 
+.gstl_50  {
+    margin-top: -9px;
+}
+
+
+.gsc-search-button
+{
+    background-color: #1a4195;
+    border-radius: 5px;
+
+}
+
+.gsc-search-box {
+    padding: 0;
+    border: 0;
+}
+
+input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:focus {
+    background-color: #1a4195 !important;
+    background-image: url("http://www.google.com/uds/css/v2/search_box_icon.png") !important;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    height: 16px !important;
+    border-color: #1a4195 !important;
+    filter: none;
+}
 
 /**********  Accessibility **********/
 #skip a, #skip a:hover, #skip a:visited

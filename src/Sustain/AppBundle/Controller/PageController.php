@@ -47,10 +47,12 @@ class PageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Page')->findHome();
+        $pages = $em->getRepository('AppBundle:Page')->findHome();
+        $events = $em->getRepository('AppBundle:Event')->findAll();
 
         return array(
-            'entities' => $entities,
+            'pages' => $pages,
+            'events' => $events,
         );
     }
 

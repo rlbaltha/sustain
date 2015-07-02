@@ -39,6 +39,8 @@
                     var s = document.getElementsByTagName('script')[0];
                     s.parentNode.insertBefore(gcse, s);
                 })();
+
+                $('.gsc-input-box').addClass('form-control');
             });
         </script>
         {% endjavascripts %}
@@ -67,7 +69,7 @@
                 <li id="skip">
                     <a href="#main_content">Skip Navigation</a>
                 </li>
-                <li id="theme" class=""><a title="Courses" href="{{ path('theme') }}">Getting Started</a></li>
+                <!--<li id="theme" class=""><a title="Courses" href="{{ path('theme') }}">Getting Started</a></li>-->
                 <li id="event" class=""><a title="Events" href="{{ path('event') }}">Events</a></li>
                 <li id="module"><a href="{{ path('module') }}"> Modules</a></li>
                 <li id="objective"><a href="{{ path('objective') }}"> Objectives</a></li>
@@ -78,7 +80,7 @@
                 <!-- <li><a href="{{ path('sample') }}"> Samples</a></li> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li style="max-width: 300px; max-height: 20px;"><gcse:search></gcse:search></li>
+
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     <li><a href="{{ path('user_profile') }}">My Profile</a></li>
                     <li>
@@ -89,6 +91,7 @@
                         <a title="Login" href="{{ path('fos_user_security_login') }}">Login</a>
                     </li>
                 {% endif %}
+                <li style="max-width: 300px; max-height: 20px;"><span class="sr-only">Search the site.</span><gcse:search></gcse:search></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
