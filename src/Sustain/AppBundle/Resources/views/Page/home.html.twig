@@ -3,7 +3,28 @@
 {% block body -%}
 
     <div class="" style="background-color: #82D3EE; margin-top: -20px;margin-left: -15px; margin-right: -15px; padding-right:300px">
-        <img src="{{ asset('bundles/app/images/banner_home.png') }}" class="img-responsive" alt="Watershed UGA logo">
+        <img style="max-height: 250px;" src="{{ asset('bundles/app/images/banner_home.png') }}" class="img-responsive" alt="Watershed UGA logo">
+    </div>
+    <div class="col-sm-12" style="padding:30px;padding-bottom: 0;">
+        <div class="col-sm-4">
+            <strong>What is Watershed UGA?</strong>
+            A town & gown initiative to involve UGA campus and Athens community in restoring our streams. We are transforming these streams into a living
+            laboratory through teaching, research, and service.
+
+        </div>
+        <div class="col-sm-4">
+            <strong>Goal of Watershed UGA</strong>
+            To exponentially increase campus and community awareness of and involvement in stream restoration, while building social infrastructure to tackle
+            other sustainability issues, such as clean energy production, through the three land-grant missions.
+
+        </div>
+        <div class="col-sm-4">
+            <strong>Mission of Watershed UGA</strong>
+            To restore the health of tributary streams to the Oconee River – our main water source – with the involvement of all those interested in helping.
+            To find out more, explore resources, or contribute, enter our site.
+        </div>
+
+
     </div>
     <div class="col-sm-12" style="padding:30px;">
 
@@ -23,7 +44,8 @@
             {% endfor %}
         </div>
         <div class="col-sm-4">
-            <h3>Introductory Video</h3>
+            <h3>Watch our Introductory Video</h3>
+
 
             <div class="embed-responsive embed-responsive-4by3">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/U_XgJwAL3WY?rel=0" allowfullscreen></iframe>
@@ -31,6 +53,16 @@
         </div>
 
         <div class="col-sm-4">
+            <h3>Join our mailing list!</h3>
+
+            <div class="panel panel-default">
+                <div class="panel-heading"></div>
+                <div class="panel-body">
+                    <p>Please send your name and email to ehgard@uga.edu to get email updates on WatershedUGA.</p>
+                </div>
+            </div>
+
+
             <h3>Watershed UGA Events</h3>
             {% for event in events %}
                 <div class="panel panel-default">
