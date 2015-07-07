@@ -10,6 +10,15 @@
 
 
 {% block sidebar %}
+    {% if 'event' in app.request.attributes.get('_route') or 'opportunity' in app.request.attributes.get('_route') or 'page' in app.request.attributes.get
+    ('_route')%}
+        <ul class=" nav nav-sidebar list-unstyled" style="margin-top: 20px;">
+            <li><a href="{{ path('event') }}">Events</a></li>
+            <li><a href="{{ path('opportunity') }}">Internships</a></li>
+            <li><a href="{{ path('page_show', { 'id': 2 }) }}">Service Learning</a></li>
+        </ul>
+    {% endif %}
+
     {% if tags is defined %}
         <h2 style="font-size: medium">Labels</h2>
         {% for tag in tags %}
@@ -20,11 +29,13 @@
                 <a href="{{ path('modules_by_tag', {'tag': tag.id}) }}"><span class="label label-default margin-right" style="background-color: {{ tag.color }};
                             ">{{ tag.name }}</span></a>
             {% elseif 'objective' in app.request.attributes.get('_route') %}
-                <a href="{{ path('objectives_by_tag', {'tag': tag.id}) }}"><span class="label label-default margin-right" style="background-color: {{ tag.color }};
-                            ">{{ tag.name }}</span></a>
+                <a href="{{ path('objectives_by_tag', {'tag': tag.id}) }}"><span class="label label-default margin-right"
+                                                                                 style="background-color: {{ tag.color }};
+                                                                                         ">{{ tag.name }}</span></a>
             {% elseif 'activity' in app.request.attributes.get('_route') %}
-                <a href="{{ path('activity_by_tag', {'tag': tag.id}) }}"><span class="label label-default margin-right" style="background-color: {{ tag.color }};
-                            ">{{ tag.name }}</span></a>
+                <a href="{{ path('activity_by_tag', {'tag': tag.id}) }}"><span class="label label-default margin-right"
+                                                                               style="background-color: {{ tag.color }};
+                                                                                       ">{{ tag.name }}</span></a>
             {% else %}
                 <span class="label label-default margin-right" style="background-color: {{ tag.color }};">{{ tag.name }}</span>
             {% endif %}
@@ -45,6 +56,7 @@
             <li><a title='New Activity' href="{{ path('activity_new') }}">New Activity</a></li>
 
             <li><a href="{{ path('tag_new') }}"> New Label</a></li>
+            <li><a href="{{ path('opportunity_new') }}">New Opportunity</a></li>
             <hr/>
             Maps
             <li><a href="{{ path('mapset_new') }}">New Map</a></li>

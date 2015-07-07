@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'AppBundle::layout.html.twig' %}
 
 {% block javascripts %}
     {{ parent() }}
@@ -48,10 +48,11 @@
 
 
 {% block body -%}
-    <h1>Events</h1>
 
+    <h1>Events</h1>
     {# Calendar #}
     <div class="col-sm-12 well">
+
         <div id='calendar'></div>
 
         <table class="table">
