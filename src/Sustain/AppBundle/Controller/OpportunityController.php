@@ -21,15 +21,15 @@ class OpportunityController extends Controller
     /**
      * Lists all Opportunity entities.
      *
-     * @Route("/", name="opportunity")
+     * @Route("/{type}/list", name="opportunity", defaults={"type" = "service"})
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($type)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Opportunity')->findAll();
+        $entities = $em->getRepository('AppBundle:Opportunity')->findByType($type);
 
         return array(
             'entities' => $entities,
