@@ -83,7 +83,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="mentor", type="string", length=255, nullable=true)
      */
-    private $mentor;
+    private $mentor=1;
 
     /**
      * @var string

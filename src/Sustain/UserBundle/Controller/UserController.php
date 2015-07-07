@@ -4,6 +4,7 @@ namespace Sustain\UserBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -164,6 +165,11 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SustainUserBundle:User')->find($id);
+
+        if (false === ($this->get('security.context')->isGranted('ROLE_ADMIN') or $this->get('security.context')->getToken()->getUser()->getUsername() ==
+            $entity->getUsername())) {
+            throw new AccessDeniedException();
+        }
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');

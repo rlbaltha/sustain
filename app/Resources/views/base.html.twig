@@ -1,6 +1,6 @@
 {# sustain/app/Resources/views/base.html.twig #}
 <!DOCTYPE html>
-<html {% if 'default' not in app.request.attributes.get('_route') %}class="full"{% endif %}>
+<html {% if 'default' not in app.request.attributes.get('_route') %}class="full"{% endif %}  lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +41,6 @@
                 })();
 
                 $('.gsc-input-box').addClass('form-control');
-                $('input').addClass('form-control');
             });
         </script>
         {% endjavascripts %}
@@ -68,7 +67,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li id="skip">
-                    <a href="#main_content">Skip Navigation</a>
+                    <a id="main_nav" href="#main_content">Skip Navigation</a>
                 </li>
                 <!--<li id="theme" class=""><a title="Courses" href="{{ path('theme') }}">Getting Started</a></li>-->
                 <li id="event" class=""><a title="Events" href="{{ path('event') }}">Events</a></li>
@@ -77,7 +76,9 @@
                 <li id="activity"><a href="{{ path('activity') }}">Activities</a></li>
                 <li id="file"><a title="Courses" href="{{ path('file') }}">Resources</a></li>
                 <li id="mapset"><a href="{{ path('mapset') }}">Maps</a></li>
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                 <li id="user"><a href="{{ path('user') }}">Profiles</a></li>
+                {% endif %}
                 <li id="user"><a style="margin: -5px;" href="{{ path('page_show', { 'id': 9 }) }}"><img style="height: 30px;" src="{{ asset
                         ('bundles/app/images/donate.png')
                         }}"
@@ -96,7 +97,11 @@
                         <a title="Login" href="{{ path('fos_user_security_login') }}">Login</a>
                     </li>
                 {% endif %}
+
                 <li style="max-width: 300px; max-height: 20px;"><span class="sr-only">Search the site.</span><gcse:search></gcse:search></li>
+                <li id="skip">
+                    <a id="main_content" href="#main_nav">Skip to Top</a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
