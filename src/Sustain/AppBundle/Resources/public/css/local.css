@@ -101,6 +101,10 @@ form {
     border-radius: 4px;
 }
 
+.fc-content {
+    cursor: pointer;
+}
+
 
 /**********  Google search display *******/
 
