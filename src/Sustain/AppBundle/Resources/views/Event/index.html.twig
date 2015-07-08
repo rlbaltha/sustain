@@ -23,7 +23,7 @@
                     <h2 style="display:inline">
                         {{ entity.title }}
                     </h2>
-                    <p>{% if entity.start %}{{ entity.start|date('m-d-Y H:i:s') }}{% endif %}</p>
+                    <p>{% if entity.start %}{{ entity.start|date("l, F d") }} {{ entity.start|date("g:i A") }}{% endif %}</p>
 
                     <p>
                         {{ entity.description|raw }}
