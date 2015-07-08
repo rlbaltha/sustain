@@ -35,6 +35,26 @@ class EventController extends Controller
             'entities' => $entities,
         );
     }
+
+    /**
+     * Lists all Event entities.
+     *
+     * @Route("/month", name="event_month")
+     * @Method("GET")
+     * @Template()
+     */
+    public function monthAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('AppBundle:Event')->findAll();
+
+        return array(
+            'entities' => $entities,
+        );
+    }
+
+
     /**
      * Creates a new Event entity.
      *

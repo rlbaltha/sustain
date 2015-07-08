@@ -2,48 +2,10 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.2/fullcalendar.min.js"></script>
-
-    <script language="javascript">
-        $(document).ready(function () {
-            $('#calendar').fullCalendar(
-                    {
-                        eventClick: function(calEvent, jsEvent, view) {
-                                $('.modal').modal();
-                                $('.modal-title').html(calEvent.title);
-                                $('.modal-body').html(calEvent.description);
-                        },
-                        header: {
-                            left: 'title',
-                            center: '',
-                            right: 'today month,agendaWeek,agendaDay,prev,next'
-                        },
-                        events: [
-                            {% for event in entities %}
-                            {
-                                title: '{{ event.title| escape('js') }}',
-                                color: '{{ event.color }}',
-                                start: '{{ event.start|date('j M Y') }} {{ event.start|date('H:i:s') }}',
-                                allDay: false,
-                                textColor: 'white',
-                                description: '{{ event.description| escape('js') }}',
-                                id: '{{ event.id }}',
-                                isOwner: 'yes'
-                            },
-                            {% endfor %}
-                        ],
-                        eventMouseover: function (event, jsEvent, view) {
-                        }
-                    }
-            );
-        });
-    </script>
 {% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.2/fullcalendar.min.css">
 {% endblock %}
 
 
@@ -51,60 +13,28 @@
 
     <h1>Events</h1>
     {# Calendar #}
-    <div class="col-sm-12 well">
+        {% for entity in entities %}
+            <div class="col-sm-12 well">
+                <div class="col-sm-10">
+                    <h2 style="display:inline">
+                        {{ entity.title }}
+                    </h2>
+                    <p>{% if entity.start %}{{ entity.start|date('m-d-Y H:i:s') }}{% endif %}</p>
 
-        <div id='calendar'></div>
+                    <p>
+                        {{ entity.description|raw }}
+                    </p>
+                </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-default" href="{{ path('event_edit', { 'id': entity.id }) }}">Edit</a>
+                {% endif %}
+            </div>
+        {% endfor %}
 
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Start</th>
-                <th>End</th>
-                <th>Color</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for entity in entities %}
-                <tr>
-                    <td><a href="{{ path('event_show', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
-                    <td>{{ entity.description }}</td>
-                    <td>{% if entity.start %}{{ entity.start|date('Y-m-d H:i:s') }}{% endif %}</td>
-                    <td>{% if entity.end %}{{ entity.end|date('Y-m-d H:i:s') }}{% endif %}</td>
-                    <td>{{ entity.color }}</td>
-                    <td>{% if is_granted('ROLE_ADMIN') %}
-                        <a class="btn btn-default" href="{{ path('event_edit', { 'id': entity.id }) }}">Edit</a>
-                        {% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
         {% if is_granted('ROLE_ADMIN') %}
         <a class="btn btn-default" href="{{ path('event_new') }}">
             Create a new event
         </a>
         {% endif %}
-    </div>
 
-
-    {# Modal #}
-    <div class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Event Title</h4>
-                </div>
-                <div class="modal-body">
-                    <p></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 {% endblock %}
