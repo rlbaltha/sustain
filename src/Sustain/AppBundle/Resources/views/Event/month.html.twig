@@ -49,17 +49,16 @@
 
 {% block body -%}
 
-    <h1>Events</h1>
+    <h1 style="display: inline-block;">Events</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-primary pull-right" href="{{ path('event_new') }}">New Event</a>
+    {% endif %}
+
     {# Calendar #}
     <div class="col-sm-12 well">
 
         <div id='calendar'></div>
 
-        {% if is_granted('ROLE_ADMIN') %}
-            <a class="btn btn-default" href="{{ path('event_new') }}">
-                Create a new event
-            </a>
-        {% endif %}
     </div>
 
 

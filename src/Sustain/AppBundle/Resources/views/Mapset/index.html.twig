@@ -3,7 +3,13 @@
 {% block title %}Maps{% endblock %}
 
 {% block body -%}
-    <h1>Maps</h1>
+    <h1></h1>
+    <h1 style="display: inline-block;">Maps</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-primary pull-right" href="{{ path('map') }}"> List Pins</a>
+        <a class="btn btn-primary pull-right" href="{{ path('map_new') }}">New Pin</a>
+        <a class="btn btn-primary pull-right" href="{{ path('mapset_new') }}">New Map</a>
+    {% endif %}
 
     <div class="alert alert-info alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

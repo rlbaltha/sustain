@@ -3,7 +3,10 @@
 {% block title %}Modules{% endblock %}
 
 {% block body -%}
-    <h1>Modules</h1>
+    <h1 style="display: inline-block;">Modules</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-primary pull-right" href="{{ path('module_new') }}">New Module</a>
+    {% endif %}
 
     <div class="alert alert-info alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

@@ -1,7 +1,11 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block body -%}
-    <h1>Service Opportunities/Internships</h1>
+
+    <h1 style="display: inline-block;">Service Opportunities/Internships</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-primary pull-right" href="{{ path('opportunity_new') }}">New Opportunity</a>
+    {% endif %}
 
     {% for entity in entities %}
         <div class="col-sm-12 well">

@@ -12,7 +12,7 @@
 {% block sidebar %}
     {% if 'event' in app.request.attributes.get('_route') or 'opportunity' in app.request.attributes.get('_route') or 'page' in app.request.attributes.get
     ('_route') %}
-        <ul class=" nav nav-sidebar list-unstyled" style="margin-top: 20px;">
+        <ul class="nav nav-sidebar list-unstyled" style="margin-top: 20px;">
             <li>Events</li>
             <li><a href="{{ path('event') }}">List</a></li>
             <li><a href="{{ path('event_month') }}">Month</a></li>
@@ -48,26 +48,11 @@
 
     {% if is_granted('ROLE_ADMIN') %}
         <hr/>
-        <ul class="list-unstyled">
-            <li><a href="{{ path('theme_new') }}">New Theme</a></li>
-            <li><a href="{{ path('module_new') }}"> New Module</a></li>
-            <li><a href="{{ path('objective_new') }}"> New Objective</a></li>
-            <li><a id='file_new_upload' title='Upload Resource' href="{{ path('file_new') }}"><i class="glyphicon glyphicon-upload"></i> Upload
-                    Resource</a></li>
-            <li><a id='file_new_upload' title='Upload Resource' href="{{ path('file_new', {'type': 'link'}) }}"><i class="glyphicon glyphicon-link"></i>
-                    Link to
-                    Resource</a></li>
-            <li><a title='New Activity' href="{{ path('activity_new') }}">New Activity</a></li>
-
-            <li><a href="{{ path('tag_new') }}"> New Label</a></li>
-            <li><a href="{{ path('opportunity_new') }}">New Opportunity</a></li>
-            <hr/>
-            Maps
-            <li><a href="{{ path('mapset_new') }}">New Map</a></li>
-            <li><a href="{{ path('map') }}"> List Map Points</a></li>
-            <li><a href="{{ path('map_new') }}">New Map Pin</a></li>
-            <hr/>
-            Pages
+        <ul class="nav nav-sidebar list-unstyled">
+            <li>Labels</li>
+            <li><a href="{{ path('tag') }}"> List Labels</a></li>
+            <li><a href="{{ path('tag_new') }}">New Label</a></li>
+            <li>Pages</li>
             <li><a href="{{ path('section') }}"> List Sections</a></li>
             <li><a href="{{ path('section_new') }}">New Section</a></li>
             <li><a href="{{ path('page') }}"> List Pages</a></li>
