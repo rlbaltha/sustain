@@ -7,7 +7,6 @@
         <a class="btn btn-primary pull-right" href="{{ path('opportunity_new') }}">New Opportunity</a>
     {% endif %}
 
-    {% for entity in entities %}
         <div class="col-sm-12 well">
                 <div class="col-sm-10">
                     <h2 style="display:inline">
@@ -15,15 +14,10 @@
                     </h2>
 
                     <p>
-                        {{ entity.teaser|raw }}
-                    </p>
-                    <p>
-                    <a class=""
-                       href="{{ path('opportunity_show', { 'id': entity.id }) }}">Read the full description.</a>
+                        {{ entity.description|raw }}
                     </p>
                 </div>
             {% if is_granted('ROLE_ADMIN') %}<a class="btn btn-default"
                                                 href="{{ path('opportunity_edit', { 'id': entity.id }) }}">Edit</a>{% endif %}
         </div>
-    {% endfor %}
     {% endblock %}

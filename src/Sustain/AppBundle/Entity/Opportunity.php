@@ -28,6 +28,14 @@ class Opportunity
      */
     private $title;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="teaser", type="text")
+     */
+    private $teaser;
+
     /**
      * @var string
      *
@@ -121,5 +129,28 @@ class Opportunity
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set teaser
+     *
+     * @param string $teaser
+     * @return Opportunity
+     */
+    public function setTeaser($teaser)
+    {
+        $this->teaser = $teaser;
+
+        return $this;
+    }
+
+    /**
+     * Get teaser
+     *
+     * @return string 
+     */
+    public function getTeaser()
+    {
+        return $this->teaser;
     }
 }

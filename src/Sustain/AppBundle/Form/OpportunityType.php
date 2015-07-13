@@ -16,6 +16,7 @@ class OpportunityType extends AbstractType
     {
         $builder
             ->add('title','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Title of Opportunity'),))
+            ->add('teaser', 'ckeditor', array('config_name' => 'editor_simple',))
             ->add('description', 'ckeditor', array('config_name' => 'editor_simple',))
             ->add('type', 'choice', array(
                 'choices'  => array('service' => 'service', 'intern' => 'intern'),
