@@ -25,6 +25,7 @@ class UserType extends AbstractType
             ->add('involvement', 'ckeditor', array('required' => false,'label'=> 'Involvement in WatershedUGA','config_name' => 'editor_simple',))
             ->add('mentor', 'choice', array('choices'   => array('0' => 'Yes', '1' => 'No'),'required'  => true,'label'  => 'I am willing to mentor
             Curo students','expanded' => true,'attr' => array('class' => 'radio'),))
+            ->add('public', 'choice', array('choices'   => array('0' => 'Yes', '1' => 'No'),'required'  => true,'label'  => 'I am willing for my profile to be public.','expanded' => true,'attr' => array('class' => 'radio'),))
 
 
         ;

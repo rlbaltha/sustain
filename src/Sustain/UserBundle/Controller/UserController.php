@@ -36,6 +36,27 @@ class UserController extends Controller
             'entities' => $entities,
         );
     }
+
+
+    /**
+     * Lists all User entities.
+     *
+     * @Route("/public_profiles", name="public_profiles")
+     * @Method("GET")
+     * @Template("SustainUserBundle:User:index.html.twig")
+     */
+    public function publicAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('SustainUserBundle:User')->findPublic();
+
+        return array(
+            'entities' => $entities,
+        );
+    }
+
+
     /**
      * Creates a new User entity.
      *

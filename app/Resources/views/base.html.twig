@@ -21,12 +21,7 @@
         <script language="javascript">
             $(document).ready(function () {
                 var active_route = '{{ app.request.attributes.get('_route') }}';
-                if (active_route.includes("_")) {
-                    var currentactive= '#' + active_route.substring(0, active_route.indexOf('_'));
-                }
-                else {
-                    var currentactive = '#' + active_route;
-                }
+                var currentactive = '#' + active_route;
                 $('.active').removeClass('active');
                 $(currentactive).addClass('active');
                 (function() {
@@ -35,7 +30,7 @@
                     gcse.type = 'text/javascript';
                     gcse.async = true;
                     gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                    '//cse.google.com/cse.js?cx=' + cx;
+                            '//cse.google.com/cse.js?cx=' + cx;
                     var s = document.getElementsByTagName('script')[0];
                     s.parentNode.insertBefore(gcse, s);
                 })();
@@ -76,9 +71,7 @@
                 <li id="activity"><a href="{{ path('activity') }}">Activities</a></li>
                 <li id="file"><a title="Courses" href="{{ path('file') }}">Resources</a></li>
                 <li id="mapset"><a href="{{ path('mapset') }}">Maps</a></li>
-                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                <li id="user"><a href="{{ path('user') }}">Profiles</a></li>
-                {% endif %}
+                <li id="user"><a href="{{ path('public_profiles') }}">Profiles</a></li>
                 <li id="user"><a style="margin: -5px;" href="{{ path('page_show', { 'id': 9 }) }}"><img style="height: 30px;" src="{{ asset
                         ('bundles/app/images/donate.png')
                         }}"
@@ -98,7 +91,11 @@
                     </li>
                 {% endif %}
 
+                <!--
+                Google search needs works
                 <li style="max-width: 300px; max-height: 20px;"><span class="sr-only">Search the site.</span><gcse:search></gcse:search></li>
+                -->
+
                 <li id="skip">
                     <a id="main_content" href="#main_nav">Skip to Top</a>
                 </li>
@@ -126,4 +123,9 @@
 </div>
 
 </body>
+
+
+
+
+
 </html>

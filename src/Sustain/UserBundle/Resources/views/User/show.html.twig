@@ -23,6 +23,7 @@
         <hr/>
 
         {% if entity.mentor == 0 %}<p><strong>I am willing to mentor CURO projects</strong></p>{% endif %}
+        <p>My profile is <strong>{% if entity.public == 0 %}Public{% else %}Private{% endif %}</strong>.</p>
     </div>
 
 

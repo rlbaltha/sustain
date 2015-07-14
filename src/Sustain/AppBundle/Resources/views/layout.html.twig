@@ -13,11 +13,8 @@
     {% if 'event' in app.request.attributes.get('_route') or 'opportunity' in app.request.attributes.get('_route') or 'page' in app.request.attributes.get
     ('_route') %}
         <ul class="nav nav-sidebar list-unstyled" style="margin-top: 20px;">
-            <li>Events</li>
-            <li><a href="{{ path('event') }}">List</a></li>
-            <li><a href="{{ path('event_month') }}">Month</a></li>
-            <li>Service</li>
-            <li><a href="{{ path('opportunity', {'type': 'service'}) }}">Service Opportunities</a></li>
+            <li><a href="{{ path('event_month') }}">Events</a></li>
+            <li><a href="{{ path('opportunity', {'type': 'service'}) }}">Partners</a></li>
             <li><a href="{{ path('opportunity', {'type': 'intern'} ) }}">Internships</a></li>
             <li><a href="{{ path('page_show', { 'id': 10 }) }}">Service Learning</a></li>
         </ul>

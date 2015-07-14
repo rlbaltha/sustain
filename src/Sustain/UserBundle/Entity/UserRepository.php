@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    /**
+     *
+     * @return User
+     */
+    public function findPublic()
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.public = :public')
+            ->setParameter('public', '0')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

@@ -85,6 +85,14 @@ class User extends BaseUser
      */
     private $mentor=1;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="public", type="string", length=255, nullable=true)
+     */
+    private $public=1;
+
     /**
      * @var string
      *
@@ -614,5 +622,28 @@ class User extends BaseUser
     public function getInvolvement()
     {
         return $this->involvement;
+    }
+
+    /**
+     * Set public
+     *
+     * @param string $public
+     * @return User
+     */
+    public function setPublic($public)
+    {
+        $this->public = $public;
+
+        return $this;
+    }
+
+    /**
+     * Get public
+     *
+     * @return string 
+     */
+    public function getPublic()
+    {
+        return $this->public;
     }
 }

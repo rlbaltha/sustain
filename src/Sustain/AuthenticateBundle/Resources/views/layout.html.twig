@@ -29,6 +29,7 @@
             $("#fos_user_registration_form_email").addClass("form-control");
             $("#fos_user_registration_form_share_email").addClass("checkbox");
             $("#fos_user_registration_form_institution").addClass("form-control");
+            $( "#username" ).focus();
         });
     </script>
 
@@ -37,7 +38,7 @@
             <div class="panel-body">
                 <div style="text-align:center;">
                     <h1 class="margin-top-small">{{ application_name }}.</h1>
-                    <h2>Welcome</h2>
+                    <p>Please use your UGA MyId and Password to login.</p>
 
                     <img alt="generic user icon" class="img-circle" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
