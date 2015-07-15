@@ -73,10 +73,11 @@ class MapController extends Controller
             $em = $this->getDoctrine()->getManager();
             $user = $this->getUser();
             $entity->setUser($user);
+            $mapsetid = $entity->getMapset()->getId();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('map_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('map', array('id' => $mapsetid)));
         }
 
         return array(
