@@ -49,7 +49,7 @@
 
 {% block body -%}
     <h1 style="display: inline-block;">Events</h1>
-    <a class="btn btn-default btn-small pull-right" style="margin-top: 20px;" href="{{ path('event') }}">Events List</a>
+    <a class="btn btn-primary  pull-right" href="{{ path('event') }}">List Events</a>
 
     {% if is_granted('ROLE_ADMIN') %}
         <a class="btn btn-primary pull-right" href="{{ path('event_new') }}">New Event</a>

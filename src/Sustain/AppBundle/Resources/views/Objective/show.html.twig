@@ -102,5 +102,25 @@
             </tbody>
         </table>
 
+
+        <h2>Modules</h2>
+        <div class="list-group">
+            {% for entity in entity.modules %}
+                <a href="{{ path('module_show', { 'id': entity.id }) }}" class="list-group-item">
+                    <p class="list-group-item-heading">{{ entity.name|raw }}</p>
+
+                    <p class="list-group-item-text">{{ entity.description|raw }}</p>
+
+                    {% for tag in entity.tags %}
+                        <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+                    {% endfor %}
+                </a>
+            {% endfor %}
+        </div>
+
+
+
     </div>
 {% endblock %}

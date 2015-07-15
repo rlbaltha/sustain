@@ -12,9 +12,31 @@ use Doctrine\ORM\EntityRepository;
  */
 class MapRepository extends EntityRepository
 {
-    public function map_json($map)
+
+    /**
+     * Return map points by mapset for json
+     *
+     * @return Map
+     */
+    public function map_json($map) {
+        $qb = $this->createQueryBuilder('m')
+            ->select('m.lat as latitude, m.lng as longitude, m.title, m.description as content')
+            ->where('m.mapset = :map')
+            ->setParameter('map', $map);
+        return $qb->getQuery()->getResult();
+    }
+    /**
+     * Return map points by mapset
+     *
+     * @return Map
+     */
+    public function findBySet($id)
     {
-        return $this->getEntityManager()
-            ->createQuery('SELECT m.lat as latitude, m.lng as longitude, m.title, m.description as content FROM AppBundle:Map m WHERE m.mapset = ?1 ')->setParameter('1', $map)->getResult();
+        $qb = $this ->createQueryBuilder('m')
+            ->where('m.mapset = :id')
+            ->setParameter('id', $id);
+
+        return $qb->getQuery()->getResult();
+
     }
 }

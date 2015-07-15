@@ -6,7 +6,6 @@
     <h1></h1>
     <h1 style="display: inline-block;">Maps</h1>
     {% if is_granted('ROLE_ADMIN') %}
-        <a class="btn btn-primary pull-right" href="{{ path('map') }}"> List Pins</a>
         <a class="btn btn-primary pull-right" href="{{ path('map_new') }}">New Pin</a>
         <a class="btn btn-primary pull-right" href="{{ path('mapset_new') }}">New Map</a>
     {% endif %}

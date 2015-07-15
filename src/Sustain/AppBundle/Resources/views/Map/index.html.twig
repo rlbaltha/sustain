@@ -2,6 +2,7 @@
 
 {% block body -%}
     <h1>Map list</h1>
+    <a href="{{ path('mapset_show', { 'id': entities[0].mapset.id }) }}" class="btn btn-primary">View Map</a>
 
     <table class="table">
         <thead>

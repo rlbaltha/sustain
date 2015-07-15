@@ -17,7 +17,7 @@
     {% block javascripts %}
         {% javascripts '@jquery_js' '@jqueryui_js' '@bootstrap_js' combine=true output='js/compiled/main.js' %}
         <script src="{{ asset_url }}"></script>
-
+        {% endjavascripts %}
         <script language="javascript">
             $(document).ready(function () {
                 var active_route = '{{ app.request.attributes.get('_route') }}';
@@ -38,7 +38,6 @@
                 $('.gsc-input-box').addClass('form-control');
             });
         </script>
-        {% endjavascripts %}
     {% endblock %}
 
     <link rel="icon" href="{{ asset('bundles/app/images/favicon.ico') }}" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
@@ -64,7 +63,7 @@
                 <li id="skip">
                     <a id="main_nav" href="#main_content">Skip Navigation</a>
                 </li>
-                <!--<li id="theme" class=""><a title="Courses" href="{{ path('theme') }}">Getting Started</a></li>-->
+                <li id="faq"><a href="{{ path('page_show', { 'id':12 }) }}">FAQ</a></li>
                 <li id="event" class=""><a title="Events" href="{{ path('event') }}">Events and Service</a></li>
                 <li id="module"><a href="{{ path('module') }}">Modules</a></li>
                 <li id="objective"><a href="{{ path('objective') }}">Objectives</a></li>
@@ -73,10 +72,7 @@
                 <li id="mapset"><a href="{{ path('mapset') }}">Maps</a></li>
                 <li id="user"><a href="{{ path('public_profiles') }}">Profiles</a></li>
                 <li id="user"><a style="margin: -5px;" href="{{ path('page_show', { 'id': 9 }) }}"><img style="height: 30px;" src="{{ asset
-                        ('bundles/app/images/donate.png')
-                        }}"
-                                                                                  alt="Donate to Watershed UGA"></a></li>
-                <!-- <li><a href="{{ path('sample') }}"> Samples</a></li> -->
+                        ('bundles/app/images/donate.png')}}" alt="Donate to Watershed UGA"></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
 
@@ -90,11 +86,6 @@
                         <a title="Login" href="{{ path('fos_user_security_login') }}">Login</a>
                     </li>
                 {% endif %}
-
-                <!--
-                Google search needs works
-                <li style="max-width: 300px; max-height: 20px;"><span class="sr-only">Search the site.</span><gcse:search></gcse:search></li>
-                -->
 
                 <li id="skip">
                     <a id="main_content" href="#main_nav">Skip to Top</a>

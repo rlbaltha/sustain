@@ -17,10 +17,12 @@
                     <p>
                         {{ entity.teaser|raw }}
                     </p>
+                    {% if entity.description != '' %}
                     <p>
                     <a class=""
                        href="{{ path('opportunity_show', { 'id': entity.id }) }}">Read the full description.</a>
                     </p>
+                    {% endif %}
                 </div>
             {% if is_granted('ROLE_ADMIN') %}<a class="btn btn-default"
                                                 href="{{ path('opportunity_edit', { 'id': entity.id }) }}">Edit</a>{% endif %}

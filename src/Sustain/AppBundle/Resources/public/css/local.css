@@ -108,49 +108,28 @@ form {
 
 /**********  Google search display *******/
 
-.gsc-control-cse {
-    max-height: 30px;
-
+table.gsc-search-box td {
+  padding:0 !important
 }
 
 .gsc-input-box {
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555555;
-    background-color: #ffffff;
-    background-image: none;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-}
-
-.gstl_50  {
-    margin-top: -9px;
-}
-
-
-.gsc-search-button
-{
-    background-color: #1a4195;
-    border-radius: 5px;
 
 }
 
-.gsc-search-box {
+.cse .gsc-control-cse, .gsc-control-cse {
     padding: 0;
-    border: 0;
 }
+
+form.gsc-search-box {}
+div.gsc-control-cse {}
 
 input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:focus {
-    background-color: #1a4195 !important;
+    background-color: #337ab7 !important;
+    border-color: #2e6da4 !important;
     background-image: url("http://www.google.com/uds/css/v2/search_box_icon.png") !important;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    height: 16px !important;
-    border-color: #1a4195 !important;
+    height: 25px !important;
     filter: none;
 }
 

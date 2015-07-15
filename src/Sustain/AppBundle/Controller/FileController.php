@@ -111,7 +111,7 @@ class FileController extends Controller
             ));
         }
 
-        $form->add('submit', 'submit', array('label' => 'Post', 'attr' => array('class' => 'btn btn-primary'),));
+        $form->add('submit', 'submit', array('label' => 'Create', 'attr' => array('class' => 'btn btn-default margin-top')));
 
         return $form;
     }
@@ -312,8 +312,7 @@ class FileController extends Controller
             ));
         }
 
-
-        $form->add('submit', 'submit', array('label' => 'Post', 'attr' => array('class' => 'btn btn-primary'),));
+        $form->add('submit', 'submit', array('label' => 'Update', 'attr' => array('class' => 'btn btn-default margin-top')));
 
         return $form;
     }
@@ -396,7 +395,7 @@ class FileController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('file_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete', 'attr' => array('class' => 'btn btn-warning'),))
+            ->add('submit', 'submit', array('label' => 'Delete', 'attr' => array('class' => 'btn btn-danger'),))
             ->getForm()
         ;
     }
