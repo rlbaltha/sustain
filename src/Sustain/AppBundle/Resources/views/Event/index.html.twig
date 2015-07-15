@@ -17,7 +17,6 @@
         <a class="btn btn-primary pull-right" href="{{ path('event_new') }}">New Event</a>
     {% endif %}
 
-    {# Calendar #}
         {% for entity in entities %}
             <div class="col-sm-12 well">
                 <div class="col-sm-10">
@@ -27,8 +26,13 @@
                     <p>{% if entity.start %}{{ entity.start|date("l, F d") }} {{ entity.start|date("g:i A") }}{% endif %}</p>
 
                     <p>
-                        {{ entity.description|raw }}
+                        {{ entity.teaser|raw }}
                     </p>
+                    {% if entity.description != '' %}
+                        <p>
+                            <a href="{{ path('event_show', { 'id': entity.id }) }}">Read the full description.</a>
+                        </p>
+                    {% endif %}
                 </div>
                 {% if is_granted('ROLE_ADMIN') %}
                 <a class="btn btn-default" href="{{ path('event_edit', { 'id': entity.id }) }}">Edit</a>

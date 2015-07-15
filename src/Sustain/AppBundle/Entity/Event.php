@@ -31,6 +31,13 @@ class Event
     /**
      * @var string
      *
+     * @ORM\Column(name="teaser", type="text")
+     */
+    private $teaser;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
@@ -181,5 +188,28 @@ class Event
     public function getColor()
     {
         return $this->color;
+    }
+
+    /**
+     * Set teaser
+     *
+     * @param string $teaser
+     * @return Event
+     */
+    public function setTeaser($teaser)
+    {
+        $this->teaser = $teaser;
+
+        return $this;
+    }
+
+    /**
+     * Get teaser
+     *
+     * @return string 
+     */
+    public function getTeaser()
+    {
+        return $this->teaser;
     }
 }

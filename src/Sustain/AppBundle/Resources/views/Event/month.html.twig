@@ -27,7 +27,7 @@
                                 start: '{{ event.start|date('j M Y') }} {{ event.start|date('H:i:s') }}',
                                 allDay: false,
                                 textColor: 'white',
-                                description: '{{ event.description| escape('js') }}',
+                                description: '{{ event.description|raw | escape('js') }}',
                                 id: '{{ event.id }}',
                                 isOwner: 'yes'
                             },

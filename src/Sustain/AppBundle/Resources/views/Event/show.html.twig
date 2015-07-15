@@ -1,52 +1,23 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block body -%}
-    <h1>Event</h1>
+    <h1 style="display:inline">Event</h1>
+    <a class="btn btn-primary pull-right" href="{{ path('event_month') }}">Calendar View</a>
+    <a class="btn btn-primary pull-right" href="{{ path('event') }}">List View</a>
+    <div class="col-sm-12 well margin-top">
+        <div class="col-sm-10">
+            <h2 style="display:inline">
+                {{ entity.title }}
+            </h2>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ entity.title }}</td>
-            </tr>
-            <tr>
-                <th>Summary</th>
-                <td>{{ entity.summary }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ entity.description }}</td>
-            </tr>
-            <tr>
-                <th>Start</th>
-                <td>{{ entity.start|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>End</th>
-                <td>{{ entity.end|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Color</th>
-                <td>{{ entity.color }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <p>{% if entity.start %}{{ entity.start|date("l, F d") }} {{ entity.start|date("g:i A") }}{% endif %}</p>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('event') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('event_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+            <p>
+                {{ entity.description|raw }}
+            </p>
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-default" href="{{ path('event_edit', { 'id': entity.id }) }}">Edit</a>
+        {% endif %}
+    </div>
 {% endblock %}
