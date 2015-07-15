@@ -12,13 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class TagRepository extends EntityRepository
 {
-  /**
- * Find files by tag
- */
+
+    /**
+     * Find tags sorted
+     * @return Tag
+     */
     public function sortedTags()
     {
-        return $this->getEntityManager()
-            ->createQuery('SELECT t FROM AppBundle:Tag t Order By t.color')
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.color', 'ASC')
+            ->getQuery()
             ->getResult();
     }
 }

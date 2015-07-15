@@ -12,13 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class ModuleRepository extends EntityRepository
 {
+
     /**
      * Find modules by tag
+     * @return Module
      */
     public function modulesByTag($tag)
     {
-        return $this->getEntityManager()
-            ->createQuery('SELECT m FROM AppBundle:Module m JOIN  m.tags t WHERE t.id = ?1 ')
-            ->setParameter('1',$tag)->getResult();
+        return $this->createQueryBuilder('m')
+            ->leftJoin('m.tags', 't')
+            ->addSelect('t')
+            ->andWhere('t.id = :tag')
+            ->setParameter('tag', $tag)
+            ->getQuery()
+            ->getResult();
     }
 }

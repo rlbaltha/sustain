@@ -19,11 +19,12 @@ class MapRepository extends EntityRepository
      * @return Map
      */
     public function map_json($map) {
-        $qb = $this->createQueryBuilder('m')
+        return $this->createQueryBuilder('m')
             ->select('m.lat as latitude, m.lng as longitude, m.title, m.description as content')
             ->where('m.mapset = :map')
-            ->setParameter('map', $map);
-        return $qb->getQuery()->getResult();
+            ->setParameter('map', $map)
+            ->getQuery()
+            ->getResult();
     }
     /**
      * Return map points by mapset
@@ -32,11 +33,11 @@ class MapRepository extends EntityRepository
      */
     public function findBySet($id)
     {
-        $qb = $this ->createQueryBuilder('m')
+        return $this ->createQueryBuilder('m')
             ->where('m.mapset = :id')
-            ->setParameter('id', $id);
-
-        return $qb->getQuery()->getResult();
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
 
     }
 }

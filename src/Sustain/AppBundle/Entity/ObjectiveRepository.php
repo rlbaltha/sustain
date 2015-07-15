@@ -12,13 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class ObjectiveRepository extends EntityRepository
 {
+
     /**
      * Find objectives by tag
+     * @return Objective
      */
     public function objectivesByTag($tag)
     {
-        return $this->getEntityManager()
-            ->createQuery('SELECT o FROM AppBundle:Objective o JOIN  o.tags t WHERE t.id = ?1 ')
-            ->setParameter('1',$tag)->getResult();
+        return $this->createQueryBuilder('o')
+            ->leftJoin('o.tags', 't')
+            ->andWhere('t.id = :tag')
+            ->addSelect('t')
+            ->setParameter('tag', $tag)
+            ->getQuery()
+            ->getResult();
     }
 }
