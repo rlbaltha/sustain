@@ -107,7 +107,7 @@ class MapController extends Controller
     /**
      * Displays a form to create a new Map entity.
      *
-     * @Route("/new", name="map_new")
+     * @Route("/pin/new", name="map_new")
      * @Method("GET")
      * @Template()
      */
