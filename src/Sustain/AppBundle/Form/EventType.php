@@ -20,9 +20,10 @@ class EventType extends AbstractType
             ->add('title','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Title of your event'),))
             ->add('teaser', 'ckeditor', array('config_name' => 'editor_simple',))
             ->add('description', 'ckeditor', array('config_name' => 'editor_simple',))
-            ->add('title','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Title of your activity'),))
-            ->add('title','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Title of your activity'),))
             ->add('color','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Color'),))
+            ->add('opportunities', 'entity', array('class' => 'AppBundle:Opportunity',
+                'property' => 'title','expanded'=>true,'multiple'=>true,'label'  => 'Related Partners or Opportunities', 'attr' => array('class' =>
+                    'checkbox'),))
         ;
     }
     

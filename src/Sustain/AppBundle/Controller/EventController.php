@@ -172,6 +172,36 @@ class EventController extends Controller
     }
 
     /**
+     * Displays a form to edit an existing Event entity.
+     *
+     * @Route("/{id}/duplicate", name="event_duplicate")
+     * @Method("GET")
+     */
+    public function duplicateAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AppBundle:Event')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Event entity.');
+        }
+
+        $event = new Event();
+        $event->setTitle($entity->getTitle());
+        $event->setTeaser($entity->getTeaser());
+        $event->setColor($entity->getColor());
+        $event->setDescription($entity->getDescription());
+        $event->setStart($entity->getStart());
+        $event->setEnd($entity->getEnd());
+        $em->persist($event);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('event_edit', array('id' => $event->getId())));
+    }
+
+
+    /**
     * Creates a form to edit a Event entity.
     *
     * @param Event $entity The entity

@@ -53,6 +53,12 @@ class Opportunity
 
 
     /**
+     * @ORM\ManyToMany(targetEntity="Event", mappedBy="opportunities")
+     */
+    protected $events;
+
+
+    /**
      * Get id
      *
      * @return integer 
@@ -152,5 +158,45 @@ class Opportunity
     public function getTeaser()
     {
         return $this->teaser;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->events = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add events
+     *
+     * @param \Sustain\AppBundle\Entity\Event $events
+     * @return Opportunity
+     */
+    public function addEvent(\Sustain\AppBundle\Entity\Event $events)
+    {
+        $this->events[] = $events;
+
+        return $this;
+    }
+
+    /**
+     * Remove events
+     *
+     * @param \Sustain\AppBundle\Entity\Event $events
+     */
+    public function removeEvent(\Sustain\AppBundle\Entity\Event $events)
+    {
+        $this->events->removeElement($events);
+    }
+
+    /**
+     * Get events
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEvents()
+    {
+        return $this->events;
     }
 }
