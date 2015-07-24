@@ -17,26 +17,28 @@
         <a class="btn btn-primary pull-right" href="{{ path('event_new') }}">New Event</a>
     {% endif %}
 
-        {% for entity in entities %}
-            <div class="col-sm-12 well">
-                <div class="col-sm-10">
-                    <h2 style="display:inline">
-                        {{ entity.title }}
-                    </h2>
-                    <p>{% if entity.start %}{{ entity.start|date("l, F d") }} {{ entity.start|date("g:i A") }}{% endif %}</p>
+    {% for entity in entities %}
+        <div class="col-sm-12 well">
+            <div class="col-sm-10">
+                <h2 style="display:inline">
+                    {{ entity.title }}
+                </h2>
 
+                <p>{% if entity.start %}{{ entity.start|date("l, F d") }} {{ entity.start|date("g:i A") }}{% endif %}</p>
+
+                <p>
+                    {{ entity.teaser|raw }}
+                </p>
+                {% if entity.description != '' %}
                     <p>
-                        {{ entity.teaser|raw }}
+                        <a href="{{ path('event_show', { 'id': entity.id }) }}">Read the full description.</a>
                     </p>
-                    {% if entity.description != '' %}
-                        <p>
-                            <a href="{{ path('event_show', { 'id': entity.id }) }}">Read the full description.</a>
-                        </p>
-                    {% endif %}
-                </div>
-                {% if is_granted('ROLE_ADMIN') %}
-                <a class="btn btn-default" href="{{ path('event_edit', { 'id': entity.id }) }}">Edit</a>
                 {% endif %}
             </div>
-        {% endfor %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-default" href="{{ path('event_edit', { 'id': entity.id }) }}">Edit</a>
+                <a class="btn btn-default" href="{{ path('event_duplicate', { 'id': entity.id }) }}">Duplicate</a>
+            {% endif %}
+        </div>
+    {% endfor %}
 {% endblock %}
