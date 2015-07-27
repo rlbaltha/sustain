@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class OpportunityRepository extends EntityRepository
 {
+
+    public function opportunitiesSorted($type) {
+        $opportunities = $this->createQueryBuilder('o')
+            ->orderBy('o.title','ASC')
+            ->andWhere('o.type = :type')
+            ->setParameter('type', $type)
+            ->getQuery()
+            ->getResult();
+        return $opportunities;
+    }
 }

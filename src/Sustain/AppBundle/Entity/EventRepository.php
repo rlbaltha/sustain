@@ -12,4 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class EventRepository extends EntityRepository
 {
+    /**
+     * Find all upcoming events sorted by start
+     *
+     * @return Event
+     */
+    public function eventByDate() {
+        $start = date("Y-m-d");
+        $events = $this->createQueryBuilder('e')
+            ->andWhere('e.start >= :start')
+            ->orderBy('e.start', 'ASC')
+            ->setParameter('start',$start)
+            ->getQuery()
+            ->getResult();
+        return $events;
+    }
 }

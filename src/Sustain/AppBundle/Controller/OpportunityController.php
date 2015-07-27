@@ -29,7 +29,7 @@ class OpportunityController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Opportunity')->findByType($type);
+        $entities = $em->getRepository('AppBundle:Opportunity')->opportunitiesSorted($type);
 
         return array(
             'entities' => $entities,
