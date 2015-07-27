@@ -27,4 +27,24 @@ class EventRepository extends EntityRepository
             ->getResult();
         return $events;
     }
+
+    /**
+     * Find all upcoming events sorted by start
+     *
+     * @return Event
+     */
+    public function eventShortList() {
+        $start = date("Y-m-d");
+        $end =date('Y-m-d', strtotime("+1 week"));
+        $events = $this->createQueryBuilder('e')
+            ->andWhere('e.start >= :start and e.start <= :end')
+            ->orderBy('e.start', 'ASC')
+            ->setParameter('start',$start)
+            ->setParameter('end',$end)
+            ->getQuery()
+            ->getResult();
+        return $events;
+    }
+
+
 }

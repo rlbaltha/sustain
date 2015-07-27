@@ -48,7 +48,7 @@ class PageController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $pages = $em->getRepository('AppBundle:Page')->findHome();
-        $events = $em->getRepository('AppBundle:Event')->eventByDate();
+        $events = $em->getRepository('AppBundle:Event')->eventShortList();
 
         return array(
             'pages' => $pages,
