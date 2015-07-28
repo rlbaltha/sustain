@@ -30,6 +30,11 @@ class LinkType extends AbstractType
                         ->orderBy('t.name', 'ASC');
                 }, 'expanded'=>true,'multiple'=>true, 'label'  => 'Select Labels', 'attr' => array('class' => 'checkbox'),
             ))
+            ->add('objectives', 'entity', array('class' => 'AppBundle:Objective','property'=>'objective','query_builder' =>
+                function(\Sustain\AppBundle\Entity\ObjectiveRepository $er) use ($options) {
+                    return $er->createQueryBuilder('o')
+                        ->orderBy('o.objective', 'ASC');
+                }, 'expanded'=>true,'multiple'=>true, 'label'  => 'Select Objectives', 'attr' => array('class' => 'checkbox')))
         ;
     }
     
