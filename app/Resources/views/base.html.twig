@@ -1,6 +1,6 @@
 {# sustain/app/Resources/views/base.html.twig #}
 <!DOCTYPE html>
-<html {% if 'default' not in app.request.attributes.get('_route') %}class="full"{% endif %}  lang="en">
+<html {% if 'default' not in app.request.attributes.get('_route') %}class="full"{% endif %} lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,8 @@
     {% block stylesheets %}
         {% stylesheets '@bootstrap_less' combine=true  output='css/compiled/main.css' %}
         <link href="{{ asset_url }}" type="text/css" rel="stylesheet"/>{% endstylesheets %}
-        <link href='https://fonts.googleapis.com/css?family=Josefin+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Josefin+Sans&subset=latin,latin-ext' rel='stylesheet'
+              type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/local.css') }}">
     {% endblock %}
@@ -24,7 +25,7 @@
                 var currentactive = '#' + active_route;
                 $('.active').removeClass('active');
                 $(currentactive).addClass('active');
-                (function() {
+                (function () {
                     var cx = '000502081467924493637:_i_ajtr6taa';
                     var gcse = document.createElement('script');
                     gcse.type = 'text/javascript';
@@ -40,7 +41,8 @@
         </script>
     {% endblock %}
 
-    <link rel="icon" href="{{ asset('bundles/app/images/favicon.ico') }}" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+    <link rel="icon" href="{{ asset('bundles/app/images/favicon.ico') }}" sizes="16x16 32x32 48x48 64x64"
+          type="image/vnd.microsoft.icon">
 </head>
 <body>
 
@@ -48,7 +50,8 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -64,33 +67,37 @@
                     <a id="main_nav" href="#main_content">Skip Navigation</a>
                 </li>
                 <li id="faq"><a href="{{ path('page_show', { 'id':12 }) }}">FAQ</a></li>
-                <li id="event" class=""><a title="Events" href="{{ path('event') }}">Events and Service</a></li>
+                <li id="event" class=""><a title="Events" href="{{ path('event') }}">Events/Service</a></li>
                 <li id="module"><a href="{{ path('module') }}">Modules</a></li>
                 <li id="objective"><a href="{{ path('objective') }}">Objectives</a></li>
                 <li id="activity"><a href="{{ path('activity') }}">Activities</a></li>
                 <li id="file"><a title="Courses" href="{{ path('file') }}">Resources</a></li>
                 <li id="mapset"><a href="{{ path('mapset') }}">Maps</a></li>
                 <li id="user"><a href="{{ path('public_profiles') }}">Profiles</a></li>
-                <li id="user"><a style="margin: -5px;" href="{{ path('page_show', { 'id': 9 }) }}"><img style="height: 30px;" src="{{ asset
-                        ('bundles/app/images/donate.png')}}" alt="Donate to Watershed UGA"></a></li>
+                <li id="user"><a href="{{ path('page_show', { 'id': 9 }) }}">Donate</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
 
+            <ul class="nav navbar-nav navbar-right">
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                    <li><a href="{{ path('user_profile') }}">My Profile</a></li>
-                    <li>
-                        <a title="Logout" href="{{ path('fos_user_security_logout') }}">Logout</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Profile</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ path('user_profile') }}">My Profile</a></li>
+                            <li>
+                                <a title="Logout" href="{{ path('fos_user_security_logout') }}">Logout</a>
+                            </li>
+                        </ul>
                     </li>
                 {% else %}
                     <li>
                         <a title="Login" href="{{ path('fos_user_security_login') }}">Login</a>
                     </li>
                 {% endif %}
-
                 <li id="skip">
                     <a id="main_content" href="#main_nav">Skip to Top</a>
                 </li>
             </ul>
+
         </div>
         <!-- /.navbar-collapse -->
     </div>
@@ -99,7 +106,7 @@
 
 
 <div style="margin-top: 70px;">
-    {% if 'default' in app.request.attributes.get('_route') or app.request.attributes.get('_route') == 'theme'  %}
+    {% if 'default' in app.request.attributes.get('_route') or app.request.attributes.get('_route') == 'theme' %}
     {% else %}
         <div class="col-sm-2 sidebar hidden-xs">
             {% block sidebar %}
@@ -114,9 +121,6 @@
 </div>
 
 </body>
-
-
-
 
 
 </html>

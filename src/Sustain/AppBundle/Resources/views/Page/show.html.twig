@@ -1,7 +1,7 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block body -%}
-    <div class="col-sm-12 well">
+    <div class="col-sm-12 well" style="height:90vh;">
         {% if is_granted('ROLE_ADMIN') %}<a class="btn btn-default pull-right" href="{{ path('page_edit', { 'id': entity.id }) }}">Edit</a>{% endif %}
         {{ entity.pageBody|raw }}
     </div>

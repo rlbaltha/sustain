@@ -268,7 +268,7 @@ class FileController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AppBundle:File')->find($id);
-        if (is_null($entity->getUrl()))
+        if (is_null($entity->getUrl()) or $entity->getUrl()=='')
         {
             $type='upload';
         }
@@ -319,23 +319,15 @@ class FileController extends Controller
     /**
      * Edits an existing File entity.
      *
-     * @Route("/{id}", name="file_update")
+     * @Route("/{id}/{type}", name="file_update")
      * @Method("PUT")
      * @Template("AppBundle:File:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, $id, $type)
     {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AppBundle:File')->find($id);
-        if (is_null($entity->getUrl()))
-        {
-            $type='upload';
-        }
-        else {
-            $type='link';
-        }
-
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find File entity.');
@@ -344,18 +336,25 @@ class FileController extends Controller
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity, $type);
         $editForm->handleRequest($request);
+        $em->flush();
 
+        return $this->redirect($this->generateUrl('file'));
+
+        /**
         if ($editForm->isValid()) {
             $em->flush();
 
             return $this->redirect($this->generateUrl('file'));
         }
 
+
         return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
+         *
+         */
     }
     /**
      * Deletes a File entity.
