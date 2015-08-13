@@ -18,7 +18,7 @@ class UserType extends AbstractType
 
             ->add('firstname', 'text', array('label'=> 'First name','attr' => array('class' => 'form-control')))
             ->add('lastname', 'text', array('label'=> 'Last name','attr' => array('class' => 'form-control')))
-            ->add('role', 'choice', array('choices'  => array('0' => 'Student', '1' => 'Staff', '2' => 'Faculty'),'required' => true,
+            ->add('role', 'choice', array('choices'  => array('1' => 'Student', '2' => 'Staff', '3' => 'Faculty'),'required' => true,
                 'expanded' => true, 'label'  =>
                 'Position at UGA','attr' => array
             ('class' => 'radio')))

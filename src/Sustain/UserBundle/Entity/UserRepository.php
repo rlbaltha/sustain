@@ -20,7 +20,7 @@ class UserRepository extends EntityRepository
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.public = :public')
-            ->andWhere('u.role = :role')
+            ->andWhere('u.role >= :role')
             ->setParameter('public', '0')
             ->setParameter('role', '2')
             ->getQuery()
