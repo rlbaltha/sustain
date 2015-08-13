@@ -85,6 +85,13 @@ class User extends BaseUser
      */
     private $mentor=1;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="role", type="integer", nullable=true)
+     */
+    private $role=1;
+
 
     /**
      * @var string
@@ -645,5 +652,28 @@ class User extends BaseUser
     public function getPublic()
     {
         return $this->public;
+    }
+
+    /**
+     * Set role
+     *
+     * @param integer $role
+     * @return User
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return integer 
+     */
+    public function getRole()
+    {
+        return $this->role;
     }
 }

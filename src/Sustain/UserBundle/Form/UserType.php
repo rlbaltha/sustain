@@ -18,6 +18,10 @@ class UserType extends AbstractType
 
             ->add('firstname', 'text', array('label'=> 'First name','attr' => array('class' => 'form-control')))
             ->add('lastname', 'text', array('label'=> 'Last name','attr' => array('class' => 'form-control')))
+            ->add('role', 'choice', array('choices'  => array('0' => 'Student', '1' => 'Staff', '2' => 'Faculty'),'required' => true,
+                'expanded' => true, 'label'  =>
+                'Position at UGA','attr' => array
+            ('class' => 'radio')))
             ->add('college', 'text', array('required' => false,'label'=> 'School/College','attr' => array('class' => 'form-control')))
             ->add('photo', 'text', array('required' => false,'label'=> 'Photo URL','attr' => array('class' => 'form-control')))
             ->add('bio', 'ckeditor', array('required' => false,'label'=> 'Bio','config_name' => 'editor_simple',))
