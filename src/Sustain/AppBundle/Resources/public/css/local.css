@@ -109,6 +109,11 @@ form div div  {
     margin-bottom: 25px;
 }
 
+.table {
+    background-color: white;
+    border: 1px solid #dddddd;
+}
+
 
 /**********  Google search display *******/
 

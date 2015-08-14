@@ -23,6 +23,10 @@ class FileType extends AbstractType
                         ->orderBy('m.name', 'ASC');
                 }, 'expanded'=>true,'multiple'=>true, 'label'  => 'Select Modules', 'attr' => array('class' => 'checkbox'),
             ))
+            ->add('core', 'choice', array(
+                'choices'  => array('1' => 'Yes', '0' => 'No'),
+                'required' => true, 'expanded' => true, 'label' => 'Core Resource for Module', 'attr' => array('class' => 'radio')
+            ))
             ->add('tags', 'entity', array('class' => 'AppBundle:Tag','property'=>'name','query_builder' =>
                 function(\Sustain\AppBundle\Entity\TagRepository $er) use ($options) {
                     return $er->createQueryBuilder('t')
@@ -36,7 +40,7 @@ class FileType extends AbstractType
                 }, 'expanded'=>true,'multiple'=>true, 'label'  => 'Select Objectives', 'attr' => array('class' => 'checkbox'),
             ))
             ->add('access', 'choice', array(
-                'choices'  => array('0' => 'Public', '1' => 'Faculty only'),
+                'choices'  => array('0' => 'Public', '1' => 'Faculty Only'),
                 'required' => true, 'expanded' => true, 'attr' => array('class' => 'radio')
             ))
         ;

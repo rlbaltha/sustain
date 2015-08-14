@@ -18,6 +18,49 @@
         {% endfor %}
         <hr/>
 
+        <h2>Core Resources</h2>
+
+            <table id="file_list" class="col-sm-12 table">
+                <thead>
+                <tr class="file">
+                    <th><span>Title</span></th>
+                    <th class="hidden-xs">Labels</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for file in entity.files if file.core==1 %}
+                    <tr class="file">
+                        <td>
+                            {% if file.url is null %}
+                                <span class="label label-info" data-toggle="tooltip" title="This an {{ file.ext }} file ">{{ file.ext }}</span>
+                                <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
+                                    {{ file.name }}
+                                </a>
+                            {% else %}
+                                <span class="label label-info" data-toggle="tooltip" title="This an link to a resource">Link</span>
+                                <a class="" href="{{ file.url }}" title="Go to  {{ file.name }}" target="_blank">
+                                    {{ file.name }}
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td class="labels hidden-xs">
+                            {% for tag in file.tags %}
+                                <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <div class="alert alert-info">
+                        This module does not have any core resources. Please check back.
+                    </div>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
         <h2>Learning Objectives</h2>
 
         <div class="list-group">
@@ -43,7 +86,7 @@
             </thead>
             <tbody>
 
-            {% for file in entity.files %}
+            {% for file in entity.files if file.core!=1 %}
                 <tr class="file">
                     <td>
                         {% if file.url is null %}
@@ -71,8 +114,8 @@
         </table>
 
 
-
         <h1>Maps</h1>
+
         <div class="list-group">
             {% for entity in entity.mapsets %}
                 <a href="{{ path('mapset_show', { 'id': entity.id }) }}" class="list-group-item">

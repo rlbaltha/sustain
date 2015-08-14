@@ -78,6 +78,13 @@ class File
     private $access = 0 ;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="core", type="integer")
+     */
+    private $core = 0 ;    
+
+    /**
      * @ORM\Column(type="datetime")
      * @Gedmo\Timestampable(on="create")
      */
@@ -451,5 +458,28 @@ class File
         else{
             return false;
         }
+    }
+
+    /**
+     * Set core
+     *
+     * @param integer $core
+     * @return File
+     */
+    public function setCore($core)
+    {
+        $this->core = $core;
+
+        return $this;
+    }
+
+    /**
+     * Get core
+     *
+     * @return integer 
+     */
+    public function getCore()
+    {
+        return $this->core;
     }
 }

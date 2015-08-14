@@ -18,8 +18,18 @@
         {{ entity.college|raw }}
         <h2>Research</h2>
         {{ entity.research|raw }}
-        <h2>Involvement in WatershedUGA</h2>
+        {% if entity.involvement !='' %}
+        <h2>Involvement in Watershed UGA</h2>
         {{ entity.involvement|raw }}
+        {% endif %}
+        {% if entity.courses !='' %}
+        <h2>Courses incorporating Watershed UGA</h2>
+        {{ entity.courses|raw }}
+        {% endif %}
+        {% if entity.collaboration !='' %}
+        <h2>Collaboration with other faculty</h2>
+        {{ entity.collaboration|raw }}
+        {% endif %}
         <hr/>
 
         {% if entity.mentor == 0 %}<p><strong>I am willing to mentor CURO projects</strong></p>{% endif %}
