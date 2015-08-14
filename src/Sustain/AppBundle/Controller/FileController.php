@@ -32,7 +32,7 @@ class FileController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $files = $em->getRepository('AppBundle:File')->findAll();
+        $files = $em->getRepository('AppBundle:File')->findAllSorted();
         $tags = $em->getRepository('AppBundle:Tag')->sortedTags();
 
         return array(

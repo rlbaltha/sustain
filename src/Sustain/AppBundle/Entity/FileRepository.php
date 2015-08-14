@@ -23,6 +23,20 @@ class FileRepository extends EntityRepository
             ->addSelect('t')
             ->andWhere('t.id = :tag')
             ->setParameter('tag',$tag)
+            ->addOrderBy('f.name','ASC')
+            ->getQuery()
+            ->getResult();
+
+    }
+
+    /**
+     * Find files by tag
+     * @return File
+     */
+    public function findAllSorted() {
+
+        return $this->createQueryBuilder('f')
+            ->addOrderBy('f.name','ASC')
             ->getQuery()
             ->getResult();
 
