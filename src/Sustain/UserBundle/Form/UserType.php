@@ -26,7 +26,12 @@ class UserType extends AbstractType
             ->add('photo', 'text', array('required' => false,'label'=> 'Photo URL','attr' => array('class' => 'form-control')))
             ->add('bio', 'ckeditor', array('required' => false,'label'=> 'Bio','config_name' => 'editor_simple',))
             ->add('research', 'ckeditor', array('required' => false,'label'=> 'Research interests','config_name' => 'editor_simple',))
-            ->add('involvement', 'ckeditor', array('required' => false,'label'=> 'Involvement in WatershedUGA','config_name' => 'editor_simple',))
+            ->add('involvement', 'ckeditor', array('required' => false,'label'=> 'Involvement in Watershed UGA','config_name' => 'editor_simple',))
+            ->add('courses', 'ckeditor', array('required' => false,'label'=> 'Courses in which you are incorporating Watershed UGA','config_name' =>
+                'editor_simple',))
+            ->add('collaboration', 'ckeditor', array('required' => false,'label'=> 'Possibilities or requests for collaboration with other faculty',
+                'config_name' =>
+                'editor_simple',))
             ->add('mentor', 'choice', array('choices'   => array('0' => 'Yes', '1' => 'No'),'required'  => true,'label'  => 'I am willing to mentor
             Curo students','expanded' => true,'attr' => array('class' => 'radio'),))
             ->add('public', 'choice', array('choices'   => array('0' => 'Yes', '1' => 'No'),'required'  => true,'label'  => 'I am willing for my profile to be public.','expanded' => true,'attr' => array('class' => 'radio'),))

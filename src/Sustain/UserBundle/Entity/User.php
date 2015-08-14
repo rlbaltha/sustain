@@ -81,6 +81,22 @@ class User extends BaseUser
     /**
      * @var string
      *
+     * @ORM\Column(name="courses", type="text", nullable=true)
+     */
+    private $courses;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="collaboration", type="text", nullable=true)
+     */
+    private $collaboration;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="mentor", type="string", length=255, nullable=true)
      */
     private $mentor=1;
@@ -675,5 +691,51 @@ class User extends BaseUser
     public function getRole()
     {
         return $this->role;
+    }
+
+    /**
+     * Set courses
+     *
+     * @param string $courses
+     * @return User
+     */
+    public function setCourses($courses)
+    {
+        $this->courses = $courses;
+
+        return $this;
+    }
+
+    /**
+     * Get courses
+     *
+     * @return string 
+     */
+    public function getCourses()
+    {
+        return $this->courses;
+    }
+
+    /**
+     * Set collaboration
+     *
+     * @param string $collaboration
+     * @return User
+     */
+    public function setCollaboration($collaboration)
+    {
+        $this->collaboration = $collaboration;
+
+        return $this;
+    }
+
+    /**
+     * Get collaboration
+     *
+     * @return string 
+     */
+    public function getCollaboration()
+    {
+        return $this->collaboration;
     }
 }

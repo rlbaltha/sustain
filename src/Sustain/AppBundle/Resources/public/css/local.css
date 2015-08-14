@@ -105,6 +105,10 @@ form {
     cursor: pointer;
 }
 
+form div div  {
+    margin-bottom: 25px;
+}
+
 
 /**********  Google search display *******/
 
