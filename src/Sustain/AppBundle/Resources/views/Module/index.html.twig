@@ -9,25 +9,31 @@
     {% endif %}
 
     <div class="alert alert-info alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        There are four modules currently being designed for one to three class periods. Click on a title for access to learning objectives,
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+        These modules have been designed for one to three class periods.
+        Click on a title for access to learning objectives,
         activities, resources, assessments, and lecture content.
     </div>
 
-    <div class="list-group">
-        {% for entity in entities %}
-            <a href="{{ path('module_show', { 'id': entity.id }) }}" class="list-group-item">
-                <p class="list-group-item-heading">{{ entity.name|raw }}</p>
+    {% for entity in entities %}
 
-                <p class="list-group-item-text">{{ entity.description|raw }}</p>
-
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3><a href="{{ path('module_show', { 'id': entity.id }) }}">{{ entity.name|raw }}</a></h3>
                 {% for tag in entity.tags %}
                     <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
                                 {{ tag.name }}
                                 </span>
                 {% endfor %}
-            </a>
-        {% endfor %}
-    </div>
+            </div>
+            <div class="panel-body">
+
+                {{ entity.description|raw }}
+
+            </div>
+        </div>
+
+    {% endfor %}
 
 {% endblock %}
