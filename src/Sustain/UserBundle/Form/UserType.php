@@ -22,7 +22,7 @@ class UserType extends AbstractType
                 'expanded' => true, 'label'  =>
                 'Position at UGA','attr' => array
             ('class' => 'radio')))
-            ->add('college', 'text', array('required' => false,'label'=> 'School/College','attr' => array('class' => 'form-control')))
+            ->add('college', 'text', array('required' => false,'label'=> 'School/College/Unit','attr' => array('class' => 'form-control')))
             ->add('photo', 'text', array('required' => false,'label'=> 'Photo URL','attr' => array('class' => 'form-control')))
             ->add('bio', 'ckeditor', array('required' => false,'label'=> 'Bio','config_name' => 'editor_simple',))
             ->add('research', 'ckeditor', array('required' => false,'label'=> 'Research interests','config_name' => 'editor_simple',))
