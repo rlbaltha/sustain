@@ -23,6 +23,7 @@ class UserRepository extends EntityRepository
             ->andWhere('u.role >= :role')
             ->setParameter('public', '0')
             ->setParameter('role', '2')
+            ->addOrderBy('u.lastname', 'ASC')
             ->getQuery()
             ->getResult()
             ;

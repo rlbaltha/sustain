@@ -9,25 +9,29 @@
         {% endif %}
         {% endif %}
 
-        <h1>{{ entity.firstname }} {{ entity.lastname }}</h1>
+        <h2>{{ entity.firstname }} {{ entity.lastname }}</h2>
 
-        <img src="{{ entity.photo }}" class="pull-right img-rounded img-responsive" alt="Responsive image of {{ entity.firstname }} {{ entity.lastname }}">
-        <h2>Bio</h2>
+        <img src="{{ entity.photo }}" class="pull-right img-rounded img-responsive" style="max-width: 400px;" alt="Responsive image of {{ entity.firstname }}
+         {{ entity
+        .lastname }}">
+        <h3>Email</h3>
+        {{ entity.email }}
+        <h3>Bio</h3>
         {{ entity.bio|raw }}
-        <h2>School/College</h2>
+        <h3>School/College</h3>
         {{ entity.college|raw }}
-        <h2>Research</h2>
+        <h3>Research</h3>
         {{ entity.research|raw }}
         {% if entity.involvement !='' %}
-        <h2>Involvement in Watershed UGA</h2>
+        <h3>Involvement in Watershed UGA</h3>
         {{ entity.involvement|raw }}
         {% endif %}
         {% if entity.courses !='' %}
-        <h2>Courses incorporating Watershed UGA</h2>
+        <h3>Courses incorporating Watershed UGA</h3>
         {{ entity.courses|raw }}
         {% endif %}
         {% if entity.collaboration !='' %}
-        <h2>Collaboration with other faculty</h2>
+        <h3>Collaboration with other faculty</h3>
         {{ entity.collaboration|raw }}
         {% endif %}
         <hr/>
