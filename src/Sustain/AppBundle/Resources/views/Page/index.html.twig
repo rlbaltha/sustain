@@ -8,8 +8,12 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="inline"><a href="{{ path('page_show', { 'id': entity.id }) }}">{{ entity.menuName|raw }}</a></h3>
-                {% if entity.homepage == true %}On Homepage{% endif %}
-                {% if is_granted('ROLE_ADMIN') %}<a class="btn btn-default" href="{{ path('page_edit', { 'id': entity.id }) }}">Edit</a>{% endif %}
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    Section: {{ entity.section.name }}
+                    {% if entity.homepage == true %}/ On Homepage {% endif %}
+
+                <a class="btn btn-default" href="{{ path('page_edit', { 'id': entity.id }) }}">Edit</a>{% endif %}
             </div>
             <div class="panel-body">
                 <div class="col-sm-8">

@@ -35,7 +35,7 @@ class PageRepository extends EntityRepository
         return $this->createQueryBuilder('p')
           ->andWhere('p.section = :id')
           ->setParameter('id','1')
-          ->orderBy('p.created','ASC')
+          ->orderBy('p.created','DESC')
           ->getQuery()
           ->getResult();
     }
