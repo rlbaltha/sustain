@@ -31,7 +31,7 @@
                 </p>
                 {% if entity.description != '' %}
                     <p>
-                        <a href="{{ path('event_show', { 'id': entity.id }) }}">Read the full description.</a>
+                        <a href="{{ path('event_show', { 'id': entity.id }) }}">Read the full description for {{ entity.title }}.</a>
                     </p>
                 {% endif %}
             </div>

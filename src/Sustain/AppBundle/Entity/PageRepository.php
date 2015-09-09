@@ -25,4 +25,18 @@ class PageRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * Find pages for stories
+     * @return Page
+     */
+    public function findStories()
+    {
+        return $this->createQueryBuilder('p')
+          ->andWhere('p.section = :id')
+          ->setParameter('id','1')
+          ->orderBy('p.created','ASC')
+          ->getQuery()
+          ->getResult();
+    }
 }

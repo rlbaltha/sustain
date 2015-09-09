@@ -58,6 +58,24 @@ class PageController extends Controller
 
 
     /**
+     * Lists all Page stories.
+     *
+     * @Route("/stories", name="page_stories")
+     * @Method("GET")
+     * @Template("AppBundle:Page:index.html.twig")
+     */
+    public function storiesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('AppBundle:Page')->findStories();
+
+        return array(
+          'entities' => $entities,
+        );
+    }
+
+    /**
      * Creates a new Page entity.
      *
      * @Route("/", name="page_create")

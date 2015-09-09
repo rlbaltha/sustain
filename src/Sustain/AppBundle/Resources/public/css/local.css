@@ -105,6 +105,10 @@ form div div  {
     border: 1px solid #dddddd;
 }
 
+.bold {
+    font-weight: bold;
+}
+
 
 /**********  Google search display *******/
 

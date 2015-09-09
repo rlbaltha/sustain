@@ -3,8 +3,11 @@
 {% block title %}Modules{% endblock %}
 
 {% block body -%}
+    <h1 style="display: inline-block;">Modules</h1>
+
     <div class="col-sm-12 well">
-        <h1>{{ entity.name }}</h1>
+
+        <h2>{{ entity.name }}</h2>
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('module_edit', { 'id': entity.id }) }}" class="btn btn-default pull-right">Edit</a>

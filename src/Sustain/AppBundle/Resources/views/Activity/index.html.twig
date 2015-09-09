@@ -13,39 +13,22 @@
         Activities are associated with Learning Objectives and Modules. They are labeled according to Bloom’s and Fink’s Taxonomy. Click on a title to pull up the content and other resources for download.
     </div>
 
-    <table id="file_list" class="col-sm-12 table">
-        <thead>
-        <tr>
-            <th><span>Title</span></th>
-            <th class="hidden-xs">Labels</th>
-        </tr>
-        </thead>
-        <tbody>
 
+    <div class="list-group">
         {% for entity in entities %}
-            <tr>
-                <td>
-                    <a href="{{ path('activity_show', { 'id': entity.id}) }}" title="Show details for this activity">{{
-                        entity.title }}</a>
-                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                        {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
-                            <a class="pull-right" href="{{ path('activity_edit', { 'id': entity.id}) }}" title="Edit {{ entity.title }}">
-                                Settings
-                            </a>
-                        {% endif %}
-                    {% endif %}
-                    {{ entity.description|raw }}
-                </td>
-                <td class="labels hidden-xs">
+            <a href="{{ path('activity_show', { 'id': entity.id}) }}" class="list-group-item" title="Show details for this activity">
+                <h2 class="inline">{{ entity.title }}</h2>
+                <p class="list-group-item-text">{{ entity.description|raw }}</p>
+                <span class="labels hidden-xs">
                     {% for tag in entity.tags %}
                         <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
                                 {{ tag.name }}
                                 </span>
                     {% endfor %}
-                </td>
-            </tr>
-
+                </span>
+            </a>
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
+
+
 {% endblock %}

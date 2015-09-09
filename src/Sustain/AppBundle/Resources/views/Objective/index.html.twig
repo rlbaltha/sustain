@@ -17,7 +17,7 @@
     <div class="list-group">
         {% for entity in entities %}
             <a href="{{ path('objective_show', { 'id': entity.id }) }}" class="list-group-item">
-                <p class="list-group-item-heading">{{ entity.objective|raw }}</p>
+                <h2>{{ entity.objective|raw }}</h2>
                 <p class="list-group-item-text">{{ entity.description|raw }}
 
                     {% for tag in entity.tags %}

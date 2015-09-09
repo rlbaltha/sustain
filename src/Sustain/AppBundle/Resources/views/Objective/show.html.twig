@@ -5,10 +5,10 @@
 
 
 {% block body -%}
-
+    <h1 style="display: inline-block;">Learning Objectives</h1>
     <div class="col-sm-12 well">
 
-        <h1>{{ entity.objective|raw }}</h1>
+        <h2>{{ entity.objective|raw }}</h2>
 
 
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
@@ -24,7 +24,28 @@
         {% endfor %}
         <hr/>
 
-        <h2>Files</h2>
+        <h2>Modules related to this objective</h2>
+        {% for entity in entity.modules %}
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3><a href="{{ path('module_show', { 'id': entity.id }) }}">{{ entity.name|raw }}</a></h3>
+                    {% for tag in entity.tags %}
+                        <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+                    {% endfor %}
+                </div>
+                <div class="panel-body">
+
+                    {{ entity.description|raw }}
+
+                </div>
+            </div>
+
+        {% endfor %}
+
+        <h2>Files related to this objective</h2>
 
         <table id="file_list" class="col-sm-12 table">
             <thead>
@@ -64,61 +85,26 @@
             </tbody>
         </table>
 
-        <h2>Activities</h2>
+        <h2>Activities for this objective</h2>
 
-        <table id="file_list" class="col-sm-12 table">
-            <thead>
-            <tr>
-                <th><span>Title</span></th>
-                <th class="hidden-xs">Labels</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            {% for entity in entity.activities %}
-                <tr>
-                    <td>
-                        {{ entity.title }}
-                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                            {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
-                                <a class="pull-right" href="{{ path('activity_edit', { 'id': entity.id}) }}"
-                                   title="Edit {{ entity.title }}">
-                                    Settings
-                                </a>
-                            {% endif %}
-                        {% endif %}
-                        {{ entity.description|raw }}
-                    </td>
-                    <td class="labels hidden-xs">
-                        {% for tag in entity.tags %}
-                            <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
-                                {{ tag.name }}
-                                </span>
-                        {% endfor %}
-                    </td>
-                </tr>
-
-            {% endfor %}
-            </tbody>
-        </table>
-
-
-        <h2>Modules</h2>
         <div class="list-group">
-            {% for entity in entity.modules %}
-                <a href="{{ path('module_show', { 'id': entity.id }) }}" class="list-group-item">
-                    <p class="list-group-item-heading">{{ entity.name|raw }}</p>
-
+            {% for entity in entity.activities %}
+                <a href="{{ path('activity_show', { 'id': entity.id}) }}" class="list-group-item" title="Show details for this activity">
+                    <h2 class="inline">{{ entity.title }}</h2>
                     <p class="list-group-item-text">{{ entity.description|raw }}</p>
-
+                <span class="labels hidden-xs">
                     {% for tag in entity.tags %}
                         <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
                                 {{ tag.name }}
                                 </span>
                     {% endfor %}
+                </span>
                 </a>
             {% endfor %}
         </div>
+
+
+
 
 
 

@@ -3,8 +3,19 @@
 {% block title %}Activities{% endblock %}
 
 {% block body -%}
+    <h1 style="display: inline-block;">Activities</h1>
+
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+    {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-default" href="{{ path('activity_edit', { 'id': entity.id}) }}" title="Edit {{ entity.title }}">
+            Edit
+        </a>
+    {% endif %}
+{% endif %}
+
     <div class="col-sm-12 well">
-        <h1>{{ entity.title }}</h1>
+        <h2>{{ entity.title }}</h2>
+
 
         <p>{{ entity.description|raw }} </p>
         {% for tag in entity.tags %}
@@ -14,37 +25,22 @@
         {% endfor %}
         <hr/>
 
-        <h2>Objectives</h2>
+        <h2>Objectives related to this activity</h2>
 
-        <table id="file_list" class="col-sm-12 table">
-            <thead>
-            <tr>
-                <th><span>Title</span></th>
-                <th class="hidden-xs">Labels</th>
-            </tr>
-            </thead>
-            <tbody>
-
+        <div class="list-group">
             {% for entity in entity.objectives %}
-                <tr>
-                    <td>
-                        <a href="{{ path('objective_show', { 'id': entity.id}) }}" title="Show {{ entity.objective }}">
-                            {{ entity.objective|raw }}
-                        </a>
+                <a href="{{ path('objective_show', { 'id': entity.id }) }}" class="list-group-item">
+                    <h2>{{ entity.objective|raw }}</h2>
+                    <p class="list-group-item-text">{{ entity.description|raw }}
 
-                        {{ entity.description|raw }}
-                    </td>
-                    <td class="labels hidden-xs">
                         {% for tag in entity.tags %}
                             <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
                                 {{ tag.name }}
                                 </span>
                         {% endfor %}
-                    </td>
-                </tr>
-
+                    </p>
+                </a>
             {% endfor %}
-            </tbody>
-        </table>
+        </div>
     </div>
 {% endblock %}
