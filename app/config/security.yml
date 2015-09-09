@@ -40,6 +40,7 @@ security:
         - { path: update$, role: ROLE_ADMIN }
         - { path: ^/tag/, role: ROLE_ADMIN }
         - { path: ^/section/, role: ROLE_ADMIN }
+        - { path: ^/category/, role: ROLE_ADMIN }
 
 
 

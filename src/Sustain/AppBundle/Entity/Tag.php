@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Tag
 {
+
     /**
      * @var integer
      *
@@ -34,6 +35,11 @@ class Tag
      * @ORM\Column(name="color", type="string", length=255)
      */
     private $color;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="tags")
+     */
+    protected $category;
 
     /**
      * @var integer
@@ -278,5 +284,28 @@ class Tag
     public function getObjectives()
     {
         return $this->objectives;
+    }
+
+    /**
+     * Set category
+     *
+     * @param string $category
+     * @return Tag
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string 
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

@@ -15,258 +15,256 @@ use Sustain\AppBundle\Form\ActivityType;
  *
  * @Route("/activity")
  */
-class ActivityController extends Controller
-{
+class ActivityController extends Controller {
 
-    /**
-     * Lists all Activity entities.
-     *
-     * @Route("/", name="activity")
-     * @Method("GET")
-     * @Template()
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
+  /**
+   * Lists all Activity entities.
+   *
+   * @Route("/", name="activity")
+   * @Method("GET")
+   * @Template()
+   */
+  public function indexAction() {
+    $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Activity')->findAll();
-        $tags = $em->getRepository('AppBundle:Tag')->sortedTags();
+    $entities = $em->getRepository('AppBundle:Activity')->findAll();
+    $categories = $em->getRepository('AppBundle:Category')->findAll();
 
-        return array(
-            'entities' => $entities,
-            'tags' => $tags,
-        );
+    return array(
+      'entities' => $entities,
+      'categories' => $categories,
+    );
+  }
+
+  /**
+   * Lists Modules entities by tag.
+   *
+   * @Route("/{tag}/activity_by_tag", name="activity_by_tag")
+   * @Method("GET")
+   * @Template("AppBundle:Activity:index.html.twig")
+   */
+  public function findByTagAction($tag) {
+    $em = $this->getDoctrine()->getManager();
+    $entities = $em->getRepository('AppBundle:Activity')->activitiesByTag($tag);
+    $categories = $em->getRepository('AppBundle:Category')->findAll();
+
+    return array(
+      'entities' => $entities,
+      'categories' => $categories,
+    );
+  }
+
+
+  /**
+   * Creates a new Activity entity.
+   *
+   * @Route("/", name="activity_create")
+   * @Method("POST")
+   * @Template("AppBundle:Activity:new.html.twig")
+   */
+  public function createAction(Request $request) {
+    $entity = new Activity();
+    $form = $this->createCreateForm($entity);
+    $form->handleRequest($request);
+
+    if ($form->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $em->persist($entity);
+      $em->flush();
+
+      return $this->redirect($this->generateUrl('activity'));
     }
 
-    /**
-     * Lists Modules entities by tag.
-     *
-     * @Route("/{tag}/activity_by_tag", name="activity_by_tag")
-     * @Method("GET")
-     * @Template("AppBundle:Activity:index.html.twig")
-     */
-    public function findByTagAction($tag)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('AppBundle:Activity')->activitiesByTag($tag);
-        $tags = $em->getRepository('AppBundle:Tag')->sortedTags();
+    return array(
+      'entity' => $entity,
+      'form' => $form->createView(),
+    );
+  }
 
-        return array(
-            'entities' => $entities,
-            'tags' => $tags,
-        );
+  /**
+   * Creates a form to create a Activity entity.
+   *
+   * @param Activity $entity The entity
+   *
+   * @return \Symfony\Component\Form\Form The form
+   */
+  private function createCreateForm(Activity $entity) {
+    $form = $this->createForm(new ActivityType(), $entity, array(
+      'action' => $this->generateUrl('activity_create'),
+      'method' => 'POST',
+    ));
+
+    $form->add('submit', 'submit', array(
+      'label' => 'Create',
+      'attr' => array('class' => 'btn btn-default margin-top')
+    ));
+
+    return $form;
+  }
+
+  /**
+   * Displays a form to create a new Activity entity.
+   *
+   * @Route("/new", name="activity_new")
+   * @Method("GET")
+   * @Template()
+   */
+  public function newAction() {
+    $entity = new Activity();
+    $form = $this->createCreateForm($entity);
+
+    return array(
+      'entity' => $entity,
+      'form' => $form->createView(),
+    );
+  }
+
+  /**
+   * Finds and displays a Activity entity.
+   *
+   * @Route("/{id}", name="activity_show")
+   * @Method("GET")
+   * @Template()
+   */
+  public function showAction($id) {
+    $em = $this->getDoctrine()->getManager();
+
+    $entity = $em->getRepository('AppBundle:Activity')->find($id);
+    $categories = $em->getRepository('AppBundle:Category')->findAll();
+
+    if (!$entity) {
+      throw $this->createNotFoundException('Unable to find Activity entity.');
     }
 
+    $deleteForm = $this->createDeleteForm($id);
 
-    /**
-     * Creates a new Activity entity.
-     *
-     * @Route("/", name="activity_create")
-     * @Method("POST")
-     * @Template("AppBundle:Activity:new.html.twig")
-     */
-    public function createAction(Request $request)
-    {
-        $entity = new Activity();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
+    return array(
+      'entity' => $entity,
+      'categories' => $categories,
+      'delete_form' => $deleteForm->createView(),
+    );
+  }
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
+  /**
+   * Displays a form to edit an existing Activity entity.
+   *
+   * @Route("/{id}/edit", name="activity_edit")
+   * @Method("GET")
+   * @Template()
+   */
+  public function editAction($id) {
+    $em = $this->getDoctrine()->getManager();
 
-            return $this->redirect($this->generateUrl('activity'));
-        }
+    $entity = $em->getRepository('AppBundle:Activity')->find($id);
 
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
+    if (!$entity) {
+      throw $this->createNotFoundException('Unable to find Activity entity.');
     }
 
-    /**
-     * Creates a form to create a Activity entity.
-     *
-     * @param Activity $entity The entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createCreateForm(Activity $entity)
-    {
-        $form = $this->createForm(new ActivityType(), $entity, array(
-            'action' => $this->generateUrl('activity_create'),
-            'method' => 'POST',
-        ));
+    $editForm = $this->createEditForm($entity);
+    $deleteForm = $this->createDeleteForm($id);
 
-        $form->add('submit', 'submit', array('label' => 'Create', 'attr' => array('class' => 'btn btn-default margin-top')));
+    return array(
+      'entity' => $entity,
+      'edit_form' => $editForm->createView(),
+      'delete_form' => $deleteForm->createView(),
+    );
+  }
 
-        return $form;
+  /**
+   * Creates a form to edit a Activity entity.
+   *
+   * @param Activity $entity The entity
+   *
+   * @return \Symfony\Component\Form\Form The form
+   */
+  private function createEditForm(Activity $entity) {
+    $form = $this->createForm(new ActivityType(), $entity, array(
+      'action' => $this->generateUrl('activity_update', array('id' => $entity->getId())),
+      'method' => 'PUT',
+    ));
+
+    $form->add('submit', 'submit', array(
+      'label' => 'Update',
+      'attr' => array('class' => 'btn btn-default margin-top')
+    ));
+
+    return $form;
+  }
+
+  /**
+   * Edits an existing Activity entity.
+   *
+   * @Route("/{id}", name="activity_update")
+   * @Method("PUT")
+   * @Template("AppBundle:Activity:edit.html.twig")
+   */
+  public function updateAction(Request $request, $id) {
+    $em = $this->getDoctrine()->getManager();
+
+    $entity = $em->getRepository('AppBundle:Activity')->find($id);
+
+    if (!$entity) {
+      throw $this->createNotFoundException('Unable to find Activity entity.');
     }
 
-    /**
-     * Displays a form to create a new Activity entity.
-     *
-     * @Route("/new", name="activity_new")
-     * @Method("GET")
-     * @Template()
-     */
-    public function newAction()
-    {
-        $entity = new Activity();
-        $form   = $this->createCreateForm($entity);
+    $deleteForm = $this->createDeleteForm($id);
+    $editForm = $this->createEditForm($entity);
+    $editForm->handleRequest($request);
 
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
+    if ($editForm->isValid()) {
+      $em->flush();
+
+      return $this->redirect($this->generateUrl('activity'));
     }
 
-    /**
-     * Finds and displays a Activity entity.
-     *
-     * @Route("/{id}", name="activity_show")
-     * @Method("GET")
-     * @Template()
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
+    return array(
+      'entity' => $entity,
+      'edit_form' => $editForm->createView(),
+      'delete_form' => $deleteForm->createView(),
+    );
+  }
 
-        $entity = $em->getRepository('AppBundle:Activity')->find($id);
-        $tags = $em->getRepository('AppBundle:Tag')->sortedTags();
+  /**
+   * Deletes a Activity entity.
+   *
+   * @Route("/{id}", name="activity_delete")
+   * @Method("DELETE")
+   */
+  public function deleteAction(Request $request, $id) {
+    $form = $this->createDeleteForm($id);
+    $form->handleRequest($request);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Activity entity.');
-        }
+    if ($form->isValid()) {
+      $em = $this->getDoctrine()->getManager();
+      $entity = $em->getRepository('AppBundle:Activity')->find($id);
 
-        $deleteForm = $this->createDeleteForm($id);
+      if (!$entity) {
+        throw $this->createNotFoundException('Unable to find Activity entity.');
+      }
 
-        return array(
-            'entity'      => $entity,
-            'tags' => $tags,
-            'delete_form' => $deleteForm->createView(),
-        );
+      $em->remove($entity);
+      $em->flush();
     }
 
-    /**
-     * Displays a form to edit an existing Activity entity.
-     *
-     * @Route("/{id}/edit", name="activity_edit")
-     * @Method("GET")
-     * @Template()
-     */
-    public function editAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
+    return $this->redirect($this->generateUrl('activity'));
+  }
 
-        $entity = $em->getRepository('AppBundle:Activity')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Activity entity.');
-        }
-
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
-    * Creates a form to edit a Activity entity.
-    *
-    * @param Activity $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Activity $entity)
-    {
-        $form = $this->createForm(new ActivityType(), $entity, array(
-            'action' => $this->generateUrl('activity_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Update', 'attr' => array('class' => 'btn btn-default margin-top')));
-
-        return $form;
-    }
-    /**
-     * Edits an existing Activity entity.
-     *
-     * @Route("/{id}", name="activity_update")
-     * @Method("PUT")
-     * @Template("AppBundle:Activity:edit.html.twig")
-     */
-    public function updateAction(Request $request, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('AppBundle:Activity')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Activity entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isValid()) {
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('activity'));
-        }
-
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-    /**
-     * Deletes a Activity entity.
-     *
-     * @Route("/{id}", name="activity_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, $id)
-    {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:Activity')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Activity entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
-        }
-
-        return $this->redirect($this->generateUrl('activity'));
-    }
-
-    /**
-     * Creates a form to delete a Activity entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('activity_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete', 'attr' => array('class' => 'btn btn-danger')))
-            ->getForm()
-        ;
-    }
+  /**
+   * Creates a form to delete a Activity entity by id.
+   *
+   * @param mixed $id The entity id
+   *
+   * @return \Symfony\Component\Form\Form The form
+   */
+  private function createDeleteForm($id) {
+    return $this->createFormBuilder()
+      ->setAction($this->generateUrl('activity_delete', array('id' => $id)))
+      ->setMethod('DELETE')
+      ->add('submit', 'submit', array(
+        'label' => 'Delete',
+        'attr' => array('class' => 'btn btn-danger')
+      ))
+      ->getForm();
+  }
 }

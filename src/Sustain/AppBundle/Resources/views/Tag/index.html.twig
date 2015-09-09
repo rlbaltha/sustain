@@ -7,6 +7,7 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Category</th>
                 <th>Sortorder</th>
                 <th></th>
             </tr>
@@ -19,6 +20,7 @@
                                                                                             style="background-color: {{
                         entity
                         .color }};">{{ entity.name }}</span></a></td>
+                <td>{% if entity.category %}{{ entity.category.name }}{% endif %}</td>
                 <td>{{ entity.sortorder }}</td>
                 <td>{% if is_granted('ROLE_ADMIN') %}<a class="btn btn-default" href="{{ path('tag_edit', { 'id': entity.id }) }}">Edit</a>{% endif %}</td>
             </tr>
