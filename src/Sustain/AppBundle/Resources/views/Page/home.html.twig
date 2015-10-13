@@ -27,18 +27,25 @@
     <div class="row " style="padding:30px;">
 
         <div class="col-sm-8">
+
             <div class="col-sm-6">
+                <a style="padding-top: 20px;" href="{{ path('page_stories') }}">See All the Watershed Stories</a>
+
                 <h3>Watch our Introductory Video</h3>
+
                 <div class="embed-responsive embed-responsive-4by3">
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/mZvlSWSNsJw?rel=0" frameborder="0" allowfullscreen></iframe>
                 </div>
+
             </div>
+
             {% for page in pages %}
                 <div class="col-sm-6">
                     <h3>{{ page.teaserImageCaption }}</h3>
                     <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
                         <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail" alt="{{ page.menuName }}">
                     </a>
+
                     <div class="caption">
                         <p>{{ page.teaser|raw }}</p>
                     </div>
@@ -47,6 +54,7 @@
                     </a>
                 </div>
             {% endfor %}
+
         </div>
 
 
