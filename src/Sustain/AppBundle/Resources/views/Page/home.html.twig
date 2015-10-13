@@ -35,13 +35,11 @@
             </div>
             {% for page in pages %}
                 <div class="col-sm-6">
+                    <h3>{{ page.teaserImageCaption }}</h3>
                     <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
                         <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail" alt="{{ page.menuName }}">
                     </a>
-
                     <div class="caption">
-                        <h3>{{ page.teaserImageCaption }}</h3>
-
                         <p>{{ page.teaser|raw }}</p>
                     </div>
                     <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
