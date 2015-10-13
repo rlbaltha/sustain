@@ -24,45 +24,46 @@
     </div>
 
 
-    <div class="col-sm-12 " style="padding:30px;">
+    <div class="row " style="padding:30px;">
 
-        <div class="col-sm-4">
-            <h3>Watershed Stories</h3>
-            {% for page in pages %}
-                <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
-                    <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail" alt="{{ page.menuName }}">
-                </a>
-                <div class="caption">
-                    <h3>{{ page.teaserImageCaption }}</h3>
-
-                    <p>{{ page.teaser|raw }}</p>
+        <div class="col-sm-8">
+            <div class="col-sm-6">
+                <h3>Watch our Introductory Video</h3>
+                <div class="embed-responsive embed-responsive-4by3">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/mZvlSWSNsJw?rel=0" frameborder="0" allowfullscreen></iframe>
                 </div>
-                <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
-                    Read more about {{ page.teaserImageCaption }}
-                </a>
+            </div>
+            {% for page in pages %}
+                <div class="col-sm-6">
+                    <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
+                        <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail" alt="{{ page.menuName }}">
+                    </a>
+
+                    <div class="caption">
+                        <h3>{{ page.teaserImageCaption }}</h3>
+
+                        <p>{{ page.teaser|raw }}</p>
+                    </div>
+                    <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
+                        Read more about {{ page.teaserImageCaption }}
+                    </a>
+                </div>
             {% endfor %}
         </div>
-        <div class="col-sm-4">
 
-            <h3>Watch our Introductory Video</h3>
-
-
-            <div class="embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/mZvlSWSNsJw?rel=0" frameborder="0" allowfullscreen></iframe>
-            </div>
-
-            <h3>Take a Survey</h3>
-
-            <div class="well">
-                <a href="http://www.watershed.uga.edu/page/13" title="Take a survey"><img class="img-responsive" alt="Take a survey" src="http://www.watershed.uga.edu/images/survey.png"></a>
-            </div>
-
-        </div>
 
         <div class="col-sm-4">
 
             <a class="twitter-timeline" href="https://twitter.com/WatershedUGA" data-widget-id="644610687554162689">Tweets by @WatershedUGA</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            <script>!function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = p + "://platform.twitter.com/widgets.js";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, "script", "twitter-wjs");</script>
 
             <h3>Watershed UGA Events This Week</h3>
             <a class="" href="{{ path('event') }}">All Upcoming Events</a>
@@ -83,7 +84,6 @@
                     <p>There are no events this week. Please check back soon.</p>
                 </div>
             {% endfor %}
-
 
 
         </div>
