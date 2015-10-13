@@ -59,7 +59,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
 
-                        {{ event.start|date("l, F d") }} {{ event.start|date("g:i A") }}
+                        {{ event.start|date("l, F d") }} {% if event.start|date("g:i A") == "12:00 AM" %}{% else %}{{ event.start|date("g:i A") }}{% endif %}
                     </div>
                     <div class="panel-body">
                         <h3>{{ event.title }}</h3>

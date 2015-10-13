@@ -111,6 +111,9 @@ class EventController extends Controller
     public function newAction()
     {
         $entity = new Event();
+        $date = date_create();
+        $entity->setStart($date);
+        $entity->setEnd($date);
         $form   = $this->createCreateForm($entity);
 
         return array(

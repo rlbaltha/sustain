@@ -1,5 +1,5 @@
 .full  {
-    background: url('http://www.watershed.uga.edu/bundles/app/images/background.jpg') no-repeat center center fixed;
+    background: url('https://www.watershed.uga.edu/bundles/app/images/background.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -110,32 +110,6 @@ form div div  {
 }
 
 
-/**********  Google search display *******/
-
-table.gsc-search-box td {
-  padding:0 !important
-}
-
-.gsc-input-box {
-
-}
-
-.cse .gsc-control-cse, .gsc-control-cse {
-    padding: 0;
-}
-
-form.gsc-search-box {}
-div.gsc-control-cse {}
-
-input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:focus {
-    background-color: #337ab7 !important;
-    border-color: #2e6da4 !important;
-    background-image: url("http://www.google.com/uds/css/v2/search_box_icon.png") !important;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    height: 25px !important;
-    filter: none;
-}
 
 /**********  Accessibility **********/
 #skip a, #skip a:hover, #skip a:visited
