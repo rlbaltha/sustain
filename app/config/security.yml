@@ -17,21 +17,18 @@ security:
     firewalls:
         main:
             pattern: ^/
-            fr3d_ldap:  ~
-            form_login:
-                csrf_provider: form.csrf_provider
-                default_target_path: /user/profile
-            logout:
-                path:   /logout
-                target: /
+            trusted_sso:
+                manager: admin_sso
+                create_users: false
+                login_action: false
+                logout_action: false
+                login_path: /login
+                check_path: /login_check
+            provider: fos_userbundle
             anonymous:    true
             switch_user: true
 
     access_control:
-        #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https  }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https  }
         - { path: ^/user/[0-9]*/edit, role: ROLE_USER }
         - { path: edit$, role: ROLE_ADMIN }
         - { path: new$, role: ROLE_ADMIN }

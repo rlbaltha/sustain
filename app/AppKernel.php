@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Sustain\UserBundle\SustainUserBundle(),
             new Sustain\AuthenticateBundle\SustainAuthenticateBundle(),
+            new BeSimple\SsoAuthBundle\BeSimpleSsoAuthBundle(),
             new Sustain\AppBundle\AppBundle(),
         );
 

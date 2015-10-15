@@ -34,7 +34,8 @@
         "twbs/bootstrap" : "*",
         "oyejorge/less.php": "~1.5",
         "packagist/yuicompressor-bin": "dev-master",
-        "h4cc/wkhtmltopdf-amd64" : "0.12.1"
+        "h4cc/wkhtmltopdf-amd64" : "0.12.1",
+        "besimple/sso-auth-bundle": "*@dev"
     },
     "scripts": {
         "post-install-cmd": [
