@@ -23,21 +23,21 @@ security:
                 login_action: false
                 logout_action: false
                 login_path: /login
-                check_path: /login_check
+                check_path: /login
             provider: fos_userbundle
             anonymous:    true
             switch_user: true
 
     access_control:
-        - { path: ^/user/[0-9]*/edit, role: ROLE_USER }
-        - { path: edit$, role: ROLE_ADMIN }
-        - { path: new$, role: ROLE_ADMIN }
-        - { path: delete$, role: ROLE_ADMIN }
-        - { path: create$, role: ROLE_ADMIN }
-        - { path: update$, role: ROLE_ADMIN }
-        - { path: ^/tag/, role: ROLE_ADMIN }
-        - { path: ^/section/, role: ROLE_ADMIN }
-        - { path: ^/category/, role: ROLE_ADMIN }
+        - { path: ^/user/[0-9]*/edit, role: ROLE_USER, requires_channel: https  }
+        - { path: edit$, role: ROLE_ADMIN, requires_channel: https  }
+        - { path: new$, role: ROLE_ADMIN, requires_channel: https  }
+        - { path: delete$, role: ROLE_ADMIN, requires_channel: https  }
+        - { path: create$, role: ROLE_ADMIN, requires_channel: https  }
+        - { path: update$, role: ROLE_ADMIN, requires_channel: https  }
+        - { path: ^/tag/, role: ROLE_ADMIN, requires_channel: https  }
+        - { path: ^/section/, role: ROLE_ADMIN, requires_channel: https  }
+        - { path: ^/category/, role: ROLE_ADMIN, requires_channel: https  }
 
 
 
