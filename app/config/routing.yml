@@ -9,9 +9,11 @@ app:
 
 login:
     pattern: /login
+    defaults: { _controller: AppBundle:Page:home }
 
 logout:
     pattern: /logout
+    defaults: { _controller: AppBundle:Page:home }
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

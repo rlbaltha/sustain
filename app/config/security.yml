@@ -25,7 +25,7 @@ security:
                 create_users: true
                 login_action: false
                 logout_action: false
-                login_path: /event
+                login_path: /login
                 check_path: /login
             provider: fos_userbundle
             anonymous:    true
