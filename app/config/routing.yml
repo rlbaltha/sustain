@@ -7,6 +7,12 @@ app:
     type:     annotation
     prefix:   /
 
+login:
+    pattern: /login
+
+logout:
+    pattern: /logout
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

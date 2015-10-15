@@ -22,16 +22,17 @@ security:
                 target: /
             trusted_sso:
                 manager: admin_sso
-                create_users: false
+                create_users: true
                 login_action: false
                 logout_action: false
-                login_path: /login
+                login_path: /event
                 check_path: /login
             provider: fos_userbundle
             anonymous:    true
             switch_user: true
 
     access_control:
+        - { path: ^/login$, role: ROLE_USER, requires_channel: https  }
         - { path: ^/user/[0-9]*/edit, role: ROLE_USER, requires_channel: https  }
         - { path: edit$, role: ROLE_ADMIN, requires_channel: https  }
         - { path: new$, role: ROLE_ADMIN, requires_channel: https  }
