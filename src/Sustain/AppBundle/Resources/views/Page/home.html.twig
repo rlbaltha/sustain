@@ -44,18 +44,6 @@
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/mZvlSWSNsJw?rel=0" frameborder="0" allowfullscreen></iframe>
                 </div>
 
-                <hr/>
-                <a class="twitter-timeline" href="https://twitter.com/WatershedUGA" data-widget-id="644610687554162689">Tweets by @WatershedUGA</a>
-                <script>!function (d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-                        if (!d.getElementById(id)) {
-                            js = d.createElement(s);
-                            js.id = id;
-                            js.src = p + "://platform.twitter.com/widgets.js";
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }
-                    }(document, "script", "twitter-wjs");</script>
-
             </div>
 
             {% for page in pages %}
@@ -100,6 +88,19 @@
             {% endfor %}
 
 
+        </div>
+
+        <div class="col-sm-4">
+            <a class="twitter-timeline" href="https://twitter.com/WatershedUGA" data-widget-id="644610687554162689">Tweets by @WatershedUGA</a>
+            <script>!function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = p + "://platform.twitter.com/widgets.js";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, "script", "twitter-wjs");</script>
         </div>
 
     </div>
