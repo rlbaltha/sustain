@@ -19,7 +19,7 @@ security:
             pattern: ^/
             fr3d_ldap:  ~
             form_login:
-                csrf_provider: form.csrf_provider
+                csrf_provider: security.csrf.token_manager
                 default_target_path: /user/profile
             logout:
                 path:   /logout
@@ -41,6 +41,7 @@ security:
         - { path: ^/tag/, role: ROLE_ADMIN }
         - { path: ^/section/, role: ROLE_ADMIN }
         - { path: ^/category/, role: ROLE_ADMIN }
+        - { path: ^/user/, role: ROLE_ADMIN }
 
 
 

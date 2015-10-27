@@ -14,7 +14,7 @@ use Sustain\UserBundle\Form\UserType;
 /**
  * User controller.
  *
- * @Route("/user")
+ * @Route("/")
  */
 class UserController extends Controller
 {
@@ -22,7 +22,7 @@ class UserController extends Controller
     /**
      * Lists all User entities.
      *
-     * @Route("/", name="user")
+     * @Route("user/", name="user")
      * @Method("GET")
      * @Template()
      */
@@ -56,11 +56,33 @@ class UserController extends Controller
         );
     }
 
+    /**
+     * Lists all User entities.
+     *
+     * @Route("{id}/public_profile", name="public_profile")
+     * @Method("GET")
+     * @Template("SustainUserBundle:User:show.html.twig")
+     */
+    public function publicProfileAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('SustainUserBundle:User')->findProfile($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Profile.');
+        }
+
+        return array(
+          'entity' => $entity,
+        );
+    }
+
 
     /**
      * Creates a new User entity.
      *
-     * @Route("/", name="user_create")
+     * @Route("user/", name="user_create")
      * @Method("POST")
      * @Template("SustainUserBundle:User:new.html.twig")
      */
@@ -106,7 +128,7 @@ class UserController extends Controller
     /**
      * Displays a form to create a new User entity.
      *
-     * @Route("/new", name="user_new")
+     * @Route("user/new", name="user_new")
      * @Method("GET")
      * @Template()
      */
@@ -124,7 +146,7 @@ class UserController extends Controller
     /**
      * Finds and displays a User entity.
      *
-     * @Route("/profile", name="user_profile")
+     * @Route("user/profile", name="user_profile")
      * @Method("GET")
      * @Template("SustainUserBundle:User:show.html.twig")
      */
@@ -152,7 +174,7 @@ class UserController extends Controller
     /**
      * Finds and displays a User entity.
      *
-     * @Route("/{id}/show", name="user_show")
+     * @Route("user/{id}/show", name="user_show")
      * @Method("GET")
      * @Template()
      */
@@ -177,7 +199,7 @@ class UserController extends Controller
     /**
      * Displays a form to edit an existing User entity.
      *
-     * @Route("/{id}/edit", name="user_edit")
+     * @Route("user/{id}/edit", name="user_edit")
      * @Method("GET")
      * @Template()
      */
@@ -227,7 +249,7 @@ class UserController extends Controller
     /**
      * Edits an existing User entity.
      *
-     * @Route("/{id}", name="user_update")
+     * @Route("user/{id}", name="user_update")
      * @Method("PUT")
      * @Template("SustainUserBundle:User:edit.html.twig")
      */
@@ -260,7 +282,7 @@ class UserController extends Controller
     /**
      * Deletes a User entity.
      *
-     * @Route("/{id}", name="user_delete")
+     * @Route("user/{id}", name="user_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)

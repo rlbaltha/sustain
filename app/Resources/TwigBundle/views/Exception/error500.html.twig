@@ -1,0 +1,10 @@
+{# app/Resources/TwigBundle/views/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>There was a problem with your request.</h1>
+
+    <p>
+        Please <a href="{{ path('page_home') }}">return to the homepage</a>.
+    </p>
+{% endblock %}
