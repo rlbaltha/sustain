@@ -102,7 +102,7 @@ class SectionController extends Controller
     /**
      * Finds and displays a Section entity.
      *
-     * @Route("/{id}", name="section_show")
+     * @Route("/{id}/", name="section_show")
      * @Method("GET")
      * @Template()
      */
