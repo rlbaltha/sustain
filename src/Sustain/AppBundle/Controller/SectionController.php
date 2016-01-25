@@ -29,7 +29,12 @@ class SectionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Section')->findAll();
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            $entities = $em->getRepository('AppBundle:Section')->findAll();
+        }
+        else {
+            $entities = $em->getRepository('AppBundle:Section')->findSorted();
+        }
 
         return array(
             'entities' => $entities,

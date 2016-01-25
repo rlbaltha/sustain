@@ -12,4 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class SectionRepository extends EntityRepository
 {
+
+    /**
+     * Find sections to display
+     * @return Section
+     */
+    public function findSorted() {
+
+        return $this->createQueryBuilder('s')
+          ->where('s.display=:display')
+          ->addOrderBy('s.name','ASC')
+          ->setParameter('display', true)
+          ->getQuery()
+          ->getResult();
+
+    }
 }
