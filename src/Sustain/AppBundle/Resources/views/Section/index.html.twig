@@ -5,7 +5,7 @@
 {% block body -%}
 
 
-    <h1>Stories</h1>
+    <h1 class="inline">Stories</h1>
 
 
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -18,12 +18,12 @@
                         <a class="btn btn-default btn-sm pull-right" href="{{ path('section_edit', { 'id': entity.id }) }}">Edit
                         </a>
                         {% endif %}
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ loop.index }}" aria-expanded="true" aria-controls="collapse{{ loop.index }}">
+                        <a title="click to open this section" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ loop.index }}" aria-expanded="true" aria-controls="collapse{{ loop.index }}">
                             {{ entity.name|raw }}
                         </a>
                     </h4>
                 </div>
-                <div id="collapse{{ loop.index }}" class="panel-collapse collapse {% if loop.first %}in {% endif %}" role="tabpanel" aria-labelledby="heading{{ loop.index }}">
+                <div id="collapse{{ loop.index }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ loop.index }}">
                     <div class="panel-body">
                         {% for page in entity.pages %}
                             <div class="row">
