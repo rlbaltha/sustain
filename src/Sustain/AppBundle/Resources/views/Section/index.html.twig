@@ -1,26 +1,31 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block body -%}
-    <h1>Section list</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Section</th>
-                <th>Info</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('section_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
-                <td>{{ entity.info|raw }}</td>
-                <td>{% if is_granted('ROLE_ADMIN') %}<a class="btn btn-default" href="{{ path('section_edit', { 'id': entity.id }) }}">Edit</a>{% endif %}
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    {% endblock %}
+    <h1>Stories</h1>
+
+    {% for entity in entities %}
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="inline">{{ entity.name|raw }}</h3>
+            </div>
+            {% for page in entity.pages %}
+                <div class="panel-body">
+                    <div class="col-sm-10">
+                        <h3 class="inline"><a href="{{ path('page_show', { 'id': page.id }) }}">{{ page.menuName|raw }}</a></h3>
+                        {{ page.teaser|slice(0, 200)|raw }} . . .
+                    </div>
+                    <div class="col-sm-2">
+                        <img class="img-responsive pull-right" src="{{ page.teaserImage }}"/>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+
+    {% endfor %}
+
+
+{% endblock %}
