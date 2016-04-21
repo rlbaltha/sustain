@@ -21,10 +21,11 @@
 
             {% if 'page_show' in app.request.attributes.get('_route') %}
                 <hr/>
-                {{ entity.section.name }}
+                {% if entity.section %}{{ entity.section.name }}
                 {% for page in entity.section.pages %}
                     <li><a href="{{ path('page_show', { 'id': page.id }) }}">{{ page.menuName }}</a></li>
                 {% endfor %}
+                {% endif %}
             {% endif %}
         </ul>
     {% endif %}
