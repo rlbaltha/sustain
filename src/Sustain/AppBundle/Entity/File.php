@@ -36,7 +36,7 @@ class File
      * "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
      * "application/zip"}
      * )
-     * @Vich\UploadableField(mapping="property_file", fileNameProperty="path")
+     * @Vich\UploadableField(mapping="upload", fileNameProperty="path")
      *
      * @var File $file
      */

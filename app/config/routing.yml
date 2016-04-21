@@ -1,5 +1,5 @@
 default:
-    pattern:  /
+    path:  /
     defaults: { _controller: AppBundle:Page:home }
 
 app:

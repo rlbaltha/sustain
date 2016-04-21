@@ -36,6 +36,13 @@ class Section
     private $info;
 
     /**
+     * @var boolean $display
+     *
+     * @ORM\Column(name="display", type="boolean", nullable=true)
+     */
+    private $display = false;
+
+    /**
      * @ORM\OneToMany(targetEntity="Page", mappedBy="section")
      * @ORM\OrderBy({"sortorder" = "ASC"})
      */
@@ -135,5 +142,28 @@ class Section
     public function getPages()
     {
         return $this->pages;
+    }
+
+    /**
+     * Set display
+     *
+     * @param boolean $display
+     * @return Section
+     */
+    public function setDisplay($display)
+    {
+        $this->display = $display;
+
+        return $this;
+    }
+
+    /**
+     * Get display
+     *
+     * @return boolean 
+     */
+    public function getDisplay()
+    {
+        return $this->display;
     }
 }

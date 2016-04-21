@@ -17,6 +17,9 @@ class SectionType extends AbstractType
         $builder
             ->add('name','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of the Section'),))
             ->add('info', 'ckeditor', array('config_name' => 'editor_simple',))
+            ->add('display', 'choice', array('choices'   => array(true => 'Yes', false => 'No'),'required'  => true,
+             'label'  => 'Display in menu:',
+            'expanded' => true,'attr' => array('class' => 'radio'),))
         ;
     }
     

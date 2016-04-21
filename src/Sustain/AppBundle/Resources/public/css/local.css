@@ -1,5 +1,4 @@
 .full  {
-    background: url('http://www.watershed.uga.edu/bundles/app/images/background.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -61,26 +60,6 @@ h2 {
     font-size: 22px;
 }
 
-.sidebar {
-    background-color: #f8f8f8;
-    height: 95vh;
-    margin-top: -20px;
-}
-
-.navbar-default .navbar-brand {
-    color: #4d4b4b;
-}
-
-.navbar-default .navbar-nav > li > a {
-    color: #4d4b4b;
-
-}
-
-.navbar-default .navbar-nav > li > a:hover {
-    color: #000;
-    text-decoration: underline;
-}
-
 .table {
     background-color: #f8f8f8;
 }
@@ -109,33 +88,6 @@ form div div  {
     font-weight: bold;
 }
 
-
-/**********  Google search display *******/
-
-table.gsc-search-box td {
-  padding:0 !important
-}
-
-.gsc-input-box {
-
-}
-
-.cse .gsc-control-cse, .gsc-control-cse {
-    padding: 0;
-}
-
-form.gsc-search-box {}
-div.gsc-control-cse {}
-
-input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:focus {
-    background-color: #337ab7 !important;
-    border-color: #2e6da4 !important;
-    background-image: url("http://www.google.com/uds/css/v2/search_box_icon.png") !important;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    height: 25px !important;
-    filter: none;
-}
 
 /**********  Accessibility **********/
 #skip a, #skip a:hover, #skip a:visited
@@ -180,5 +132,97 @@ input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:
         padding-left: 2px;
         padding-right: 2px;
         font-size: smaller;
+    }
+}
+
+/********** navbar *******************/
+
+.sidebar {
+    background-color: #154d81;
+    height: 95vh;
+    margin-top: -20px;
+    color: #ecf0f1;
+}
+
+.sidebar .nav li a {
+    color: #ecf0f1;
+}
+
+.sidebar .nav li a:hover {
+    color: #d8d1d1;
+    background-color: #2b78c0;
+}
+
+.navbar-default {
+    background-color: #154d81;
+    border-color: #2b78c0;
+}
+.navbar-default .navbar-brand {
+    color: #ecf0f1;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: #d8d1d1;
+}
+.navbar-default .navbar-text {
+    color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #d8d1d1;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu {
+    background-color: #154d81;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+    color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+    color: #d8d1d1;
+    background-color: #2b78c0;
+}
+.navbar-default .navbar-nav > li > .dropdown-menu > li > .divider {
+    background-color: #154d81;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #d8d1d1;
+    background-color: #2b78c0;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    color: #d8d1d1;
+    background-color: #2b78c0;
+}
+.navbar-default .navbar-toggle {
+    border-color: #2b78c0;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #2b78c0;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #ecf0f1;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+    border-color: #ecf0f1;
+}
+.navbar-default .navbar-link {
+    color: #ecf0f1;
+}
+.navbar-default .navbar-link:hover {
+    color: #d8d1d1;
+}
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #ecf0f1;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #d8d1d1;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #d8d1d1;
+        background-color: #2b78c0;
     }
 }

@@ -107,7 +107,7 @@
 
 
 <div style="margin-top: 70px;">
-    {% if 'default' in app.request.attributes.get('_route') or app.request.attributes.get('_route') == 'theme' %}
+    {% if 'default' in app.request.attributes.get('_route') or app.request.attributes.get('_route') == 'page_home' %}
     {% else %}
         <div class="col-sm-2 sidebar hidden-xs">
             {% block sidebar %}
