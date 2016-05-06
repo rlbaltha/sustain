@@ -29,7 +29,12 @@ class SectionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Section')->findAll();
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            $entities = $em->getRepository('AppBundle:Section')->findAll();
+        }
+        else {
+            $entities = $em->getRepository('AppBundle:Section')->findSorted();
+        }
 
         return array(
             'entities' => $entities,
@@ -102,7 +107,7 @@ class SectionController extends Controller
     /**
      * Finds and displays a Section entity.
      *
-     * @Route("/{id}", name="section_show")
+     * @Route("/{id}/", name="section_show")
      * @Method("GET")
      * @Template()
      */

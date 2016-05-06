@@ -13,9 +13,9 @@
                         a member of the community, or a faculty member in the email. </p>
                     <strong>Take a Survey</strong>
 
-                    <p>We would like to find out what you know about the campus whatshed.
+                    <p>We would like to find out what you know about the campus watershed.
                         <a href="{{ path('page_show', {id:13}) }}">
-                            Take our suvery now.
+                            Take our survey now.
                         </a>
                     </p>
                 </div>
@@ -23,10 +23,9 @@
             <img src="{{ asset('bundles/app/images/banner_home.png') }}" class="img-responsive" alt="Watershed UGA logo" style="max-height: 160px;">
 
         </div>
-        <div class="col-sm-12 " style="padding: 15px; background-color: white; border: solid 1px #e7e7e7 ">
-            <strong>What is Watershed UGA?</strong>
-            A town & gown initiative to involve UGA campus and Athens community in restoring our streams. We are transforming these streams into a living
-            laboratory through teaching, research, and service.
+        <div class="col-sm-12 " style="padding: 15px; background-color: #154d81; border: solid 1px #ecf0f1; color:#ecf0f1; text-align:center ">
+            <h2>Visit <a style="color: rgb(175, 241, 106);" href="https://dar.uga.edu/funder/campaigns/watershed-uga/" target='_blank'>https://dar.uga.edu/funder/campaigns/watershed-uga/</a>
+                and help us “daylight” campus streams!</h2>
         </div>
     </div>
 
@@ -36,25 +35,13 @@
         <div class="col-sm-8">
 
             <div class="col-sm-6">
-                <a style="padding-top: 20px;" href="{{ path('page_stories') }}">See All the Watershed Stories</a>
+                <a style="padding-top: 20px;" href="{{ path('section') }}">See All the Watershed Stories</a>
 
                 <h3>Watch our Introductory Video</h3>
 
                 <div class="embed-responsive embed-responsive-4by3">
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/mZvlSWSNsJw?rel=0" frameborder="0" allowfullscreen></iframe>
                 </div>
-
-                <hr/>
-                <a class="twitter-timeline" href="https://twitter.com/WatershedUGA" data-widget-id="644610687554162689">Tweets by @WatershedUGA</a>
-                <script>!function (d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-                        if (!d.getElementById(id)) {
-                            js = d.createElement(s);
-                            js.id = id;
-                            js.src = p + "://platform.twitter.com/widgets.js";
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }
-                    }(document, "script", "twitter-wjs");</script>
 
             </div>
 
@@ -100,6 +87,19 @@
             {% endfor %}
 
 
+        </div>
+
+        <div class="col-sm-4">
+            <a class="twitter-timeline" href="https://twitter.com/WatershedUGA" data-widget-id="644610687554162689">Tweets by @WatershedUGA</a>
+            <script>!function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = p + "://platform.twitter.com/widgets.js";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, "script", "twitter-wjs");</script>
         </div>
 
     </div>
