@@ -1,9 +1,11 @@
 login:
     pattern: /login
-
+    defaults: defaults: { _controller: AppBundle:Page:home }
+login_check:
+    pattern: /login_check
 logout:
     pattern: /logout
-    defaults: { _controller: AppBundle:Page:home }
+    defaults: defaults: { _controller: AppBundle:Page:home }
 
 default:
     path:  /
