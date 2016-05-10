@@ -1,3 +1,10 @@
+login:
+    pattern: /login
+
+logout:
+    pattern: /logout
+    defaults: { _controller: AppBundle:Page:home }
+
 default:
     path:  /
     defaults: { _controller: AppBundle:Page:home }
@@ -6,14 +13,6 @@ app:
     resource: "@AppBundle/Controller/"
     type:     annotation
     prefix:   /
-
-login:
-    pattern: /login
-    defaults: { _controller: AppBundle:Page:home }
-
-logout:
-    pattern: /logout
-    defaults: { _controller: AppBundle:Page:home }
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
