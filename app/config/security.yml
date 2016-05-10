@@ -30,6 +30,7 @@ security:
     encoders:
         FOS\UserBundle\Model\UserInterface: sha512
 
+
     access_control:
 
         #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
