@@ -1,5 +1,12 @@
+login:
+    pattern: /login
+
+logout:
+    pattern: /logout
+    defaults: { _controller: AppBundle:Page:home }
+
 default:
-    pattern:  /
+    path:  /
     defaults: { _controller: AppBundle:Page:home }
 
 app:

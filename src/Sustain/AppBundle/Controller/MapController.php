@@ -22,15 +22,15 @@ class MapController extends Controller
     /**
      * Lists all Map entities.
      *
-     * @Route("/", name="map")
+     * @Route("/{id}", name="map")
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Map')->findAll();
+        $entities = $em->getRepository('AppBundle:Map')->findBySet($id);
 
         return array(
             'entities' => $entities,
@@ -73,10 +73,11 @@ class MapController extends Controller
             $em = $this->getDoctrine()->getManager();
             $user = $this->getUser();
             $entity->setUser($user);
+            $mapsetid = $entity->getMapset()->getId();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('map_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('map', array('id' => $mapsetid)));
         }
 
         return array(
@@ -99,7 +100,7 @@ class MapController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Create', 'attr' => array('class' => 'btn btn-default margin-top')));
 
         return $form;
     }
@@ -107,7 +108,7 @@ class MapController extends Controller
     /**
      * Displays a form to create a new Map entity.
      *
-     * @Route("/new", name="map_new")
+     * @Route("/pin/new", name="map_new")
      * @Method("GET")
      * @Template()
      */
@@ -188,7 +189,7 @@ class MapController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Update', 'attr' => array('class' => 'btn btn-default margin-top')));
 
         return $form;
     }
@@ -204,6 +205,7 @@ class MapController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AppBundle:Map')->find($id);
+        $mapsetid = $entity->getMapset()->getId();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Map entity.');
@@ -216,7 +218,7 @@ class MapController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('map_show', array('id' => $id)));
+            return $this->redirect($this->generateUrl('map', array('id' => $mapsetid)));
         }
 
         return array(
@@ -239,6 +241,7 @@ class MapController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('AppBundle:Map')->find($id);
+            $mapsetid = $entity->getMapset()->getId();
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Map entity.');
@@ -248,7 +251,7 @@ class MapController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('map'));
+        return $this->redirect($this->generateUrl('map', array('id' => $mapsetid)));
     }
 
     /**
@@ -263,7 +266,7 @@ class MapController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('map_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Delete', 'attr' => array('class' => 'btn btn-danger')))
             ->getForm()
         ;
     }

@@ -17,7 +17,13 @@ class ModuleType extends AbstractType
         $builder
             ->add('name','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Name of your module'),))
             ->add('sortorder','number', array('attr' => array('class' => 'form-control')))
-            ->add('description', 'ckeditor', array('config_name' => 'editor_simple',))
+            ->add('description', 'ckeditor', array('config_name' => 'editor_default',))
+            ->add('tags', 'entity', array('class' => 'AppBundle:Tag','property'=>'name','query_builder' =>
+                function(\Sustain\AppBundle\Entity\TagRepository $er) use ($options) {
+                    return $er->createQueryBuilder('t')
+                        ->orderBy('t.name', 'ASC');
+                }, 'expanded'=>true,'multiple'=>true, 'label'  => 'Select Labels', 'attr' => array('class' => 'checkbox'),
+            ))
             ->add('objectives', 'entity', array('class' => 'AppBundle:Objective',
                 'property' => 'objective','expanded'=>true,'multiple'=>true,'label'  => 'Objectives', 'attr' => array('class' => 'checkbox'),))
             ->add('mapsets', 'entity', array('class' => 'AppBundle:Mapset',

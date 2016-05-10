@@ -80,7 +80,7 @@ class SampleController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Create', 'attr' => array('class' => 'btn btn-default margin-top')));
 
         return $form;
     }
@@ -169,7 +169,7 @@ class SampleController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Update', 'attr' => array('class' => 'btn btn-default margin-top')));
 
         return $form;
     }
@@ -244,7 +244,7 @@ class SampleController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('sample_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Delete', 'attr' => array('class' => 'btn btn-danger')))
             ->getForm()
         ;
     }

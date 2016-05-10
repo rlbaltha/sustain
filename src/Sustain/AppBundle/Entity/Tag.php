@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Tag
 {
+
     /**
      * @var integer
      *
@@ -36,6 +37,11 @@ class Tag
     private $color;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="tags")
+     */
+    protected $category;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="sortorder", type="integer")
@@ -47,6 +53,20 @@ class Tag
      */
     protected $files;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Objective", mappedBy="tags")
+     */
+    protected $objectives;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Module", mappedBy="tags")
+     */
+    protected $modules;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Activity", mappedBy="tags")
+     */
+    protected $activities;
 
     /**
      * Get id
@@ -165,5 +185,127 @@ class Tag
     public function getFiles()
     {
         return $this->files;
+    }
+
+    /**
+     * Add modules
+     *
+     * @param \Sustain\AppBundle\Entity\File $modules
+     * @return Tag
+     */
+    public function addModule(\Sustain\AppBundle\Entity\File $modules)
+    {
+        $this->modules[] = $modules;
+
+        return $this;
+    }
+
+    /**
+     * Remove modules
+     *
+     * @param \Sustain\AppBundle\Entity\File $modules
+     */
+    public function removeModule(\Sustain\AppBundle\Entity\File $modules)
+    {
+        $this->modules->removeElement($modules);
+    }
+
+    /**
+     * Get modules
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getModules()
+    {
+        return $this->modules;
+    }
+
+    /**
+     * Add activities
+     *
+     * @param \Sustain\AppBundle\Entity\Activity $activities
+     * @return Tag
+     */
+    public function addActivity(\Sustain\AppBundle\Entity\Activity $activities)
+    {
+        $this->activities[] = $activities;
+
+        return $this;
+    }
+
+    /**
+     * Remove activities
+     *
+     * @param \Sustain\AppBundle\Entity\Activity $activities
+     */
+    public function removeActivity(\Sustain\AppBundle\Entity\Activity $activities)
+    {
+        $this->activities->removeElement($activities);
+    }
+
+    /**
+     * Get activities
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getActivities()
+    {
+        return $this->activities;
+    }
+
+    /**
+     * Add objectives
+     *
+     * @param \Sustain\AppBundle\Entity\Objective $objectives
+     * @return Tag
+     */
+    public function addObjective(\Sustain\AppBundle\Entity\Objective $objectives)
+    {
+        $this->objectives[] = $objectives;
+
+        return $this;
+    }
+
+    /**
+     * Remove objectives
+     *
+     * @param \Sustain\AppBundle\Entity\Objective $objectives
+     */
+    public function removeObjective(\Sustain\AppBundle\Entity\Objective $objectives)
+    {
+        $this->objectives->removeElement($objectives);
+    }
+
+    /**
+     * Get objectives
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getObjectives()
+    {
+        return $this->objectives;
+    }
+
+    /**
+     * Set category
+     *
+     * @param string $category
+     * @return Tag
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string 
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

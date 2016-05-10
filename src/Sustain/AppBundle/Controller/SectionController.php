@@ -29,7 +29,12 @@ class SectionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Section')->findAll();
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            $entities = $em->getRepository('AppBundle:Section')->findAll();
+        }
+        else {
+            $entities = $em->getRepository('AppBundle:Section')->findSorted();
+        }
 
         return array(
             'entities' => $entities,
@@ -76,7 +81,7 @@ class SectionController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Create', 'attr' => array('class' => 'btn btn-default margin-top')));
 
         return $form;
     }
@@ -102,7 +107,7 @@ class SectionController extends Controller
     /**
      * Finds and displays a Section entity.
      *
-     * @Route("/{id}", name="section_show")
+     * @Route("/{id}/", name="section_show")
      * @Method("GET")
      * @Template()
      */
@@ -165,7 +170,7 @@ class SectionController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Update', 'attr' => array('class' => 'btn btn-default margin-top')));
 
         return $form;
     }
@@ -240,7 +245,7 @@ class SectionController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('section_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Delete', 'attr' => array('class' => 'btn btn-danger')))
             ->getForm()
         ;
     }

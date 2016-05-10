@@ -1,0 +1,43 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body -%}
+    <h1 style="display:inline">Event</h1>
+    <a class="btn btn-primary pull-right" href="{{ path('event_month') }}">Calendar View</a>
+    <a class="btn btn-primary pull-right" href="{{ path('event') }}">List View</a>
+    <div class="col-sm-12 well margin-top">
+        <div class="col-sm-10">
+            <h2 style="display:inline">
+                {{ entity.title }}
+            </h2>
+
+            <p>{% if entity.start %}{{ entity.start|date("l, F d") }} {{ entity.start|date("g:i A") }}{% endif %}</p>
+
+            <p>
+                {{ entity.description|raw }}
+            </p>
+
+            {% if entity.opportunities|length > 0 %}<hr/><h3>Related Partners or Opportunities</h3>{% endif %}
+            {% for entity in entity.opportunities %}
+
+                        <h3 style="display:inline">
+                            {{ entity.title }}
+                        </h3>
+
+                        <p>
+                            {{ entity.teaser|raw }}
+                        </p>
+                        {% if entity.description != '' %}
+                            <p>
+                                <a class=""
+                                   href="{{ path('opportunity_show', { 'id': entity.id }) }}">Read the full description.</a>
+                            </p>
+                        {% endif %}
+            {% endfor %}
+
+
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-default" href="{{ path('event_edit', { 'id': entity.id }) }}">Edit</a>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -54,6 +54,68 @@ class User extends BaseUser
      */
     private $bio;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="college", type="string", length=255, nullable=true)
+     */
+    private $college;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="research", type="text", nullable=true)
+     */
+    private $research;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="involvement", type="text", nullable=true)
+     */
+    private $involvement;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="courses", type="text", nullable=true)
+     */
+    private $courses;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="collaboration", type="text", nullable=true)
+     */
+    private $collaboration;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mentor", type="string", length=255, nullable=true)
+     */
+    private $mentor=1;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="role", type="integer", nullable=true)
+     */
+    private $role=1;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="public", type="string", length=255, nullable=true)
+     */
+    private $public=1;
+
     /**
      * @var string
      *
@@ -95,6 +157,12 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Sustain\AppBundle\Entity\Sample", mappedBy="user")
      */
     private $samples;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Sustain\AppBundle\Entity\Activity", mappedBy="user")
+     */
+    private $activities;
+
 
     /**
      * Get id
@@ -219,5 +287,455 @@ class User extends BaseUser
     public function getStudentid()
     {
         return $this->studentid;
+    }
+
+    /**
+     * Add pages
+     *
+     * @param \Sustain\AppBundle\Entity\Page $pages
+     * @return User
+     */
+    public function addPage(\Sustain\AppBundle\Entity\Page $pages)
+    {
+        $this->pages[] = $pages;
+
+        return $this;
+    }
+
+    /**
+     * Remove pages
+     *
+     * @param \Sustain\AppBundle\Entity\Page $pages
+     */
+    public function removePage(\Sustain\AppBundle\Entity\Page $pages)
+    {
+        $this->pages->removeElement($pages);
+    }
+
+    /**
+     * Get pages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPages()
+    {
+        return $this->pages;
+    }
+
+    /**
+     * Add files
+     *
+     * @param \Sustain\AppBundle\Entity\File $files
+     * @return User
+     */
+    public function addFile(\Sustain\AppBundle\Entity\File $files)
+    {
+        $this->files[] = $files;
+
+        return $this;
+    }
+
+    /**
+     * Remove files
+     *
+     * @param \Sustain\AppBundle\Entity\File $files
+     */
+    public function removeFile(\Sustain\AppBundle\Entity\File $files)
+    {
+        $this->files->removeElement($files);
+    }
+
+    /**
+     * Get files
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFiles()
+    {
+        return $this->files;
+    }
+
+    /**
+     * Add maps
+     *
+     * @param \Sustain\AppBundle\Entity\Map $maps
+     * @return User
+     */
+    public function addMap(\Sustain\AppBundle\Entity\Map $maps)
+    {
+        $this->maps[] = $maps;
+
+        return $this;
+    }
+
+    /**
+     * Remove maps
+     *
+     * @param \Sustain\AppBundle\Entity\Map $maps
+     */
+    public function removeMap(\Sustain\AppBundle\Entity\Map $maps)
+    {
+        $this->maps->removeElement($maps);
+    }
+
+    /**
+     * Get maps
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMaps()
+    {
+        return $this->maps;
+    }
+
+    /**
+     * Add mapsets
+     *
+     * @param \Sustain\AppBundle\Entity\Mapset $mapsets
+     * @return User
+     */
+    public function addMapset(\Sustain\AppBundle\Entity\Mapset $mapsets)
+    {
+        $this->mapsets[] = $mapsets;
+
+        return $this;
+    }
+
+    /**
+     * Remove mapsets
+     *
+     * @param \Sustain\AppBundle\Entity\Mapset $mapsets
+     */
+    public function removeMapset(\Sustain\AppBundle\Entity\Mapset $mapsets)
+    {
+        $this->mapsets->removeElement($mapsets);
+    }
+
+    /**
+     * Get mapsets
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMapsets()
+    {
+        return $this->mapsets;
+    }
+
+    /**
+     * Add modules
+     *
+     * @param \Sustain\AppBundle\Entity\Module $modules
+     * @return User
+     */
+    public function addModule(\Sustain\AppBundle\Entity\Module $modules)
+    {
+        $this->modules[] = $modules;
+
+        return $this;
+    }
+
+    /**
+     * Remove modules
+     *
+     * @param \Sustain\AppBundle\Entity\Module $modules
+     */
+    public function removeModule(\Sustain\AppBundle\Entity\Module $modules)
+    {
+        $this->modules->removeElement($modules);
+    }
+
+    /**
+     * Get modules
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getModules()
+    {
+        return $this->modules;
+    }
+
+    /**
+     * Add objectives
+     *
+     * @param \Sustain\AppBundle\Entity\Objective $objectives
+     * @return User
+     */
+    public function addObjective(\Sustain\AppBundle\Entity\Objective $objectives)
+    {
+        $this->objectives[] = $objectives;
+
+        return $this;
+    }
+
+    /**
+     * Remove objectives
+     *
+     * @param \Sustain\AppBundle\Entity\Objective $objectives
+     */
+    public function removeObjective(\Sustain\AppBundle\Entity\Objective $objectives)
+    {
+        $this->objectives->removeElement($objectives);
+    }
+
+    /**
+     * Get objectives
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getObjectives()
+    {
+        return $this->objectives;
+    }
+
+    /**
+     * Add samples
+     *
+     * @param \Sustain\AppBundle\Entity\Sample $samples
+     * @return User
+     */
+    public function addSample(\Sustain\AppBundle\Entity\Sample $samples)
+    {
+        $this->samples[] = $samples;
+
+        return $this;
+    }
+
+    /**
+     * Remove samples
+     *
+     * @param \Sustain\AppBundle\Entity\Sample $samples
+     */
+    public function removeSample(\Sustain\AppBundle\Entity\Sample $samples)
+    {
+        $this->samples->removeElement($samples);
+    }
+
+    /**
+     * Get samples
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSamples()
+    {
+        return $this->samples;
+    }
+
+
+
+    /**
+     * Add activities
+     *
+     * @param \Sustain\AppBundle\Entity\Activity $activities
+     * @return User
+     */
+    public function addActivity(\Sustain\AppBundle\Entity\Activity $activities)
+    {
+        $this->activities[] = $activities;
+
+        return $this;
+    }
+
+    /**
+     * Remove activities
+     *
+     * @param \Sustain\AppBundle\Entity\Activity $activities
+     */
+    public function removeActivity(\Sustain\AppBundle\Entity\Activity $activities)
+    {
+        $this->activities->removeElement($activities);
+    }
+
+    /**
+     * Get activities
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getActivities()
+    {
+        return $this->activities;
+    }
+
+    /**
+     * Set research
+     *
+     * @param string $research
+     * @return User
+     */
+    public function setResearch($research)
+    {
+        $this->research = $research;
+
+        return $this;
+    }
+
+    /**
+     * Get research
+     *
+     * @return string 
+     */
+    public function getResearch()
+    {
+        return $this->research;
+    }
+
+    /**
+     * Set mentor
+     *
+     * @param string $mentor
+     * @return User
+     */
+    public function setMentor($mentor)
+    {
+        $this->mentor = $mentor;
+
+        return $this;
+    }
+
+    /**
+     * Get mentor
+     *
+     * @return string 
+     */
+    public function getMentor()
+    {
+        return $this->mentor;
+    }
+
+    /**
+     * Set college
+     *
+     * @param string $college
+     * @return User
+     */
+    public function setCollege($college)
+    {
+        $this->college = $college;
+
+        return $this;
+    }
+
+    /**
+     * Get college
+     *
+     * @return string 
+     */
+    public function getCollege()
+    {
+        return $this->college;
+    }
+
+    /**
+     * Set involvement
+     *
+     * @param string $involvement
+     * @return User
+     */
+    public function setInvolvement($involvement)
+    {
+        $this->involvement = $involvement;
+
+        return $this;
+    }
+
+    /**
+     * Get involvement
+     *
+     * @return string 
+     */
+    public function getInvolvement()
+    {
+        return $this->involvement;
+    }
+
+    /**
+     * Set public
+     *
+     * @param string $public
+     * @return User
+     */
+    public function setPublic($public)
+    {
+        $this->public = $public;
+
+        return $this;
+    }
+
+    /**
+     * Get public
+     *
+     * @return string 
+     */
+    public function getPublic()
+    {
+        return $this->public;
+    }
+
+    /**
+     * Set role
+     *
+     * @param integer $role
+     * @return User
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return integer 
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set courses
+     *
+     * @param string $courses
+     * @return User
+     */
+    public function setCourses($courses)
+    {
+        $this->courses = $courses;
+
+        return $this;
+    }
+
+    /**
+     * Get courses
+     *
+     * @return string 
+     */
+    public function getCourses()
+    {
+        return $this->courses;
+    }
+
+    /**
+     * Set collaboration
+     *
+     * @param string $collaboration
+     * @return User
+     */
+    public function setCollaboration($collaboration)
+    {
+        $this->collaboration = $collaboration;
+
+        return $this;
+    }
+
+    /**
+     * Get collaboration
+     *
+     * @return string 
+     */
+    public function getCollaboration()
+    {
+        return $this->collaboration;
     }
 }

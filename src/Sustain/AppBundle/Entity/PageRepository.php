@@ -12,9 +12,31 @@ use Doctrine\ORM\EntityRepository;
  */
 class PageRepository extends EntityRepository
 {
+    /**
+     * Find pages for homepage
+     * @return Page
+     */
     public function findHome()
     {
-        return $this->getEntityManager()
-            ->createQuery('SELECT p FROM AppBundle:Page p WHERE p.homepage = true ORDER BY p.updated DESC')->getResult();
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.homepage = :switch')
+            ->setParameter('switch',true)
+            ->orderBy('p.sortorder','ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Find pages for stories
+     * @return Page
+     */
+    public function findStories()
+    {
+        return $this->createQueryBuilder('p')
+          ->andWhere('p.section = :id')
+          ->setParameter('id','1')
+          ->orderBy('p.created','DESC')
+          ->getQuery()
+          ->getResult();
     }
 }

@@ -30,7 +30,7 @@ class MapsetController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('AppBundle:Mapset')->findAll();
-        $tags = $em->getRepository('AppBundle:Tag')->findAll();
+        $tags = $em->getRepository('AppBundle:Tag')->sortedTags();
 
         return array(
             'entities' => $entities,
@@ -80,7 +80,7 @@ class MapsetController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Create', 'attr' => array('class' => 'btn btn-default margin-top')));
 
         return $form;
     }
@@ -169,7 +169,7 @@ class MapsetController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Update', 'attr' => array('class' => 'btn btn-default margin-top')));
 
         return $form;
     }
@@ -197,7 +197,7 @@ class MapsetController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('mapset_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('mapset_show', array('id' => $id)));
         }
 
         return array(
@@ -244,7 +244,7 @@ class MapsetController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('mapset_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Delete', 'attr' => array('class' => 'btn btn-danger')))
             ->getForm()
         ;
     }

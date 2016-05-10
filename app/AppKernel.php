@@ -24,17 +24,15 @@ class AppKernel extends Kernel
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new FR3D\LdapBundle\FR3DLdapBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle(),
-            new BeSimple\SsoAuthBundle\BeSimpleSsoAuthBundle(),
             new Sustain\UserBundle\SustainUserBundle(),
             new Sustain\AuthenticateBundle\SustainAuthenticateBundle(),
+            new BeSimple\SsoAuthBundle\BeSimpleSsoAuthBundle(),
             new Sustain\AppBundle\AppBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
-            $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
         }
 
         return $bundles;

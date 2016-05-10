@@ -46,9 +46,19 @@ class Objective
     protected $modules;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Activity", mappedBy="objectives")
+     */
+    protected $activities;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Theme", inversedBy="objectives")
      */
     protected $theme;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="objectives")
+     */
+    protected $tags;
 
     /**
      * @ORM\ManyToOne(targetEntity="Sustain\UserBundle\Entity\User", inversedBy="objectives")
@@ -240,5 +250,71 @@ class Objective
         else{
             return false;
         }
+    }
+
+    /**
+     * Add activities
+     *
+     * @param \Sustain\AppBundle\Entity\Activity $activities
+     * @return Objective
+     */
+    public function addActivity(\Sustain\AppBundle\Entity\Activity $activities)
+    {
+        $this->activities[] = $activities;
+
+        return $this;
+    }
+
+    /**
+     * Remove activities
+     *
+     * @param \Sustain\AppBundle\Entity\Activity $activities
+     */
+    public function removeActivity(\Sustain\AppBundle\Entity\Activity $activities)
+    {
+        $this->activities->removeElement($activities);
+    }
+
+    /**
+     * Get activities
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getActivities()
+    {
+        return $this->activities;
+    }
+
+    /**
+     * Add tags
+     *
+     * @param \Sustain\AppBundle\Entity\Tag $tags
+     * @return Objective
+     */
+    public function addTag(\Sustain\AppBundle\Entity\Tag $tags)
+    {
+        $this->tags[] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \Sustain\AppBundle\Entity\Tag $tags
+     */
+    public function removeTag(\Sustain\AppBundle\Entity\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }

@@ -1,49 +1,33 @@
 {% extends '::base.html.twig' %}
 
-{% block body -%}
-    <h1>User list</h1>
+{% block title %}Profiles{% endblock %}
 
-    <table class="records_list">
+{% block body -%}
+    <h1>Profiles</h1>
+
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        Click on a name for the role of the Watershed UGA affiliate, research collaboration and opportunities, and contact information.
+    </div>
+
+
+
+    <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Lastname</th>
-                <th>Firstname</th>
-                <th>Photo</th>
-                <th>Bio</th>
-                <th>Studentid</th>
-                <th>Actions</th>
+                <th>Name</th>
+                <th>School/College/Unit</th>
+                <th>Research</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('user_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.lastname }}</td>
-                <td>{{ entity.firstname }}</td>
-                <td>{{ entity.photo }}</td>
-                <td>{{ entity.bio }}</td>
-                <td>{{ entity.studentid }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('user_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('user_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
+                <td><a href="{{ path('public_profile', { 'id': entity.id }) }}">{{ entity.lastname }}, {{ entity.firstname }}</a></td>
+                <td>{{ entity.college|raw }}</td>
+                <td> {{ entity.research|raw }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('user_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
     {% endblock %}

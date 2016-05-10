@@ -1,13 +1,31 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
+{% block title %}Objectives{% endblock %}
+
 {% block body -%}
-    <h1>Learning Objectives</h1>
+    <h1 style="display: inline-block;">Learning Objectives</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-primary pull-right" href="{{ path('objective_new') }}">New Objective</a>
+    {% endif %}
+
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        Objectives are associated with specific modules, but can be stand-alone. They are labeled from Basic to Advanced and according to levels of Bloom’s
+        and Fink’s Taxonomy. Click on the title for access to associated activities and resources.
+    </div>
 
     <div class="list-group">
         {% for entity in entities %}
             <a href="{{ path('objective_show', { 'id': entity.id }) }}" class="list-group-item">
-                <p class="list-group-item-heading">{{ entity.objective|raw }}</p>
-                <p class="list-group-item-text">{{ entity.description|raw }}</p>
+                <h2>{{ entity.objective|raw }}</h2>
+                <p class="list-group-item-text">{{ entity.description|raw }}
+
+                    {% for tag in entity.tags %}
+                        <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+                    {% endfor %}
+                </p>
             </a>
         {% endfor %}
     </div>

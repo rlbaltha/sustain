@@ -47,13 +47,33 @@ class PageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Page')->findHome();
+        $pages = $em->getRepository('AppBundle:Page')->findHome();
+        $events = $em->getRepository('AppBundle:Event')->eventShortList();
 
         return array(
-            'entities' => $entities,
+            'pages' => $pages,
+            'events' => $events,
         );
     }
 
+
+    /**
+     * Lists all Page stories.
+     *
+     * @Route("/stories", name="page_stories")
+     * @Method("GET")
+     * @Template("AppBundle:Page:index.html.twig")
+     */
+    public function storiesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('AppBundle:Page')->findStories();
+
+        return array(
+          'entities' => $entities,
+        );
+    }
 
     /**
      * Creates a new Page entity.
@@ -98,7 +118,7 @@ class PageController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Create', 'attr' => array('class' => 'btn btn-default margin-top')));
 
         return $form;
     }
@@ -187,7 +207,7 @@ class PageController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Update', 'attr' => array('class' => 'btn btn-default margin-top')));
 
         return $form;
     }
@@ -262,7 +282,7 @@ class PageController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('page_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Delete', 'attr' => array('class' => 'btn btn-danger')))
             ->getForm()
         ;
     }

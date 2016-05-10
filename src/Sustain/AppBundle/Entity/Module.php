@@ -68,6 +68,11 @@ class Module
     protected $user;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="modules")
+     */
+    protected $tags;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -310,4 +315,38 @@ class Module
             return false;
         }
     }
+
+    /**
+     * Add tags
+     *
+     * @param \Sustain\AppBundle\Entity\Tag $tags
+     * @return Module
+     */
+    public function addTag(\Sustain\AppBundle\Entity\Tag $tags)
+    {
+        $this->tags[] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \Sustain\AppBundle\Entity\Tag $tags
+     */
+    public function removeTag(\Sustain\AppBundle\Entity\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
 }

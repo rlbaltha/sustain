@@ -2,16 +2,20 @@
 
 {% block body -%}
     <h1>Map list</h1>
+    <a href="{{ path('mapset_show', { 'id': entities[0].mapset.id }) }}" class="btn btn-primary pull-right">View Map</a>
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <a href="{{ path('map_new') }}" class="btn btn-primary pull-right">Add Pin</a>
+    {% endif %}
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Title</th>
-                <th>Lat</th>
-                <th>Lng</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Title</th>
+            <th>Lat</th>
+            <th>Lng</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
@@ -22,10 +26,10 @@
                 <td>{{ entity.description|raw }}</td>
                 <td>
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                    {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
-                        <a class="btn btn-default" href="{{ path('map_edit', { 'id':
-                        entity.id }) }}">Edit</a>
-                    {% endif %}
+                        {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
+                            <a class="btn btn-default" href="{{ path('map_edit', { 'id':
+                                entity.id }) }}">Edit</a>
+                        {% endif %}
                     {% endif %}
                 </td>
             </tr>
@@ -33,4 +37,4 @@
         </tbody>
     </table>
 
-    {% endblock %}
+{% endblock %}

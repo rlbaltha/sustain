@@ -1,0 +1,84 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.2/fullcalendar.min.js"></script>
+
+    <script language="javascript">
+        $(document).ready(function () {
+            $('#calendar').fullCalendar(
+                    {
+                        eventClick: function(calEvent, jsEvent, view) {
+                            $('.modal').modal();
+                            $('.modal-title').html(calEvent.title);
+                            $('.modal-body').html(calEvent.description);
+                        },
+                        header: {
+                            left: 'title',
+                            center: '',
+                            right: 'today month,agendaWeek,agendaDay,prev,next'
+                        },
+                        events: [
+                            {% for event in entities %}
+                            {
+                                title: '{{ event.title| escape('js') }}',
+                                color: '{{ event.color }}',
+                                start: '{{ event.start|date('j M Y') }} {{ event.start|date('H:i:s') }}',
+                                allDay: false,
+                                textColor: 'white',
+                                description: '{{ event.description|raw | escape('js') }}',
+                                id: '{{ event.id }}',
+                                isOwner: 'yes'
+                            },
+                            {% endfor %}
+                        ],
+                        eventMouseover: function (event, jsEvent, view) {
+                        }
+                    }
+            );
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.2/fullcalendar.min.css">
+{% endblock %}
+
+
+{% block body -%}
+    <h1 style="display: inline-block;">Events</h1>
+    <a class="btn btn-primary  pull-right" href="{{ path('event') }}">List Events</a>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-primary pull-right" href="{{ path('event_new') }}">New Event</a>
+    {% endif %}
+
+    {# Calendar #}
+    <div class="col-sm-12 well">
+
+
+        <div id='calendar'></div>
+
+    </div>
+
+
+    {# Modal #}
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Event Title</h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+{% endblock %}

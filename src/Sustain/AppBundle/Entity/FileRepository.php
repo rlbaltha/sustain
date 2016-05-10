@@ -14,11 +14,31 @@ class FileRepository extends EntityRepository
 {
     /**
      * Find files by tag
+     * @return File
      */
-    public function filesByTag($tag)
-    {
-        return $this->getEntityManager()
-            ->createQuery('SELECT f FROM AppBundle:File f JOIN  f.tags t WHERE t.id = ?1 ')
-            ->setParameter('1',$tag)->getResult();
+    public function filesByTag($tag) {
+
+        return $this->createQueryBuilder('f')
+            ->leftJoin('f.tags','t')
+            ->addSelect('t')
+            ->andWhere('t.id = :tag')
+            ->setParameter('tag',$tag)
+            ->addOrderBy('f.name','ASC')
+            ->getQuery()
+            ->getResult();
+
+    }
+
+    /**
+     * Find files by tag
+     * @return File
+     */
+    public function findAllSorted() {
+
+        return $this->createQueryBuilder('f')
+            ->addOrderBy('f.name','ASC')
+            ->getQuery()
+            ->getResult();
+
     }
 }

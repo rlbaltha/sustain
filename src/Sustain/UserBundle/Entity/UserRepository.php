@@ -12,4 +12,38 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    /**
+     *
+     * @return User
+     */
+    public function findPublic()
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.public = :public')
+            ->andWhere('u.role >= :role')
+            ->setParameter('public', '0')
+            ->setParameter('role', '2')
+            ->addOrderBy('u.lastname', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+     *
+     * @return User
+     */
+    public function findProfile($id)
+    {
+        return $this->createQueryBuilder('u')
+          ->andWhere('u.public = :public')
+          ->andWhere('u.role >= :role')
+          ->andWhere('u.id = :id')
+          ->setParameter('public', '0')
+          ->setParameter('role', '2')
+          ->setParameter('id', $id)
+          ->getQuery()
+          ->getOneOrNullResult()
+          ;
+    }
 }

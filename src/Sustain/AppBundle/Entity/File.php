@@ -28,7 +28,7 @@ class File
 
     /**
      * @Assert\File(
-     *     maxSize="10M",
+     *     maxSize="50M",
      *     mimeTypes={"audio/mpeg", "application/vnd.ms-office", "image/gif", "image/png", "image/jpeg", "image/pjpeg", "application/pdf",
      * "application/vnd.oasis.opendocument.text", "application/vnd.oasis.opendocument.presentation",
      * "application/vnd.oasis.opendocument.spreadsheet", "application/msword", "application/mspowerpoint",
@@ -36,7 +36,7 @@ class File
      * "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
      * "application/zip"}
      * )
-     * @Vich\UploadableField(mapping="property_file", fileNameProperty="path")
+     * @Vich\UploadableField(mapping="upload", fileNameProperty="path")
      *
      * @var File $file
      */
@@ -68,7 +68,7 @@ class File
      *
      * @ORM\Column(name="url", type="string", length=255, nullable=true)
      */
-    private $url = 'http://resource.edu/resource.pdf';
+    private $url;
 
     /**
      * @var integer
@@ -76,6 +76,13 @@ class File
      * @ORM\Column(name="access", type="integer")
      */
     private $access = 0 ;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="core", type="integer")
+     */
+    private $core = 0 ;    
 
     /**
      * @ORM\Column(type="datetime")
@@ -451,5 +458,28 @@ class File
         else{
             return false;
         }
+    }
+
+    /**
+     * Set core
+     *
+     * @param integer $core
+     * @return File
+     */
+    public function setCore($core)
+    {
+        $this->core = $core;
+
+        return $this;
+    }
+
+    /**
+     * Get core
+     *
+     * @return integer 
+     */
+    public function getCore()
+    {
+        return $this->core;
     }
 }

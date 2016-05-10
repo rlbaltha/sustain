@@ -1,55 +1,112 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
+
+{% block title %}Objectives{% endblock %}
+
+
 {% block body -%}
-    <h1>{{ entity.objective|raw }}</h1>
-    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-        {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('objective_edit', { 'id': entity.id }) }}" class="btn btn-default pull-right">Edit</a>
+    <h1 style="display: inline-block;">Learning Objectives</h1>
+    <div class="col-sm-12 well">
+
+        <h2>{{ entity.objective|raw }}</h2>
+
+
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('objective_edit', { 'id': entity.id }) }}" class="btn btn-default pull-right">Edit</a>
+            {% endif %}
         {% endif %}
-    {% endif %}
-    <p>{{ entity.description|raw }}</p>
+        <p>{{ entity.description|raw }} </p>
+        {% for tag in entity.tags %}
+            <span class="label label-default" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+        {% endfor %}
+        <hr/>
 
-    <table id="file_list" class="col-sm-12 table">
-        <thead>
-        <tr class="file">
-            <th><span>Title</span></th>
-            <th class="hidden-xs">Module</th>
-            <th class="hidden-xs">Labels</th>
-            <th>Modified</th>
-        </tr>
-        </thead>
-        <tbody>
+        <h2>Modules related to this objective</h2>
+        {% for entity in entity.modules %}
 
-        {% for file in entity.files %}
-            <tr class="file">
-                <td>
-                    <span class="label label-info" data-toggle="tooltip" title="This an {{ file.ext }} file ">{{ file.ext }}</span>
-                    <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
-                        {{ file.name }}
-                    </a>
-                    <a class="pull-right" href="{{ path('file_edit', { 'id': file.id}) }}" title="Edit {{ file.name }}">
-                        Settings
-                    </a>
-                    {{ file.description|raw }}
-                </td>
-
-                <td>
-                    {% for module in file.modules %}
-                        <span class="label label-default margin-right">
-                                {{ module.name }}
-                        </span>
-                    {% endfor %}
-                </td>
-                <td class="labels hidden-xs">
-                    {% for tag in file.tags %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3><a href="{{ path('module_show', { 'id': entity.id }) }}">{{ entity.name|raw }}</a></h3>
+                    {% for tag in entity.tags %}
                         <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
                                 {{ tag.name }}
                                 </span>
                     {% endfor %}
-                </td>
-                <td>{{ file.updated|date('m/d/y, g:i a') }}</td>
-            </tr>
+                </div>
+                <div class="panel-body">
+
+                    {{ entity.description|raw }}
+
+                </div>
+            </div>
+
         {% endfor %}
-        </tbody>
-    </table>
+
+        <h2>Files related to this objective</h2>
+
+        <table id="file_list" class="col-sm-12 table">
+            <thead>
+            <tr class="file">
+                <th><span>Title</span></th>
+                <th class="hidden-xs">Labels</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for file in entity.files %}
+                <tr class="file">
+                    <td>
+                        {% if file.url is null %}
+                            <span class="label label-info" data-toggle="tooltip" title="This an {{ file.ext }} file ">{{ file.ext }}</span>
+                            <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
+                                {{ file.name }}
+                            </a>
+                        {% else %}
+                            <span class="label label-info" data-toggle="tooltip" title="This an link to a resource">Link</span>
+                            <a class="" href="{{ file.url }}" title="Go to  {{ file.name }}" target="_blank">
+                                {{ file.name }}
+                            </a>
+                        {% endif %}
+                    </td>
+                    <td class="labels hidden-xs">
+                        {% for tag in file.tags %}
+                            <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+
+        <h2>Activities for this objective</h2>
+
+        <div class="list-group">
+            {% for entity in entity.activities %}
+                <a href="{{ path('activity_show', { 'id': entity.id}) }}" class="list-group-item" title="Show details for this activity">
+                    <h2 class="inline">{{ entity.title }}</h2>
+                    <p class="list-group-item-text">{{ entity.description|raw }}</p>
+                <span class="labels hidden-xs">
+                    {% for tag in entity.tags %}
+                        <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+                    {% endfor %}
+                </span>
+                </a>
+            {% endfor %}
+        </div>
+
+
+
+
+
+
+    </div>
 {% endblock %}

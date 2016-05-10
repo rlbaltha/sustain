@@ -1,0 +1,23 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body -%}
+
+    <h1 style="display: inline-block;">Service Opportunities/Internships</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-primary pull-right" href="{{ path('opportunity_new') }}">New Opportunity</a>
+    {% endif %}
+
+        <div class="col-sm-12 well">
+                <div class="col-sm-10">
+                    <h2 style="display:inline">
+                        {{ entity.title }}
+                    </h2>
+
+                    <p>
+                        {{ entity.description|raw }}
+                    </p>
+                </div>
+            {% if is_granted('ROLE_ADMIN') %}<a class="btn btn-default"
+                                                href="{{ path('opportunity_edit', { 'id': entity.id }) }}">Edit</a>{% endif %}
+        </div>
+    {% endblock %}

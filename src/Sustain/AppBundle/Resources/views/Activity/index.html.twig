@@ -1,0 +1,34 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}Activities{% endblock %}
+
+{% block body %}
+    <h1 style="display: inline-block;">Activities</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-primary pull-right" href="{{ path('activity_new') }}">New Activity</a>
+    {% endif %}
+
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        Activities are associated with Learning Objectives and Modules. They are labeled according to Bloom’s and Fink’s Taxonomy. Click on a title to pull up the content and other resources for download.
+    </div>
+
+
+    <div class="list-group">
+        {% for entity in entities %}
+            <a href="{{ path('activity_show', { 'id': entity.id}) }}" class="list-group-item" title="Show details for this activity">
+                <h2 class="inline">{{ entity.title }}</h2>
+                <p class="list-group-item-text">{{ entity.description|raw }}</p>
+                <span class="labels hidden-xs">
+                    {% for tag in entity.tags %}
+                        <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                                {{ tag.name }}
+                                </span>
+                    {% endfor %}
+                </span>
+            </a>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

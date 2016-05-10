@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class TagRepository extends EntityRepository
 {
+
+    /**
+     * Find tags sorted
+     * @return Tag
+     */
+    public function sortedTags()
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.color', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -1,25 +1,25 @@
 parameters:
-    database_driver:   pdo_mysql
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     symfony
-    database_user:     root
-    database_password: ~
-
-    mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
-
-    locale:            en
-    secret:            agr8hqoiugq34iqn34g8q0348gq7435
-
-    from_email: email@yourmailer
-    app_name: Your App
-    ldap: no
-    upload_path: '%kernel.root_dir%/../uploads/files'
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: xxx_db
+    database_user: username
+    database_password: pw
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    locale: en
+    secret: agr8hqoiugq34iqn34g8q0348gq7435
+    from_email: xxx@uga.edu
+    app_name: 'Watershed'
+    ldap: 'yes'
+    gaufrette: false
+    vich_storage: vich_uploader.storage.file_system
+    vich_uri_prefix: '%kernel.root_dir%/../uploads'
+    vich_upload_destination: '%kernel.root_dir%/../uploads'
     wkhtmltopdf_path: '%kernel.root_dir%/../vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64'
-    ldap_host: ldap.your.server
-    ldap_port: 363
-    ldap_basedn:  ou=users,o=uga
-    ldap_accountFilterFormat: (&(cn=%s))
+    ldap_host: xxx.xxx.edu
+    ldap_port: 333
+    ldap_basedn: 'ou=users,o=xxx'
+    ldap_accountFilterFormat: '(&(cn=%s))'
