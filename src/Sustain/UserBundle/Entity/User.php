@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="sustain_user")
  * @ORM\Entity(repositoryClass="Sustain\UserBundle\Entity\UserRepository")
  */
-class User extends BaseUser
+class User extends BaseUser implements UserInterface
 {
     /**
      * @ORM\Id

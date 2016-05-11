@@ -1,4 +1,6 @@
 # app/config/security.yml
+
+
 security:
     firewalls:
         main:

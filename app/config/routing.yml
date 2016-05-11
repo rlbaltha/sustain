@@ -19,6 +19,15 @@ app:
     type:     annotation
     prefix:   /
 
+sustain_authenticate:
+    resource: "@SustainAuthenticateBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+sustain_user:
+    resource: "@SustainUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
@@ -39,13 +48,5 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
 
-sustain_authenticate:
-    resource: "@SustainAuthenticateBundle/Controller/"
-    type:     annotation
-    prefix:   /
 
-sustain_user:
-    resource: "@SustainUserBundle/Controller/"
-    type:     annotation
-    prefix:   /
 
