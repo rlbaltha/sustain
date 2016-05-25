@@ -39,10 +39,6 @@
         "h4cc/wkhtmltopdf-amd64" : "0.12.1",
         "besimple/sso-auth-bundle": "*@dev"
     },
-    "require-dev": {
-        "sensio/generator-bundle": "~2.3",
-        "symfony/phpunit-bridge": "~2.7"
-    },
     "scripts": {
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
