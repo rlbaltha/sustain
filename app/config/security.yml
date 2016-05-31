@@ -1,6 +1,4 @@
 # app/config/security.yml
-
-
 security:
     firewalls:
         main:
@@ -50,12 +48,3 @@ security:
         - { path: ^/tag/, role: ROLE_ADMIN }
         - { path: ^/category/, role: ROLE_ADMIN }
         - { path: ^/user/, role: ROLE_USER }
-
-
-
-
-
-    role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN     
-        
