@@ -49,7 +49,7 @@ security:
         - { path: update$, role: ROLE_ADMIN }
         - { path: ^/tag/, role: ROLE_ADMIN }
         - { path: ^/category/, role: ROLE_ADMIN }
-        - { path: ^/user/, role: ROLE_ADMIN }
+        - { path: ^/user/, role: ROLE_USER }
 
 
 
