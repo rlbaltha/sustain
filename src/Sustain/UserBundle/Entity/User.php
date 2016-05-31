@@ -12,7 +12,7 @@ use FOS\UserBundle\Model\UserInterface;
  * @ORM\Table(name="sustain_user")
  * @ORM\Entity(repositoryClass="Sustain\UserBundle\Entity\UserRepository")
  */
-class User extends BaseUser implements UserInterface
+class User extends BaseUser
 {
     /**
      * @ORM\Id
