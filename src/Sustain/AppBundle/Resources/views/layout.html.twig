@@ -10,11 +10,10 @@
 
 
 {% block sidebar %}
-    {% if 'event' in app.request.attributes.get('_route') or 'opportunity' in app.request.attributes.get('_route') or 'page' in app.request.attributes.get('_route')
+    {% if 'opportunity' in app.request.attributes.get('_route') or 'page' in app.request.attributes.get('_route')
     or 'section' in app.request.attributes.get('_route') %}
         <ul class="nav nav-sidebar list-unstyled" style="margin-top: 20px;">
             {% if 'page_show' in app.request.attributes.get('_route') %}
-                <hr/>
                 {% if entity.section %}{{ entity.section.name }}
                 {% for page in entity.section.pages %}
                     <li><a href="{{ path('page_show', { 'id': page.id }) }}">{{ page.menuName }}</a></li>
@@ -37,6 +36,7 @@
     {% endif %}
 
     {% if categories is defined %}
+        <hr/>
         <h2 style="font-size: medium">Labels</h2>
         {% for category in categories %}
             {{ category.name }}
