@@ -13,12 +13,6 @@
     {% if 'event' in app.request.attributes.get('_route') or 'opportunity' in app.request.attributes.get('_route') or 'page' in app.request.attributes.get('_route')
     or 'section' in app.request.attributes.get('_route') %}
         <ul class="nav nav-sidebar list-unstyled" style="margin-top: 20px;">
-            <li><a href="{{ path('event') }}">Events</a></li>
-            <li><a href="{{ path('opportunity', {'type': 'service'}) }}">Partners</a></li>
-            <li><a href="{{ path('opportunity', {'type': 'intern'} ) }}">Internships</a></li>
-            <li><a href="{{ path('page_show', { 'id': 10 }) }}">Service Learning</a></li>
-            <li><a href="{{ path('section') }}">Stories</a></li>
-
             {% if 'page_show' in app.request.attributes.get('_route') %}
                 <hr/>
                 {% if entity.section %}{{ entity.section.name }}
@@ -27,6 +21,8 @@
                 {% endfor %}
                 {% endif %}
             {% endif %}
+            <li><a href="{{ path('opportunity', {'type': 'service'}) }}">Partners</a></li>
+            <li><a href="{{ path('opportunity', {'type': 'intern'} ) }}">Internships</a></li>
         </ul>
     {% endif %}
 
