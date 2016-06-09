@@ -36,6 +36,13 @@ class Section
     private $info;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     */
+    private $image;
+
+    /**
      * @var boolean $display
      *
      * @ORM\Column(name="display", type="boolean", nullable=true)
@@ -165,5 +172,29 @@ class Section
     public function getDisplay()
     {
         return $this->display;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Section
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }
