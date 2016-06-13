@@ -2,6 +2,7 @@
 
 namespace Sustain\UserBundle\Entity;
 
+use BeSimple\SsoAuthBundle\Security\Core\User\UserFactoryInterface;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\UserInterface;
@@ -12,7 +13,7 @@ use FOS\UserBundle\Model\UserInterface;
  * @ORM\Table(name="sustain_user")
  * @ORM\Entity(repositoryClass="Sustain\UserBundle\Entity\UserRepository")
  */
-class User extends BaseUser
+class User extends BaseUser implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id
