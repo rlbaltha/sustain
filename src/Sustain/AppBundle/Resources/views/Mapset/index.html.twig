@@ -3,24 +3,27 @@
 {% block title %}Maps{% endblock %}
 
 {% block body -%}
-    <h1></h1>
-    <h1 style="display: inline-block;">Maps</h1>
-    {% if is_granted('ROLE_ADMIN') %}
-        <a class="btn btn-primary pull-right" href="{{ path('mapset_new') }}">New Map</a>
-    {% endif %}
+    <div class="col-sm-10">
 
-    <div class="alert alert-info alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        Click on the title to pull up a Google Map with labeled points.
+        <h1>Maps</h1>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-primary pull-right" href="{{ path('mapset_new') }}">New Map</a>
+        {% endif %}
+
+        <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            Click on the title to pull up a Google Map with labeled points.
+        </div>
+
+
+        <div class="list-group">
+            {% for entity in entities %}
+                <a href="{{ path('mapset_show', { 'id': entity.id }) }}" class="list-group-item">
+                    <p class="list-group-item-heading">{{ entity.name|raw }}</p>
+                    <p class="list-group-item-text">{{ entity.description|raw }}</p>
+                </a>
+            {% endfor %}
+        </div>
     </div>
-
-
-    <div class="list-group">
-        {% for entity in entities %}
-            <a href="{{ path('mapset_show', { 'id': entity.id }) }}" class="list-group-item">
-                <p class="list-group-item-heading">{{ entity.name|raw }}</p>
-                <p class="list-group-item-text">{{ entity.description|raw }}</p>
-            </a>
-        {% endfor %}
-    </div>
-    {% endblock %}
+{% endblock %}

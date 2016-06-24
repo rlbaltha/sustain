@@ -34,6 +34,9 @@
         "besimple/sso-auth-bundle": "*@dev",
         "jms/serializer-bundle": "^1.1"
     },
+    "require-dev": {
+        "sensio/generator-bundle": "~2.3"
+    },
     "scripts": {
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",

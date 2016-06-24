@@ -14,12 +14,66 @@ imports:
 monolog:
     handlers:
         main:
-            type:  stream
-            path:  "%kernel.logs_dir%/%kernel.environment%.log"
-            level: debug
-        firephp:
-            type:  firephp
-            level: info
-        chromephp:
-            type:  chromephp
-            level: info
+            type:  rotating_file
+            path:  '%kernel.logs_dir%/%kernel.environment%.log'
+            level: error
+            # max number of log files to keep
+            # defaults to zero, which means infinite files
+            max_files: 10
+        console:
+            type:  console
+
+be_simple_sso_auth:
+    admin_sso:
+        protocol:
+            id: cas
+            version: 2
+        server:
+            id: cas
+            login_url: https://cas.uga.edu/cas/login
+            logout_url: https://cas.uga.edu/cas/logout
+            validation_url: https://cas.uga.edu/cas/serviceValidate
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Sustain\UserBundle\Entity\User
+    registration:
+        confirmation:
+            enabled:    false
+    from_email:
+        address:        %from_email%
+        sender_name:    %app_name%
+    service:
+        user_manager:   fos_user.user_manager.default
+
+security:
+    firewalls:
+        main:
+            pattern: ^/
+            trusted_sso:
+                manager: admin_sso
+                create_users: true
+                created_users_roles: [ 'ROLE_USER' ]
+                login_action: false
+                logout_action: false
+                login_path: /login
+                check_path: /login
+                failure_path: /register
+            provider: fos_userbundle
+            anonymous:    true
+            switch_user: true
+            logout:
+              path:   /logout
+              target: /home
+
+    providers:
+        chain_provider:
+            chain:
+                providers: [fos_userbundle]
+
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512

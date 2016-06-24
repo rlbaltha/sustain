@@ -1,83 +1,54 @@
-{# sustain/app/Resources/views/base.html.twig #}
 <!DOCTYPE html>
-<html {% if 'default' not in app.request.attributes.get('_route') %}class="full"{% endif %} lang="en">
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{% block title %}Watershed UGA{% endblock %}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 
+    <!-- Bootstrap CSS -->
     {% block stylesheets %}
-        {% stylesheets '@bootstrap_less' combine=true  output='css/compiled/main.css' %}
-        <link href="{{ asset_url }}" type="text/css" rel="stylesheet"/>{% endstylesheets %}
-        <link href='https://fonts.googleapis.com/css?family=Josefin+Sans&subset=latin,latin-ext' rel='stylesheet'
-              type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+        <link type="text/css" rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <link type="text/css" rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.22.5/css/theme.bootstrap.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
         <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/local.css') }}">
     {% endblock %}
 
-    {% block javascripts %}
-        {% javascripts '@jquery_js' '@jqueryui_js' '@bootstrap_js' combine=true output='js/compiled/main.js' %}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-        <script language="javascript">
-            $(document).ready(function () {
-                var active_route = '{{ app.request.attributes.get('_route') }}';
-                var currentactive = '#' + active_route;
-                $('.active').removeClass('active');
-                $(currentactive).addClass('active');
-                (function () {
-                    var cx = '000502081467924493637:_i_ajtr6taa';
-                    var gcse = document.createElement('script');
-                    gcse.type = 'text/javascript';
-                    gcse.async = true;
-                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                            '//cse.google.com/cse.js?cx=' + cx;
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(gcse, s);
-                })();
-
-                $('.gsc-input-box').addClass('form-control');
-            });
-        </script>
-    {% endblock %}
-
-    <link rel="icon" href="{{ asset('bundles/app/images/favicon.ico') }}" sizes="16x16 32x32 48x48 64x64"
-          type="image/vnd.microsoft.icon">
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ path('default') }}">{{ application_name }}</a>
-        </div>
+<div class="container-fluid">
+    <nav class="navbar navbar-default">
+        <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+            &#9776;
+        </button>
+        <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar">
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li id="skip">
+                <li class="nav-item" id="landing"><a href="{{ path('page_landing') }}">{{ application_name }}</a></li>
+                <li class="nav-item" id="skip">
                     <a id="main_nav" href="#main_content">Skip Navigation</a>
                 </li>
-                <li id="faq"><a href="{{ path('page_show', { 'id':1 }) }}">About</a></li>
-                <li id="faq"><a href="{{ path('section') }}">Stories</a></li>
-                <li id="event" class=""><a title="Events" href="{{ path('event') }}">Events/Service</a></li>
-                <li id="file"><a title="Courses" href="{{ path('module') }}">Resources</a></li>
-                <li id="mapset"><a href="{{ path('mapset') }}">Maps</a></li>
-                <li id="user"><a href="{{ path('public_profiles') }}">Profiles</a></li>
-                <li id="user"><a href="{{ path('page_show', { 'id': 9 }) }}">Donate</a></li>
+                <li class="nav-item" id="home"><a href="{{ path('page_home') }}">Home</a></li>
+                <li class="nav-item" id="faq"><a href="{{ path('page_show', { 'id':1 }) }}">Faculty</a></li>
+                <li class="nav-item" id="faq"><a href="{{ path('section') }}">Stories</a></li>
+                <li class="nav-item" id="event" class=""><a title="Events" href="{{ path('event') }}">Events/Service</a>
+                </li>
+                <li class="nav-item" id="file"><a title="Courses" href="{{ path('module') }}">Resources</a></li>
+                <li class="nav-item" id="mapset"><a href="{{ path('mapset') }}">Maps</a></li>
+                <li class="nav-item" id="user"><a href="{{ path('public_profiles') }}">Profiles</a></li>
+                <li class="nav-item" id="user"><a href="{{ path('page_show', { 'id': 9 }) }}">Donate</a></li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav pull-xs-right">
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                    <li class="dropdown">
+                    <li class="nav-item dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Profile</a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ path('user_profile') }}">My Profile</a></li>
@@ -95,30 +66,29 @@
                     <a id="main_content" href="#main_nav">Skip to Top</a>
                 </li>
             </ul>
-
         </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
+    </nav>
+
+    <section class="main-content">
+
+        {% block sidebar %}{% endblock %}
+        {% block body %}{% endblock %}
 
 
-<div style="margin-top: 70px;">
-    {% if 'default' in app.request.attributes.get('_route') or app.request.attributes.get('_route') == 'page_home' %}
-    {% else %}
-        <div class="col-sm-2 sidebar hidden-xs">
-            {% block sidebar %}
-            {% endblock %}
-        </div>
-
-    {% endif %}
-    <div class="{% if 'default' in app.request.attributes.get('_route')  or app.request.attributes.get('_route') == 'theme' %}col-sm-12{% else %}col-sm-10{% endif %}">
-        {% block body %}
+        {% block javascripts %}
+            <!-- jQuery first, then Bootstrap JS. -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/tinysort/2.2.2/tinysort.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.22.5/js/jquery.tablesorter.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.22.5/js/jquery.tablesorter.widgets.min.js"></script>
         {% endblock %}
-    </div>
+
+</div>
 </div>
 
+
 </body>
-
-
 </html>
+

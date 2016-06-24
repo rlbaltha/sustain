@@ -56,7 +56,29 @@ class PageController extends Controller
         );
     }
 
+    /**
+     * Displays the app landing page
+     *
+     * @Route("/landing", name="page_landing")
+     * @Method("GET")
+     * @Template(":default:index.html.twig")
+     */
+    public function landingAction()
+    {
+        $em = $this->getDoctrine()->getManager();
 
+        $carousel = $em->getRepository('AppBundle:Carousel')->findAll();
+        $pages = $em->getRepository('AppBundle:Page')->findHome();
+        $events = $em->getRepository('AppBundle:Event')->eventShortList();
+
+
+        return array(
+            'carousel' => $carousel,
+            'events' => $events,
+            'pages' => $pages,
+        );
+    }
+    
     /**
      * Lists all Page stories.
      *

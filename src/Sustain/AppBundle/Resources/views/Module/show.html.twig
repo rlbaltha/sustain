@@ -5,12 +5,12 @@
 {% block body -%}
     <h1 style="display: inline-block;">Modules</h1>
 
-    <div class="col-sm-12 well">
+    <div class="col-sm-12">
 
         <h2>{{ entity.name }}</h2>
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('module_edit', { 'id': entity.id }) }}" class="btn btn-default pull-right">Edit</a>
+                <a href="{{ path('module_edit', { 'id': entity.id }) }}" class="btn btn-primary pull-right">Edit</a>
             {% endif %}
         {% endif %}
 
@@ -34,7 +34,7 @@
                 <tbody>
 
                 {% for file in entity.files if file.core==1 %}
-                    <tr class="file">
+                    <tr>
                         <td>
                             {% if file.url is null %}
                                 <span class="label label-info" data-toggle="tooltip" title="This an {{ file.ext }} file ">{{ file.ext }}</span>
@@ -81,9 +81,9 @@
 
         <h2>Resources</h2>
 
-        <table id="file_list" class="col-sm-12 table">
+        <table id="file_list" class="table">
             <thead>
-            <tr class="file">
+            <tr>
                 <th><span>Title</span></th>
                 <th class="hidden-xs">Labels</th>
             </tr>
@@ -91,7 +91,7 @@
             <tbody>
 
             {% for file in entity.files if file.core!=1 %}
-                <tr class="file">
+                <tr>
                     <td>
                         {% if file.url is null %}
                             <span class="label label-info" data-toggle="tooltip" title="This an {{ file.ext }} file ">{{ file.ext }}</span>

@@ -7,13 +7,13 @@
 
     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
     {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
-        <a class="btn btn-default" href="{{ path('activity_edit', { 'id': entity.id}) }}" title="Edit {{ entity.title }}">
+        <a class="btn btn-primary" href="{{ path('activity_edit', { 'id': entity.id}) }}" title="Edit {{ entity.title }}">
             Edit
         </a>
     {% endif %}
 {% endif %}
 
-    <div class="col-sm-12 well">
+    <div class="col-sm-12">
         <h2>{{ entity.title }}</h2>
 
 

@@ -4,8 +4,8 @@
 
     <div class="row">
         <div class="col-sm-12 " style="background-color: #82D3EE; margin-top: -20px;  padding:10px;">
-            <div class="panel panel-default col-sm-4 pull-right" style="margin-top:0;margin-bottom:0;">
-                <div class="panel-body">
+            <div class="card col-sm-4 pull-xs-right">
+                <div class="card-block">
                     <strong>Join our mailing list!</strong>
 
                     <p>Please send your name and email to <strong>watershed@uga.edu</strong> to get email updates on
@@ -62,19 +62,19 @@
             <h3>Watershed UGA Events This Week</h3>
             <a class="" href="{{ path('event') }}">All Upcoming Events</a>
             {% for event in events %}
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                <div class="card">
+                    <div class="card-block">
 
                         {{ event.start|date("l, F d") }} {% if event.start|date("g:i A") == "12:00 AM" %}{% else %}{{ event.start|date("g:i A") }}{% endif %}
                     </div>
-                    <div class="panel-body">
+                    <div class="card-block">
                         <h3>{{ event.title }}</h3>
 
                         <p>{{ event.description|raw }}</p>
                     </div>
                 </div>
             {% else %}
-                <div class="panel-body">
+                <div class="card-block">
                     <p>There are no events this week. Please check back soon.</p>
                 </div>
             {% endfor %}

@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            {% for slide in carousel %}
+                <li data-target="#myCarousel" data-slide-to="{{ loop.index }}" class="{% if loop.first %}active{% endif %}"></li>
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            {% for slide in carousel %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                    <img class="first-slide" src="{{ slide.image }}" alt="First slide">
+                    <div class="container">
+                        <div class="carousel-caption text-xs-left">
+                            <h1>{{ slide.headline }}</h1>
+                            <p>{{ slide.body|raw }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div><!-- /.carousel -->
+
+    <!--  ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container-fluid">
+
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div class="col-sm-4 ">
+                <h2>Events</h2>
+                {% for event in events %}
+                    <h3>{{ event.title }}</h3>
+                    <p>{{ event.datetime|date('l, F jS, Y: g:ia') }}</p>
+                    <p>{{ event.body }}</p>
+                    {% else %}
+                    <p>There are no events at this time. Please check back soon.</p>
+                {% endfor %}
+            </div><!-- /.col-lg-4 -->
+            <div class="col-sm-4 ">
+                <h2>Stories</h2>
+                {% for page in pages %}
+                        <h3>{{ page.teaserImageCaption }}</h3>
+                        <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
+                            <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail"
+                                 alt="{{ page.menuName }}">
+                        </a>
+
+                        <div class="caption">
+                            <p>{{ page.teaser|raw }}</p>
+                        </div>
+                        <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
+                            Read more about {{ page.teaserImageCaption }}
+                        </a>
+                {% endfor %}
+            </div><!-- /.col-lg-4 -->
+            <div class="col-sm-4 ">
+                <div class="card">
+                    <div class="card-block">
+                        <strong>Join our mailing list!</strong>
+
+                        <p>Please send your name and email to <strong>watershed@uga.edu</strong> to get email updates on
+                            Watershed UGA. Please note if you are a
+                            student,
+                            a member of the community, or a faculty member in the email. </p>
+                    </div>
+                </div>
+                <h2>Twitter</h2>
+                <a class="twitter-timeline" href="https://twitter.com/UGAEnglish" data-widget-id="504275673385406465">Tweets
+                    by @UGAEnglish</a>
+                <script>!function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                        if (!d.getElementById(id)) {
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = p + "://platform.twitter.com/widgets.js";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }
+                    }(document, "script", "twitter-wjs");</script>
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+
+
+    </div><!-- /.container -->
+
+
+{% endblock %}
