@@ -2,100 +2,68 @@
 
 {% block body -%}
 
-    <div class="row">
-        <div class="col-sm-12 " style="background-color: #82D3EE; margin-top: -20px;  padding:10px;">
-            <div class="card col-sm-4 pull-xs-right">
-                <div class="card-block">
-                    <strong>Join our mailing list!</strong>
-
-                    <p>Please send your name and email to <strong>watershed@uga.edu</strong> to get email updates on
-                        Watershed UGA. Please note if you are a
-                        student,
-                        a member of the community, or a faculty member in the email. </p>
-                </div>
-            </div>
-            <img src="{{ asset('bundles/app/images/banner_home.png') }}" class="img-responsive" alt="Watershed UGA logo"
-                 style="max-height: 160px;">
-
+    <div class="col-sm-4">
+        <a style="padding-top: 20px;" href="{{ path('section') }}">See All the Watershed Stories</a>
+        <h3>Watch our Introductory Video</h3>
+        <div class="embed-responsive embed-responsive-4by3">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/mZvlSWSNsJw?rel=0"
+                    frameborder="0" allowfullscreen></iframe>
         </div>
+
+        {% for page in pages %}
+            {% if loop.index < pages|length/3 %}
+                <h3>{{ page.teaserImageCaption }}</h3>
+                <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
+                    <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail"
+                         alt="{{ page.menuName }}">
+                </a>
+
+                <div class="caption">
+                    <p>{{ page.teaser|raw }}</p>
+                </div>
+                <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
+                    Read more about {{ page.teaserImageCaption }}
+                </a>
+            {% endif %}
+        {% endfor %}
     </div>
 
+    <div class="col-sm-4">
+        {% for page in pages %}
+            {% if loop.index >= pages|length/3 and  loop.index < pages|length/3*2 %}
+                <h3>{{ page.teaserImageCaption }}</h3>
+                <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
+                    <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail"
+                         alt="{{ page.menuName }}">
+                </a>
 
-    <div class="row " style="padding:30px;">
-
-        <div class="col-sm-8">
-
-            <div class="col-sm-6">
-                <a style="padding-top: 20px;" href="{{ path('section') }}">See All the Watershed Stories</a>
-
-                <h3>Watch our Introductory Video</h3>
-
-                <div class="embed-responsive embed-responsive-4by3">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/mZvlSWSNsJw?rel=0"
-                            frameborder="0" allowfullscreen></iframe>
+                <div class="caption">
+                    <p>{{ page.teaser|raw }}</p>
                 </div>
+                <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
+                    Read more about {{ page.teaserImageCaption }}
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
 
-            </div>
+    <div class="col-sm-4">
+        {% for page in pages %}
+            {% if loop.index >= pages|length/3*2 %}
+                <h3>{{ page.teaserImageCaption }}</h3>
+                <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
+                    <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail"
+                         alt="{{ page.menuName }}">
+                </a>
 
-            {% for page in pages %}
-                <div class="col-sm-6">
-                    <h3>{{ page.teaserImageCaption }}</h3>
-                    <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
-                        <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail"
-                             alt="{{ page.menuName }}">
-                    </a>
-
-                    <div class="caption">
-                        <p>{{ page.teaser|raw }}</p>
-                    </div>
-                    <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
-                        Read more about {{ page.teaserImageCaption }}
-                    </a>
+                <div class="caption">
+                    <p>{{ page.teaser|raw }}</p>
                 </div>
-            {% endfor %}
-
-        </div>
-
-
-        <div class="col-sm-4">
-
-            <h3>Watershed UGA Events This Week</h3>
-            <a class="" href="{{ path('event') }}">All Upcoming Events</a>
-            {% for event in events %}
-                <div class="card">
-                    <div class="card-block">
-
-                        {{ event.start|date("l, F d") }} {% if event.start|date("g:i A") == "12:00 AM" %}{% else %}{{ event.start|date("g:i A") }}{% endif %}
-                    </div>
-                    <div class="card-block">
-                        <h3>{{ event.title }}</h3>
-
-                        <p>{{ event.description|raw }}</p>
-                    </div>
-                </div>
-            {% else %}
-                <div class="card-block">
-                    <p>There are no events this week. Please check back soon.</p>
-                </div>
-            {% endfor %}
-
-
-        </div>
-
-        <div class="col-sm-4">
-            <a class="twitter-timeline" href="https://twitter.com/WatershedUGA" data-widget-id="644610687554162689">Tweets
-                by @WatershedUGA</a>
-            <script>!function (d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-                    if (!d.getElementById(id)) {
-                        js = d.createElement(s);
-                        js.id = id;
-                        js.src = p + "://platform.twitter.com/widgets.js";
-                        fjs.parentNode.insertBefore(js, fjs);
-                    }
-                }(document, "script", "twitter-wjs");</script>
-        </div>
-
+                <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
+                    Read more about {{ page.teaserImageCaption }}
+                </a>
+            {% endif %}
+        {% endfor %}
     </div>
 
 {% endblock %}
