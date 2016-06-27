@@ -33,6 +33,15 @@ h1, h2, h3 {
     width:100%;
     height:auto;
 }
+
+.jumbotron {
+    max-height: 10rem;
+    padding: 1rem;
+}
+.jumbotron .container {
+    margin-left: 2rem;
+}
+
 /**********  Accessibility **********/
 #skip a, #skip a:hover, #skip a:visited
 {

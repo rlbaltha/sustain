@@ -44,7 +44,7 @@
         <div class="row">
             <div class="col-sm-4 ">
                 <h2>Events</h2>
-                <a title="Events" href="{{ path('event') }}">All upcoming events</a>
+                <a title="Events" href="{{ path('event') }}">See all upcoming events</a>
                 {% for event in events %}
                     <h3>{{ event.title }}</h3>
                     <p>{{ event.datetime|date('l, F jS, Y: g:ia') }}</p>
@@ -66,6 +66,7 @@
             </div><!-- /.col-lg-4 -->
             <div class="col-sm-4 ">
                 <h2>Stories</h2>
+                <a href="{{ path('section') }}">Read all our stories</a>
                 {% for page in pages %}
                         <h3>{{ page.teaserImageCaption }}</h3>
                         <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
