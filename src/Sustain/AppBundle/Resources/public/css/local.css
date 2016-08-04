@@ -42,6 +42,9 @@ h1, h2, h3 {
     margin-left: 2rem;
 }
 
+.main-content {
+    margin-top: 2rem;
+}
 /**********  Accessibility **********/
 #skip a, #skip a:hover, #skip a:visited
 {
