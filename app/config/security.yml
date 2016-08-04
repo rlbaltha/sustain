@@ -17,7 +17,7 @@ security:
             switch_user: true
             logout:
               path:   /logout
-              target: /home
+              target: /
 
     providers:
         chain_provider:
