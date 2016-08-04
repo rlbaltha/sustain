@@ -1,0 +1,11 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body -%}
+    <div class="col-sm-10">
+        <h1>Edit</h1>
+
+        {{ form(edit_form) }}
+
+        {{ form(delete_form) }}
+    </div>
+{% endblock %}

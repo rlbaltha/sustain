@@ -45,7 +45,7 @@ class SectionController extends Controller
      *
      * @Route("/", name="section_create")
      * @Method("POST")
-     * @Template("AppBundle:Section:new.html.twig")
+     * @Template("AppBundle:Shared:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -91,7 +91,7 @@ class SectionController extends Controller
      *
      * @Route("/new", name="section_new")
      * @Method("GET")
-     * @Template()
+     * @Template("AppBundle:Shared:new.html.twig")
      */
     public function newAction()
     {
@@ -134,7 +134,7 @@ class SectionController extends Controller
      *
      * @Route("/{id}/edit", name="section_edit")
      * @Method("GET")
-     * @Template()
+     * @Template("AppBundle:Shared:edit.html.twig")
      */
     public function editAction($id)
     {
@@ -179,7 +179,7 @@ class SectionController extends Controller
      *
      * @Route("/{id}", name="section_update")
      * @Method("PUT")
-     * @Template("AppBundle:Section:edit.html.twig")
+     * @Template("AppBundle:Shared:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {

@@ -5,16 +5,11 @@ default:
 
 home:
     path:  /home
-    defaults: { _controller: AppBundle:Page:home }
+    defaults: { _controller: AppBundle:Page:landing }
     schemes:  [https]
 
 app:
     resource: "@AppBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-sustain_authenticate:
-    resource: "@SustainAuthenticateBundle/Controller/"
     type:     annotation
     prefix:   /
 
@@ -28,7 +23,7 @@ fos_user:
 
 logout:
     path: /logout
-    defaults: { _controller: AppBundle:Page:home }
+    defaults: { _controller: AppBundle:Page:landing }
 
 
 

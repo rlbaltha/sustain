@@ -2,8 +2,14 @@
 
 {% block body -%}
     <div class="col-sm-10 ">
-        {% if is_granted('ROLE_ADMIN') %}<a class="btn btn-primary pull-right" href="{{ path('page_edit', { 'id': entity.id }) }}">Edit</a>{% endif %}
-        {{ entity.pageBody|raw }}
+        {% if is_granted('ROLE_ADMIN') %}<a class="btn btn-primary pull-right"
+                                            href="{{ path('page_edit', { 'id': entity.id }) }}">Edit</a>{% endif %}
+        {% if entity.link != '' %}
+            <a href="{{ entity.link }}">{{ entity.menuName }}</a>
+
+        {% else %}
+            {{ entity.pageBody|raw }}
+        {% endif %}
     </div>
 
 

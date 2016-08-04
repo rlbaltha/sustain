@@ -25,7 +25,6 @@ class AppKernel extends Kernel
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Sustain\UserBundle\SustainUserBundle(),
-            new Sustain\AuthenticateBundle\SustainAuthenticateBundle(),
             new BeSimple\SsoAuthBundle\BeSimpleSsoAuthBundle(),
             new Sustain\AppBundle\AppBundle(),
         );

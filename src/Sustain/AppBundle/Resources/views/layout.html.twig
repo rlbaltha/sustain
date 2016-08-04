@@ -16,24 +16,33 @@
         {% if 'opportunity' in app.request.attributes.get('_route') or 'page' in app.request.attributes.get('_route') %}
             <ul class="nav nav-sidebar list-unstyled" style="margin-top: 20px;">
                 {% if 'page_show' in app.request.attributes.get('_route') %}
-                    {% if entity.section %}{{ entity.section.name }}
+                    {% if entity.section %}
+                        <li>{{ entity.section.name }}</li>
+                        <hr/>
                         {% for page in entity.section.pages %}
-                            <li><a href="{{ path('page_show', { 'id': page.id }) }}">{{ page.menuName }}</a></li>
+                            <li>
+                                {% if page.link != '' %}
+                                    <a href="{{ page.link }}">{{ page.menuName }}</a>
+
+                                {% else %}
+                                    <a href="{{ path('page_show', { 'id': page.id }) }}">{{ page.menuName }}</a>
+                                {% endif %}
+                            </li>
                         {% endfor %}
                     {% endif %}
                 {% endif %}
-                <li><a href="{{ path('opportunity', {'type': 'service'}) }}">Partners</a></li>
-                <li><a href="{{ path('opportunity', {'type': 'intern'} ) }}">Internships</a></li>
             </ul>
         {% endif %}
 
-        {% if 'module' in app.request.attributes.get('_route') or 'objective' in app.request.attributes.get('_route') or 'activity' in app.request.attributes.get('_route')
-        or 'file' in app.request.attributes.get('_route') %}
+        {% if 'module' in app.request.attributes.get('_route') or 'objective' in app.request.attributes.get('_route')
+        or 'file' in app.request.attributes.get('_route')  or 'activity' in app.request.attributes.get('_route')
+        or 'map' in app.request.attributes.get('_route') %}
             <ul class="nav nav-sidebar list-unstyled" style="margin-top: 20px;">
                 <li><a href="{{ path('module') }}">Modules</a></li>
                 <li><a href="{{ path('objective') }}">Objectives</a></li>
                 <li><a href="{{ path('activity') }}">Activities</a></li>
                 <li><a href="{{ path('file') }}">Files</a></li>
+                <li><a href="{{ path('mapset') }}">Maps</a></li>
             </ul>
         {% endif %}
 

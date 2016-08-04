@@ -2,34 +2,30 @@
 
 {% block body -%}
     <div class="col-sm-10">
-        <h1>Stories</h1>
+    <h1>Stories</h1>
 
-        {% for entity in entities %}
+    {% for entity in entities %}
 
-            <div class="card">
-                <div class="card-block">
-                    <h3 class="inline"><a
-                                href="{{ path('page_show', { 'id': entity.id }) }}">{{ entity.menuName|raw }}</a></h3>
+        <div class="card">
+            <div class="card-block">
+                {% if entity.link != '' %}
+                    <a href="{{ entity.link }}">{{ entity.menuName }}</a>
 
-                    {% if is_granted('ROLE_ADMIN') %}
+                {% else %}
+                    <a href="{{ path('page_show', { 'id': entity.id }) }}">{{ entity.menuName|raw }}</a>
+                {% endif %}
+
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="pull-sm-right">
                         Section: {{ entity.section.name }}
                         {% if entity.homepage == true %}/ On Homepage {% endif %}
-
-                    <a class="btn btn-primary" href="{{ path('page_edit', { 'id': entity.id }) }}">Edit</a>{% endif %}
-                </div>
-                <div class="card-block">
-                    <div class="col-sm-8">
-                        {{ entity.teaser|raw }}
-                        <a href="{{ path('page_show', { 'id': entity.id }) }}">Read more
-                            about {{ entity.menuName|raw }}</a>
+                        <a class="btn btn-primary" href="{{ path('page_edit', { 'id': entity.id }) }}">Edit</a>
                     </div>
-                    <div class="col-sm-4">
-                        <img class="img-responsive pull-right" src="{{ entity.teaserImage }}"/>
-                    </div>
-
-                </div>
+                {% endif %}
             </div>
+        </div>
 
-        {% endfor %}
+    {% endfor %}
     </div>
 {% endblock %}

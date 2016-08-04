@@ -102,7 +102,7 @@ class PageController extends Controller
      *
      * @Route("/", name="page_create")
      * @Method("POST")
-     * @Template("AppBundle:Page:new.html.twig")
+     * @Template("AppBundle:Shared:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -150,7 +150,7 @@ class PageController extends Controller
      *
      * @Route("/new", name="page_new")
      * @Method("GET")
-     * @Template()
+     * @Template("AppBundle:Shared:new.html.twig")
      */
     public function newAction()
     {
@@ -193,7 +193,7 @@ class PageController extends Controller
      *
      * @Route("/{id}/edit", name="page_edit")
      * @Method("GET")
-     * @Template()
+     * @Template("AppBundle:Shared:edit.html.twig")
      */
     public function editAction($id)
     {
@@ -238,7 +238,7 @@ class PageController extends Controller
      *
      * @Route("/{id}", name="page_update")
      * @Method("PUT")
-     * @Template("AppBundle:Page:edit.html.twig")
+     * @Template("AppBundle:Shared:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {

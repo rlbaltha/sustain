@@ -1,19 +1,21 @@
-{% extends '::base.html.twig' %}
+{% extends 'AppBundle::layout.html.twig' %}
 
 {% block title %}Activities{% endblock %}
 
 {% block body -%}
-    <h1 style="display: inline-block;">Activities</h1>
+    <div class="col-sm-10">
+        <h1>Activities</h1>
 
-    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-    {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
-        <a class="btn btn-primary" href="{{ path('activity_edit', { 'id': entity.id}) }}" title="Edit {{ entity.title }}">
-            Edit
-        </a>
-    {% endif %}
-{% endif %}
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            {% if entity.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-primary" href="{{ path('activity_edit', { 'id': entity.id}) }}"
+                   title="Edit {{ entity.title }}">
+                    Edit
+                </a>
+            {% endif %}
+        {% endif %}
 
-    <div class="col-sm-12">
+
         <h2>{{ entity.title }}</h2>
 
 
@@ -40,6 +42,8 @@
                         {% endfor %}
                     </p>
                 </a>
+                {% else %}
+                <p>There are no objectives associated with this activity.</p>
             {% endfor %}
         </div>
     </div>
