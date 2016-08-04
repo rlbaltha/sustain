@@ -94,6 +94,29 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+be_simple_sso_auth:
+    admin_sso:
+        protocol:
+            id: cas
+            version: 2
+        server:
+            id: cas
+            login_url: https://cas.uga.edu/cas/login
+            logout_url: https://cas.uga.edu/cas/logout
+            validation_url: https://cas.uga.edu/cas/serviceValidate
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Sustain\UserBundle\Entity\User
+    registration:
+        confirmation:
+            enabled:    false
+    from_email:
+        address:        %from_email%
+        sender_name:    %app_name%
+    service:
+        user_manager:   fos_user.user_manager.default
 
 # Doctrine extensions
 stof_doctrine_extensions:
