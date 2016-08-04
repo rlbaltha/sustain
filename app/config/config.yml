@@ -184,6 +184,7 @@ ivory_ck_editor:
             allowedContent: 'p h2 h3 h4 img{text-align,margin-left}(*); a[href,target,name]{*}(*); table th tr td strong em; ol ul li span(*){font-size,font-family,color,background-color}; img[*]{*}; div(*);iframe{*}[*];'
             disableNativeSpellChecker: false
             height: 500
+            stylesSet: 'styles:../../bundles/app/js/ckeditor_styles.js'
     toolbars:
         configs:
             toolbar_default: [ ['Bold','Italic','Underline','Strike','JustifyLeft','JustifyCenter','JustifyRight','TextColor','BGColor','FontSize'],['Link','Unlink','NumberedList','BulletedList','Outdent','Indent','Image','MediaEmbed'],[ 'Undo', 'Redo','RemoveFormat'] ]
