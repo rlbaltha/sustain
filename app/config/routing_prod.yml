@@ -1,9 +1,4 @@
-login:
-    path: /login
-    defaults: { _controller: AppBundle:Page:home }
 
-login_check:
-    path: /login_check
 
 
 
