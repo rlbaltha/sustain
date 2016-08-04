@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Security;
+namespace Sustain\AppBundle\Security;
 
 use Sustain\UserBundle\Entity\User;
 use BeSimple\SsoAuthBundle\Security\Core\User\UserFactoryInterface;
