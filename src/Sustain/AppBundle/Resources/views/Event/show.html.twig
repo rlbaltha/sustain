@@ -1,43 +1,46 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block body -%}
-    <h1 style="display:inline">Event</h1>
-    <a class="btn btn-primary pull-right" href="{{ path('event_month') }}">Calendar View</a>
-    <a class="btn btn-primary pull-right" href="{{ path('event') }}">List View</a>
-    <div class="col-sm-12 well margin-top">
-        <div class="col-sm-10">
-            <h2 style="display:inline">
-                {{ entity.title }}
-            </h2>
 
-            <p>{% if entity.start %}{{ entity.start|date("l, F d") }} {{ entity.start|date("g:i A") }}{% endif %}</p>
+    <div class="col-sm-10">
+        <div class="card">
+            <div class="card-block">
+                <a class="btn btn-primary pull-sm-right" href="{{ path('event') }}">See All Events</a>
+                <h2>
+                    {{ entity.title }}
+                </h2>
 
-            <p>
-                {{ entity.description|raw }}
-            </p>
+                <p>{% if entity.start %}{{ entity.start|date("l, F d") }} {{ entity.start|date("g:i A") }}{% endif %}</p>
 
-            {% if entity.opportunities|length > 0 %}<hr/><h3>Related Partners or Opportunities</h3>{% endif %}
-            {% for entity in entity.opportunities %}
-
-                        <h3 style="display:inline">
-                            {{ entity.title }}
-                        </h3>
-
-                        <p>
-                            {{ entity.teaser|raw }}
-                        </p>
-                        {% if entity.description != '' %}
-                            <p>
-                                <a class=""
-                                   href="{{ path('opportunity_show', { 'id': entity.id }) }}">Read the full description.</a>
-                            </p>
-                        {% endif %}
-            {% endfor %}
+                <p>
+                    {{ entity.description|raw }}
+                </p>
+            </div>
+        </div>
 
 
+        {% if entity.opportunities|length > 0 %}
+        <div class="card">
+            <div class="card-block">
+                <h3>Related Partners or Opportunities</h3>{% endif %}
+                {% for entity in entity.opportunities %}
+                    <h4>
+                        {{ entity.title }}
+                    </h4>
+
+                    <p>
+                        {{ entity.teaser|raw }}
+                    </p>
+                    {% if entity.description != '' %}
+                            <a class=""
+                               href="{{ path('opportunity_show', { 'id': entity.id }) }}">Read the full description.</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
         {% if is_granted('ROLE_ADMIN') %}
             <a class="btn btn-primary" href="{{ path('event_edit', { 'id': entity.id }) }}">Edit</a>
         {% endif %}
     </div>
+
 {% endblock %}

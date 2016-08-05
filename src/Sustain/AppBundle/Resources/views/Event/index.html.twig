@@ -11,16 +11,14 @@
 
 {% block body -%}
     <div class="col-sm-10">
-
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-primary pull-xs-right" href="{{ path('event_new') }}">New Event</a>
+        {% endif %}
         <h1>Events</h1>
 
-        {% if is_granted('ROLE_ADMIN') %}
-            <a class="btn btn-primary pull-right" href="{{ path('event_new') }}">New Event</a>
-        {% endif %}
-
         {% for entity in entities %}
-            <div class="col-sm-12">
-                <div class="col-sm-10">
+            <div class="card">
+                <div class="card-block">
                     <h2 style="display:inline">
                         {{ entity.title }}
                     </h2>

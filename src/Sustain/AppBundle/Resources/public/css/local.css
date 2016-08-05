@@ -5,28 +5,20 @@ body {
 
 h1, h2, h3 {
     font-family: 'Raleway', 'Arial', 'sans-serif';
-    padding: 1rem;
 }
 
-.container-fluid {
-    padding: 0;
-}
 
 .col-sm-10 {
-    padding: 2rem;
+    padding: 3rem;
 }
 
 .col-sm-12 {
     padding: 3rem;
 }
 
-.col-sm-4 {
-    padding: 2rem;
-    padding-top: 1rem;
-}
 
 .col-sm-2 {
-    padding: 1rem;
+    padding-top: 1rem;
 }
 
 .card-img-top{

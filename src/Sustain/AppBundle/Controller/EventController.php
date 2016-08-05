@@ -60,7 +60,7 @@ class EventController extends Controller
      *
      * @Route("/", name="event_create")
      * @Method("POST")
-     * @Template("AppBundle:Event:new.html.twig")
+     * @Template("AppBundle:Shared:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -106,7 +106,7 @@ class EventController extends Controller
      *
      * @Route("/new", name="event_new")
      * @Method("GET")
-     * @Template()
+     * @Template("AppBundle:Shared:new.html.twig")
      */
     public function newAction()
     {
@@ -152,7 +152,7 @@ class EventController extends Controller
      *
      * @Route("/{id}/edit", name="event_edit")
      * @Method("GET")
-     * @Template()
+     * @Template("AppBundle:Shared:edit.html.twig")
      */
     public function editAction($id)
     {
@@ -227,7 +227,7 @@ class EventController extends Controller
      *
      * @Route("/{id}", name="event_update")
      * @Method("PUT")
-     * @Template("AppBundle:Event:edit.html.twig")
+     * @Template("AppBundle:Shared:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
