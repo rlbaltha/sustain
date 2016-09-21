@@ -33,10 +33,12 @@ class SectionController extends Controller
             $entities = $em->getRepository('AppBundle:Section')->findAll();
         }
         else {
+            $new_entities = $em->getRepository('AppBundle:Page')->findNewStories();
             $entities = $em->getRepository('AppBundle:Section')->findSorted();
         }
 
         return array(
+            'new_entities' => $new_entities,
             'entities' => $entities,
         );
     }

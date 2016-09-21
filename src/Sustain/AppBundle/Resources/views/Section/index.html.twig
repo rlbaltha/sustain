@@ -4,13 +4,48 @@
 {% block body -%}
     <div class="col-sm-12">
 
+        {% if new_entities %}
+            <div class="row">
+                <div class="jumbotron">
+                    <div class="container">
+                        <h2 class="display-5">New Watershed Stories</h2>
+                    </div>
+                </div>
+
+
+                {% for page in new_entities %}
+                    <div class="col-sm-4">
+                        <div class="card card-block">
+                            <h3>{{ page.teaserImageCaption }}</h3>
+                            <a href="{{ path('page_show', {id:page.id}) }}"
+                               title="Read more about {{ page.menuName }} ">
+                                <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail"
+                                     alt="{{ page.menuName }}">
+                            </a>
+
+                            <div class="caption">
+                                <p>{{ page.teaser|raw }}</p>
+                            </div>
+                            <a href="{{ path('page_show', {id:page.id}) }}"
+                               title="Read more about {{ page.menuName }} ">
+                                Read more about {{ page.teaserImageCaption }}
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        {% endif %}
+
+
         {% for entity in entities %}
             <div class="row">
                 <div class="jumbotron">
                     <div class="container">
                         {% if is_granted('ROLE_ADMIN') %}
                             <div class="pull-sm-right">
-                                <a class="btn btn-primary" href="{{ path('section_edit', { 'id': entity.id }) }}">Edit</a>
+                                <a class="btn btn-primary"
+                                   href="{{ path('section_edit', { 'id': entity.id }) }}">Edit</a>
                             </div>
                         {% endif %}
                         <h2 class="display-5">{{ entity.name|raw }}</h2>
