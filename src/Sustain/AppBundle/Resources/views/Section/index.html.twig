@@ -12,29 +12,78 @@
                     </div>
                 </div>
 
+                    <div class="row">
+                          <div class="col-sm-4">
 
-                {% for page in new_entities %}
-                    <div class="col-sm-4">
-                        <div class="card card-block">
-                            <h3>{{ page.teaserImageCaption }}</h3>
-                            <a href="{{ path('page_show', {id:page.id}) }}"
-                               title="Read more about {{ page.menuName }} ">
-                                <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail"
-                                     alt="{{ page.menuName }}">
-                            </a>
+                            {% for page in new_entities %}
+                                {% if loop.index <= new_entities|length/3 %}
+                                    <div class="card card-block">
+                                        <h3>{{ page.teaserImageCaption }}</h3>
+                                        <a href="{{ path('page_show', {id:page.id}) }}"
+                                           title="Read more about {{ page.menuName }} ">
+                                            <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail"
+                                                 alt="{{ page.menuName }}">
+                                        </a>
 
-                            <div class="caption">
-                                <p>{{ page.teaser|raw }}</p>
-                            </div>
-                            <a href="{{ path('page_show', {id:page.id}) }}"
-                               title="Read more about {{ page.menuName }} ">
-                                Read more about {{ page.teaserImageCaption }}
-                            </a>
+                                        <div class="caption">
+                                            <p>{{ page.teaser|raw }}</p>
+                                        </div>
+                                        <a href="{{ path('page_show', {id:page.id}) }}"
+                                           title="Read more about {{ page.menuName }} ">
+                                            Read more about {{ page.teaserImageCaption }}
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
-                    </div>
-                {% endfor %}
 
-            </div>
+                        <div class="col-sm-4">
+                            {% for page in new_entities %}
+                                {% if loop.index > new_entities|length/3 and  loop.index <= new_entities|length/3*2 %}
+                                    <div class="card card-block">
+                                        <h3>{{ page.teaserImageCaption }}</h3>
+                                        <a href="{{ path('page_show', {id:page.id}) }}"
+                                           title="Read more about {{ page.menuName }} ">
+                                            <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail"
+                                                 alt="{{ page.menuName }}">
+                                        </a>
+
+                                        <div class="caption">
+                                            <p>{{ page.teaser|raw }}</p>
+                                        </div>
+                                        <a href="{{ path('page_show', {id:page.id}) }}"
+                                           title="Read more about {{ page.menuName }} ">
+                                            Read more about {{ page.teaserImageCaption }}
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+                        <div class="col-sm-4">
+                            {% for page in new_entities %}
+                                {% if loop.index > new_entities|length/3*2 %}
+                                    <div class="card card-block">
+                                        <h3>{{ page.teaserImageCaption }}</h3>
+                                        <a href="{{ path('page_show', {id:page.id}) }}"
+                                           title="Read more about {{ page.menuName }} ">
+                                            <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail"
+                                                 alt="{{ page.menuName }}">
+                                        </a>
+
+                                        <div class="caption">
+                                            <p>{{ page.teaser|raw }}</p>
+                                        </div>
+                                        <a href="{{ path('page_show', {id:page.id}) }}"
+                                           title="Read more about {{ page.menuName }} ">
+                                            Read more about {{ page.teaserImageCaption }}
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+                    </div>
         {% endif %}
 
 

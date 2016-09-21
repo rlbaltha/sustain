@@ -51,7 +51,7 @@ class PageRepository extends EntityRepository
             ->andwhere('s.display=:display')
             ->setParameter('display', true)
             ->orderBy('p.created','DESC')
-            ->setMaxResults('3')
+            ->setMaxResults('6')
             ->getQuery()
             ->getResult();
     }
