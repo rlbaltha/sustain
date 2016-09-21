@@ -28,12 +28,12 @@ class SectionController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $new_entities = $em->getRepository('AppBundle:Page')->findNewStories();
 
         if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
             $entities = $em->getRepository('AppBundle:Section')->findAll();
         }
         else {
-            $new_entities = $em->getRepository('AppBundle:Page')->findNewStories();
             $entities = $em->getRepository('AppBundle:Section')->findSorted();
         }
 
