@@ -27,7 +27,7 @@
                             {% if entity.start|date("g:i A") == "12:00 AM" %}{% else %}{{ entity.start|date("g:i A") }}{% endif %}
                         {% endif %}
                     </p>
-
+                    <p>{% if entity.location!='' %}{{ entity.location }}{% endif %}</p>
                     <p>
                         {{ entity.teaser|raw }}
                     </p>

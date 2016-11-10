@@ -11,7 +11,7 @@
                 </h2>
 
                 <p>{% if entity.start %}{{ entity.start|date("l, F d") }} {{ entity.start|date("g:i A") }}{% endif %}</p>
-
+                <p>{% if entity.location!='' %}{{ entity.location }}{% endif %}</p>
                 <p>
                     {{ entity.description|raw }}
                 </p>

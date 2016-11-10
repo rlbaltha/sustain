@@ -55,6 +55,7 @@
                         {% for event in events %}
                             <h3>{{ event.title }}</h3>
                             <p>{% if event.start %}{{ event.start|date("l, F d") }} {{ event.start|date("g:i A") }}{% endif %}</p>
+                            <p>{% if event.location!='' %}{{ event.location }}{% endif %}</p>
                             <p>{{ event.teaser|raw }}</p>
                             <hr/>
                         {% else %}
