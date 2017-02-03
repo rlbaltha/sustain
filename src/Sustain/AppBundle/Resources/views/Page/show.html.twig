@@ -1,5 +1,7 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
+{% block title %}{{ application_name }} {{ entity.menuName|raw }}{% endblock %}
+
 {% block body -%}
     <div class="col-sm-10 ">
         {% if is_granted('ROLE_ADMIN') %}<a class="btn btn-primary pull-right"
