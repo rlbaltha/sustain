@@ -11,6 +11,9 @@ h1, h2, h3 {
     padding-left: 2rem;
 }
 
+.row {
+    min-height: 100vh;
+}
 .col-sm-10 {
     padding: 2em
 }
