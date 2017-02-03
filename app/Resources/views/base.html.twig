@@ -10,8 +10,8 @@
 
     <!-- Bootstrap CSS -->
     {% block stylesheets %}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
-              integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
               crossorigin="anonymous">
 
         <link type="text/css" rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -26,43 +26,94 @@
 <body>
 
 <div class="container-viewport">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse"
-                data-target="#exCollapsingNavbar">
-            &#9776;
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-fixed-top navbar-inverse">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar">
+        <a class="navbar-brand" href="{{ path('page_landing') }}">{{ application_name }}</a>
 
-            <ul class="nav navbar-nav">
-                <li class="nav-item" id="landing"><a href="{{ path('page_landing') }}">{{ application_name }}</a></li>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item" id="skip">
-                    <a id="main_nav" href="#main_content">Skip Navigation</a>
+                    <a class="nav-link" id="main_nav" href="#main_content">Skip Navigation</a>
                 </li>
-                <li class="nav-item" id="faq"><a href="{{ path('page_show', { 'id':12 }) }}">Faculty</a></li>
-                <li class="nav-item" id="faq"><a href="{{ path('page_show', { 'id':41 }) }}">Students</a></li>
-                <li class="nav-item" id="faq"><a href="{{ path('page_show', { 'id':42 }) }}">Community</a></li>
-                <li class="nav-item" id="faq"><a href="{{ path('module') }}">Resources</a></li>
-                <li class="nav-item" id="faq"><a href="{{ path('page_show', { 'id':50 }) }}">Lake Herrick</a></li>
-                <li class="nav-item" id="faq"><a href="{{ path('page_show', { 'id':66 }) }}">Trail Creek</a></li>
-                <li class="nav-item" id="faq"><a href="{{ path('event') }}">Events</a></li>
-                <li class="nav-item" id="faq"><a href="{{ path('section') }}">Stories</a></li>
-                <li class="nav-item" id="user"><a href="{{ path('page_show', { 'id': 9 }) }}">Donate</a></li>
-            </ul>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{{ path('page_show', { 'id':12 }) }}"
+                       id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Faculty
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                        <a class="dropdown-item" href="{{ path('module') }}">Teaching Resources</a>
+                        <a class="dropdown-item" href="{{ path('page_show', { 'id':10 }) }}">Service Learning</a>
+                        <a class="dropdown-item" href="{{ path('page_show', { 'id':14 }) }}">Watershed UGA in the eLC</a>
+                        <a class="dropdown-item" href="{{ path('page_show', { 'id':49 }) }}">Faculty Forms</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{{ path('page_show', { 'id':41 }) }}"
+                       id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Student
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                        <a class="dropdown-item" href="{{ path('page_show', { 'id':10 }) }}">How to Get Involved</a>
+                        <a class="dropdown-item" href="{{ path('page_show', { 'id':14 }) }}">Watershed Classes</a>
+                        <a class="dropdown-item" href="{{ path('opportunity', { 'type':'intern' }) }}">Internships</a>
+                        <a class="dropdown-item" href="{{ path('event') }}">Events</a>
+                        <a class="dropdown-item" href="{{ path('public_profiles') }}">Faculty Profiles
+                        </a>
+                    </div>
+                </li>
 
-            <ul class="nav navbar-nav pull-xs-right">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{{ path('page_show', { 'id':41 }) }}"
+                       id="navbarDropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Community
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
+                        <a class="dropdown-item" href="{{ path('page_show', { 'id':42 }) }}">How to Partner with Us</a>
+                        <a class="dropdown-item" href="{{ path('opportunity', { 'type':'service' }) }}">Partners</a>
+                        <a class="dropdown-item" href="{{ path('event') }}">Events</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{{ path('page_show', { 'id':41 }) }}"
+                       id="navbarDropdownMenuLink4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Resources
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink4">
+                        <a class="dropdown-item" href="{{ path('module') }}">Modules</a>
+                        <a class="dropdown-item" href="{{ path('activity') }}">Activities</a>
+                        <a class="dropdown-item" href="{{ path('file') }}">Files</a>
+                        <a class="dropdown-item" href="{{ path('mapset') }}">Maps</a>
+                    </div>
+                </li>
+
+                <li class="nav-item"><a class="nav-link" href="{{ path('page_show', { 'id':50 }) }}">Lake Herrick</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('page_show', { 'id':66 }) }}">Trail Creek</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('event') }}">Events</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('section') }}">Stories</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('page_show', { 'id': 9 }) }}">Donate</a></li>
+            </ul>
+            <ul class="navbar-nav mr-auto pull-xs-right">
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                     <li class="nav-item dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Profile</a>
+                        <a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown"
+                           data-hover="dropdown">Profile</a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ path('user_profile') }}">My Profile</a></li>
+                            <li><a class="nav-link" href="{{ path('user_profile') }}">My Profile</a></li>
                             <li>
-                                <a title="Logout" href="{{ path('logout') }}">Logout</a>
+                                <a class="nav-link" title="Logout" href="{{ path('logout') }}">Logout</a>
                             </li>
                         </ul>
                     </li>
                 {% else %}
                     <li>
-                        <a title="Login" href="{{ path('user_profile') }}">Login</a>
+                        <a class="nav-link" title="Login" href="{{ path('user_profile') }}">Login</a>
                     </li>
                 {% endif %}
                 <li id="skip">
@@ -72,25 +123,57 @@
         </div>
     </nav>
 
-    <section class="main-content">
+    {% if 'landing' in app.request.attributes.get('_route') %}
+    <!-- Carousel
+================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            {% for slide in carousel %}
+                <li data-target="#myCarousel" data-slide-to="{{ loop.index }}" class="{% if loop.first %}active{% endif %}"></li>
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            {% for slide in carousel %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                    <img class="first-slide" src="{{ slide.image }}" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1>{{ slide.headline }}</h1>
+                        <p>{{ slide.body|raw }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div><!-- /.carousel -->
 
+    <!--  ================================================== -->
+    {% endif %}
+
+    <div class="row">
         {% block sidebar %}{% endblock %}
         {% block body %}{% endblock %}
+    </div>
 
 
-        {% block javascripts %}
-            <!-- jQuery first, then Bootstrap JS. -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
-                    integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"
-                    crossorigin="anonymous"></script>
-            <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/tinysort/2.2.2/tinysort.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.22.5/js/jquery.tablesorter.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.22.5/js/jquery.tablesorter.widgets.min.js"></script>
-        {% endblock %}
-
-    </section>
+    {% block javascripts %}
+        <!-- jQuery first, then Bootstrap JS. -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+                integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+                crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tinysort/2.2.2/tinysort.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.22.5/js/jquery.tablesorter.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.22.5/js/jquery.tablesorter.widgets.min.js"></script>
+    {% endblock %}
 
 </div>
 

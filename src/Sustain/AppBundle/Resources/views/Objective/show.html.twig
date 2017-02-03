@@ -1,7 +1,7 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 
-{% block title %}Objectives{% endblock %}
+{% block title %}{{ application_name }} Objectives {{ entity.objective|raw }} {% endblock %}
 
 
 {% block body -%}
