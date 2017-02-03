@@ -14,7 +14,7 @@
         {% endif %}
 
         {% for tag in entity.tags %}
-            <span class="label label-default" style="background-color: {{ tag.color }};">
+            <span class="btn btn-info btn-sm" style="background-color: {{ tag.color }};">
                                 {{ tag.name }}
                                 </span>
         {% endfor %}
@@ -51,7 +51,7 @@
                     </td>
                     <td class="labels hidden-xs">
                         {% for tag in file.tags %}
-                            <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                            <span class="btn btn-info btn-sm margin-right" style="background-color: {{ tag.color }};">
                                 {{ tag.name }}
                                 </span>
                         {% endfor %}
@@ -110,7 +110,7 @@
                     </td>
                     <td class="labels hidden-xs">
                         {% for tag in file.tags %}
-                            <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                            <span class="btn btn-info btn-sm margin-right" style="background-color: {{ tag.color }};">
                                 {{ tag.name }}
                                 </span>
                         {% endfor %}
