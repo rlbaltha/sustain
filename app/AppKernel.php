@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Sustain\UserBundle\SustainUserBundle(),
             new BeSimple\SsoAuthBundle\BeSimpleSsoAuthBundle(),
+            new AntiMattr\GoogleBundle\GoogleBundle(),
             new Sustain\AppBundle\AppBundle(),
         );
 

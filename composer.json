@@ -32,7 +32,8 @@
         "packagist/yuicompressor-bin": "dev-master",
         "h4cc/wkhtmltopdf-amd64" : "0.12.1",
         "besimple/sso-auth-bundle": "*@dev",
-        "jms/serializer-bundle": "^1.1"
+        "jms/serializer-bundle": "^1.1",
+        "antimattr/google-bundle": "~2.0@stable"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

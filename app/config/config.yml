@@ -163,6 +163,23 @@ knp_snappy:
         binary:     %wkhtmltopdf_path%
         options:    []
 
+google:
+    analytics:
+        enhanced_ecommerce: false
+        session_auto_started: true
+        trackers:
+            default:
+                name: WatershedUGAAnalytics
+                accountId: UA-90853771-1
+                domain: watershed.uga.edu
+                setSiteSpeedSampleRate: 5
+                allowAnchor: true
+                allowHash: true
+                includeNamePrefix: false
+                plugins:
+                    - 'linkid'
+        whitelist: [ 'q', 'utm_source', 'utm_medium', 'utm_term', 'utm_content', 'utm_campaign' ]
+
 ivory_ck_editor:
     configs:
         editor_default:
