@@ -38,6 +38,8 @@ h1, h2, h3 {
 .sidebar a, .sidebar h2 {
     color:white
 }
+
+
 /**********  Accessibility **********/
 #skip a, #skip a:hover, #skip a:visited
 {

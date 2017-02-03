@@ -35,7 +35,7 @@
             <thead>
             <tr class="file">
                 <th><span>Title</span></th>
-                <th class="hidden-xs">Labels</th>
+                <th class="hidden-xs">Tags</th>
             </tr>
             </thead>
             <tbody>
@@ -45,7 +45,7 @@
                 <tr>
                     <td>
                         {% if file.url is null %}
-                            <span class="label label-info" data-toggle="tooltip"
+                            <span class="btn btn-info btn-sm"  data-toggle="tooltip"
                                   title="This an {{ file.ext }} file ">{{ file.ext }}</span>
                             <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
                                 {{ file.name }}
@@ -69,7 +69,7 @@
                     </td>
                     <td class="labels hidden-xs">
                         {% for tag in file.tags %}
-                            <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                            <span class="btn btn-secondary btn-sm margin-right" style="background-color: {{ tag.color }}; color:white;">
                                 {{ tag.name }}
                                 </span>
                         {% endfor %}
