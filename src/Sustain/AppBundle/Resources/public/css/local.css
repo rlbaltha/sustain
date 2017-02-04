@@ -22,6 +22,11 @@ h1, h2, h3 {
     padding: 2em;
 }
 
+.col-sm-6 {
+    padding: 2em;
+    padding-top: 0;
+}
+
 .col-sm-4 {
     padding: 2em;
 }
@@ -37,6 +42,10 @@ h1, h2, h3 {
 
 .sidebar a, .sidebar h2 {
     color:white
+}
+
+h2 {
+    padding:.5em;
 }
 
 

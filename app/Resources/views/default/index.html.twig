@@ -9,11 +9,12 @@
 
         <!-- Three columns of text below the carousel -->
         <div class="row">
-            <div class="col-sm-4 ">
+            <div class="col-sm-6">
                 <h2>Events</h2>
                 <div class="card">
                     <div class="card-block">
-                        <iframe style="border:none;width:100%;" src="https://uga.givepulse.com/w/23030146caeb82fa4b1288952c5df633?"></iframe>
+                        <iframe style="border:none;width:100%;"
+                                src="https://uga.givepulse.com/w/23030146caeb82fa4b1288952c5df633?"></iframe>
                     </div>
                 </div>
                 <div class="card">
@@ -32,7 +33,8 @@
                 </div>
                 <div class="card">
                     <div class="card-block">
-                        <a class="twitter-timeline" href="https://twitter.com/WatershedUGA" data-widget-id="644610687554162689">Tweets
+                        <a class="twitter-timeline" href="https://twitter.com/WatershedUGA"
+                           data-widget-id="644610687554162689">Tweets
                             by @WatershedUGA</a>
                         <script>!function (d, s, id) {
                                 var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
@@ -45,37 +47,9 @@
                             }(document, "script", "twitter-wjs");</script>
                     </div>
                 </div>
+            </div><!-- /.col-sm-6 -->
 
-
-            </div><!-- /.col-lg-4 -->
-            <div class="col-sm-4 ">
-                <h2>Stories</h2>
-
-                <div class="card">
-                    <div class="card-block">
-                        <a href="{{ path('section') }}">Read all our stories</a>
-                        {% for page in pages %}
-                            <h3>{{ page.teaserImageCaption }}</h3>
-                            <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
-                                <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail"
-                                     alt="{{ page.menuName }}">
-                            </a>
-
-                            <div class="caption">
-                                <p>{{ page.teaser|raw }}</p>
-                            </div>
-                            <a href="{{ path('page_show', {id:page.id}) }}" title="Read more about {{ page.menuName }} ">
-                                Read more about {{ page.teaserImageCaption }}
-                            </a>
-                            <hr/>
-                        {% endfor %}
-                    </div>
-                </div>
-
-
-
-            </div><!-- /.col-lg-4 -->
-            <div class="col-sm-4 ">
+            <div class="col-sm-6 ">
 
                 <h2>Contact US</h2>
                 <div class="card">
@@ -104,8 +78,31 @@
                         </div>
                     </div>
                 </div>
+                <h2>Stories</h2>
 
-            </div><!-- /.col-lg-4 -->
+                <div class="card">
+                    <div class="card-block">
+                        <a href="{{ path('section') }}">Read all our stories</a>
+                        {% for page in pages %}
+                            <h3>{{ page.teaserImageCaption }}</h3>
+                            <a href="{{ path('page_show', {id:page.id}) }}"
+                               title="Read more about {{ page.menuName }} ">
+                                <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail"
+                                     alt="{{ page.menuName }}">
+                            </a>
+
+                            <div class="caption">
+                                <p>{{ page.teaser|raw }}</p>
+                            </div>
+                            <a href="{{ path('page_show', {id:page.id}) }}"
+                               title="Read more about {{ page.menuName }} ">
+                                Read more about {{ page.teaserImageCaption }}
+                            </a>
+                            <hr/>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div><!-- /.col-sm-6 -->
         </div><!-- /.row -->
 
 
