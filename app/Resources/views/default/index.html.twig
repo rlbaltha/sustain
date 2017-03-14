@@ -7,8 +7,16 @@
 
     <div class="container-fluid">
 
-        <!-- Three columns of text below the carousel -->
+        <!-- Two columns of text below the carousel -->
+
+
         <div class="row">
+            {% if announcement is defined %}
+            <div class="col-sm-12" style="margin-top: -5em">
+                        {{ announcement.body|raw }}
+            </div>
+            {% endif %}
+
             <div class="col-sm-6">
                 <h2>Events</h2>
                 <div class="card">

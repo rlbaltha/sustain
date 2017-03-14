@@ -36,25 +36,6 @@ class PageController extends Controller
         );
     }
 
-    /**
-     * Lists all Page entities.
-     *
-     * @Route("/home", name="page_home")
-     * @Method("GET")
-     * @Template()
-     */
-    public function homeAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $pages = $em->getRepository('AppBundle:Page')->findHome();
-        $events = $em->getRepository('AppBundle:Event')->eventShortList();
-
-        return array(
-            'pages' => $pages,
-            'events' => $events,
-        );
-    }
 
     /**
      * Displays the app landing page
@@ -70,12 +51,14 @@ class PageController extends Controller
         $carousel = $em->getRepository('AppBundle:Carousel')->findAll();
         $pages = $em->getRepository('AppBundle:Page')->findHome();
         $events = $em->getRepository('AppBundle:Event')->eventShortList();
+        $announcement = $em->getRepository('AppBundle:Announcement')->findAnnouncement();
 
 
         return array(
             'carousel' => $carousel,
             'events' => $events,
             'pages' => $pages,
+            'announcement' => $announcement,
         );
     }
     
