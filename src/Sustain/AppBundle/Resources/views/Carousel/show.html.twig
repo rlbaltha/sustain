@@ -1,10 +1,11 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Carousel</h1>
+    <div class="col-sm-10">
+        <h1>Carousel</h1>
 
-    <table class="table">
-        <tbody>
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ entity.id }}</td>
@@ -15,7 +16,7 @@
             </tr>
             <tr>
                 <th>Body</th>
-                <td>{{ entity.body | raw}}</td>
+                <td>{{ entity.body | raw }}</td>
             </tr>
             <tr>
                 <th>Image</th>
@@ -25,20 +26,21 @@
                 <th>Url</th>
                 <td>{{ entity.url }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
         <ul class="record_actions">
-    <li>
-        <a href="{{ path('carousel') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('carousel_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+            <li>
+                <a href="{{ path('carousel') }}">
+                    Back to the list
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('carousel_edit', { 'id': entity.id }) }}">
+                    Edit
+                </a>
+            </li>
+            <li>{{ form(delete_form) }}</li>
+        </ul>
+    </div>
 {% endblock %}
