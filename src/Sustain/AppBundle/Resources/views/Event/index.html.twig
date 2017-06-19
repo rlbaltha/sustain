@@ -8,40 +8,42 @@
     {{ parent() }}
 {% endblock %}
 
+{% block title %}{{ application_name }} Events Index {% endblock %}
 
 {% block body -%}
+    <div class="col-sm-10">
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-primary pull-xs-right" href="{{ path('event_new') }}">New Event</a>
+        {% endif %}
+        <h1>Events</h1>
 
-    <h1 style="display: inline-block;">Events</h1>
-    <a class="btn btn-primary pull-right" href="{{ path('event_month') }}">Calendar View</a>
-    {% if is_granted('ROLE_ADMIN') %}
-        <a class="btn btn-primary pull-right" href="{{ path('event_new') }}">New Event</a>
-    {% endif %}
+        {% for entity in entities %}
+            <div class="card">
+                <div class="card-block">
+                    <h2 style="display:inline">
+                        {{ entity.title }}
+                    </h2>
 
-    {% for entity in entities %}
-        <div class="col-sm-12 well">
-            <div class="col-sm-10">
-                <h2 style="display:inline">
-                    {{ entity.title }}
-                </h2>
-
-                <p>{% if entity.start %}{{ entity.start|date("l, F d") }}
-                    {% if entity.start|date("g:i A") == "12:00 AM" %}{% else %}{{ entity.start|date("g:i A") }}{% endif %}
-                    {% endif %}
-                </p>
-
-                <p>
-                    {{ entity.teaser|raw }}
-                </p>
-                {% if entity.description != '' %}
-                    <p>
-                        <a href="{{ path('event_show', { 'id': entity.id }) }}">Read the full description for {{ entity.title }}.</a>
+                    <p>{% if entity.start %}{{ entity.start|date("l, F d") }}
+                            {% if entity.start|date("g:i A") == "12:00 AM" %}{% else %}{{ entity.start|date("g:i A") }}{% endif %}
+                        {% endif %}
                     </p>
+                    <p>{% if entity.location!='' %}{{ entity.location }}{% endif %}</p>
+                    <p>
+                        {{ entity.teaser|raw }}
+                    </p>
+                    {% if entity.description != '' %}
+                        <p>
+                            <a href="{{ path('event_show', { 'id': entity.id }) }}">Read the full description
+                                for {{ entity.title }}.</a>
+                        </p>
+                    {% endif %}
+                </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a class="btn btn-primary" href="{{ path('event_edit', { 'id': entity.id }) }}">Edit</a>
+                    <a class="btn btn-primary" href="{{ path('event_duplicate', { 'id': entity.id }) }}">Duplicate</a>
                 {% endif %}
             </div>
-            {% if is_granted('ROLE_ADMIN') %}
-                <a class="btn btn-default" href="{{ path('event_edit', { 'id': entity.id }) }}">Edit</a>
-                <a class="btn btn-default" href="{{ path('event_duplicate', { 'id': entity.id }) }}">Duplicate</a>
-            {% endif %}
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 {% endblock %}

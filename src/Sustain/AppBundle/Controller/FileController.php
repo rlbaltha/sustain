@@ -256,7 +256,7 @@ class FileController extends Controller {
    *
    * @Route("/{id}/edit", name="file_edit")
    * @Method("GET")
-   * @Template()
+   * @Template("AppBundle:Shared:edit.html.twig")
    */
   public function editAction($id) {
     $em = $this->getDoctrine()->getManager();
@@ -323,7 +323,7 @@ class FileController extends Controller {
    *
    * @Route("/{id}/{type}", name="file_update")
    * @Method("PUT")
-   * @Template("AppBundle:File:edit.html.twig")
+   * @Template("AppBundle:Shared:edit.html.twig")
    */
   public function updateAction(Request $request, $id, $type) {
     $em = $this->getDoctrine()->getManager();

@@ -1,127 +1,184 @@
-{# sustain/app/Resources/views/base.html.twig #}
 <!DOCTYPE html>
-<html {% if 'default' not in app.request.attributes.get('_route') %}class="full"{% endif %} lang="en">
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{% block title %}Watershed UGA{% endblock %}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 
+    <!-- Bootstrap CSS -->
     {% block stylesheets %}
-        {% stylesheets '@bootstrap_less' combine=true  output='css/compiled/main.css' %}
-        <link href="{{ asset_url }}" type="text/css" rel="stylesheet"/>{% endstylesheets %}
-        <link href='https://fonts.googleapis.com/css?family=Josefin+Sans&subset=latin,latin-ext' rel='stylesheet'
-              type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+              crossorigin="anonymous">
+
+        <link type="text/css" rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <link type="text/css" rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.22.5/css/theme.bootstrap.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
         <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/local.css') }}">
     {% endblock %}
-
-    {% block javascripts %}
-        {% javascripts '@jquery_js' '@jqueryui_js' '@bootstrap_js' combine=true output='js/compiled/main.js' %}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-        <script language="javascript">
-            $(document).ready(function () {
-                var active_route = '{{ app.request.attributes.get('_route') }}';
-                var currentactive = '#' + active_route;
-                $('.active').removeClass('active');
-                $(currentactive).addClass('active');
-                (function () {
-                    var cx = '000502081467924493637:_i_ajtr6taa';
-                    var gcse = document.createElement('script');
-                    gcse.type = 'text/javascript';
-                    gcse.async = true;
-                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                            '//cse.google.com/cse.js?cx=' + cx;
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(gcse, s);
-                })();
-
-                $('.gsc-input-box').addClass('form-control');
-            });
-        </script>
-    {% endblock %}
-
-    <link rel="icon" href="{{ asset('bundles/app/images/favicon.ico') }}" sizes="16x16 32x32 48x48 64x64"
-          type="image/vnd.microsoft.icon">
+    {% include "GoogleBundle:Analytics:async_universal.html.twig" %}
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ path('default') }}">{{ application_name }}</a>
-        </div>
+<div class="container-viewport">
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-fixed-top navbar-inverse">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="{{ path('page_landing') }}">{{ application_name }}</a>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li id="skip">
-                    <a id="main_nav" href="#main_content">Skip Navigation</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" id="skip">
+                    <a class="nav-link" id="main_nav" href="#main_content">Skip Navigation</a>
                 </li>
-                <li id="faq"><a href="{{ path('page_show', { 'id':1 }) }}">About</a></li>
-                <li id="faq"><a href="{{ path('page_show', { 'id':12 }) }}">FAQ</a></li>
-                <li id="event" class=""><a title="Events" href="{{ path('event') }}">Events/Service</a></li>
-                <li id="module"><a href="{{ path('module') }}">Modules</a></li>
-                <li id="objective"><a href="{{ path('objective') }}">Objectives</a></li>
-                <li id="activity"><a href="{{ path('activity') }}">Activities</a></li>
-                <li id="file"><a title="Courses" href="{{ path('file') }}">Resources</a></li>
-                <li id="mapset"><a href="{{ path('mapset') }}">Maps</a></li>
-                <li id="user"><a href="{{ path('public_profiles') }}">Profiles</a></li>
-                <li id="user"><a href="{{ path('page_show', { 'id': 9 }) }}">Donate</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{{ path('page_show', { 'id':12 }) }}"
+                       id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Faculty
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                        <a class="dropdown-item" href="{{ path('module') }}">Teaching Resources</a>
+                        <a class="dropdown-item" href="{{ path('page_show', { 'id':10 }) }}">Service Learning</a>
+                        <a class="dropdown-item" href="{{ path('page_show', { 'id':14 }) }}">Watershed UGA in the
+                            eLC</a>
+                        <a class="dropdown-item" href="{{ path('page_show', { 'id':49 }) }}">Faculty Forms</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{{ path('page_show', { 'id':41 }) }}"
+                       id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Student
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                        <a class="dropdown-item" href="{{ path('page_show', { 'id':10 }) }}">How to Get Involved</a>
+                        <a class="dropdown-item" href="{{ path('page_show', { 'id':14 }) }}">Watershed Classes</a>
+                        <a class="dropdown-item" href="{{ path('opportunity', { 'type':'intern' }) }}">Internships</a>
+                        <a class="dropdown-item" href="{{ path('event') }}">Events</a>
+                        <a class="dropdown-item" href="{{ path('public_profiles') }}">Faculty Profiles
+                        </a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{{ path('page_show', { 'id':41 }) }}"
+                       id="navbarDropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Community
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
+                        <a class="dropdown-item" href="{{ path('page_show', { 'id':42 }) }}">How to Partner with Us</a>
+                        <a class="dropdown-item" href="{{ path('opportunity', { 'type':'service' }) }}">Partners</a>
+                        <a class="dropdown-item" href="{{ path('event') }}">Events</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{{ path('page_show', { 'id':41 }) }}"
+                       id="navbarDropdownMenuLink4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Resources
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink4">
+                        <a class="dropdown-item" href="{{ path('module') }}">Modules</a>
+                        <a class="dropdown-item" href="{{ path('activity') }}">Activities</a>
+                        <a class="dropdown-item" href="{{ path('file') }}">Files</a>
+                        <a class="dropdown-item" href="{{ path('mapset') }}">Maps</a>
+                    </div>
+                </li>
+
+                <li class="nav-item"><a class="nav-link" href="{{ path('page_show', { 'id':50 }) }}">Lake Herrick</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('page_show', { 'id':66 }) }}">Trail Creek</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('event') }}">Events</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('section') }}">Stories</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('page_show', { 'id': 9 }) }}">Donate</a></li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="navbar-nav mr-auto">
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Profile</a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ path('user_profile') }}">My Profile</a></li>
-                            <li>
-                                <a title="Logout" href="{{ path('fos_user_security_logout') }}">Logout</a>
-                            </li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('user_profile') }}">My Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" title="Logout" href="{{ path('logout') }}">Logout</a>
                     </li>
                 {% else %}
-                    <li>
-                        <a title="Login" href="{{ path('fos_user_security_login') }}">Login</a>
+                    <li class="nav-item">
+                        <a class="nav-link" title="Login" href="{{ path('user_profile') }}">Login</a>
                     </li>
                 {% endif %}
+
                 <li id="skip">
                     <a id="main_content" href="#main_nav">Skip to Top</a>
                 </li>
             </ul>
-
+            <a target="_blank" href="https://www.instagram.com/watershed.uga"><img title="Instagram" src="{{ asset('bundles/app/images/insta.png') }}"/> </a>
+            <a target="_blank"  href="https://www.facebook.com/watersheduga/"><img title="Facebook" src="{{ asset('bundles/app/images/face.png') }}"/> </a>
         </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
+    </nav>
 
+    {% if carousel is defined %}
+        <!-- Carousel
+    ================================================== -->
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                {% for slide in carousel %}
+                    <li data-target="#myCarousel" data-slide-to="{{ loop.index }}"
+                        class="{% if loop.first %}active{% endif %}"></li>
+                {% endfor %}
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                {% for slide in carousel %}
+                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                        <img class="first-slide" src="{{ slide.image }}" alt="First slide">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h1>{{ slide.headline }}</h1>
+                            <p>{{ slide.body|raw }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div><!-- /.carousel -->
 
-<div style="margin-top: 70px;">
-    {% if 'default' in app.request.attributes.get('_route') or app.request.attributes.get('_route') == 'page_home' %}
-    {% else %}
-        <div class="col-sm-2 sidebar hidden-xs">
-            {% block sidebar %}
-            {% endblock %}
-        </div>
-
+        <!--  ================================================== -->
     {% endif %}
-    <div class="{% if 'default' in app.request.attributes.get('_route')  or app.request.attributes.get('_route') == 'theme' %}col-sm-12{% else %}col-sm-10{% endif %}">
-        {% block body %}
-        {% endblock %}
+
+    <div class="row">
+        {% block sidebar %}{% endblock %}
+        {% block body %}{% endblock %}
     </div>
+
+
+    {% block javascripts %}
+        <!-- jQuery first, then Bootstrap JS. -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+                integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+                crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tinysort/2.2.2/tinysort.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.22.5/js/jquery.tablesorter.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.22.5/js/jquery.tablesorter.widgets.min.js"></script>
+    {% endblock %}
+
 </div>
 
 </body>
-
-
 </html>
+

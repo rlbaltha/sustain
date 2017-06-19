@@ -4,7 +4,7 @@
     <h1>Getting Started</h1>
 
     {% for entity in entities %}
-        <div class="col-sm-12 well">
+        <div class="col-sm-12">
             <a href="{{ path('theme_show', { 'id': entity.id }) }}" class="">
                 <div class="col-sm-2">
                     <img src="{{ entity.image }}" class="img-responsive img-rounded" style="height:100px;"
@@ -20,7 +20,7 @@
                     </p>
                 </div>
             </a>
-            {% if is_granted('ROLE_ADMIN') %}<a class="btn btn-default"
+            {% if is_granted('ROLE_ADMIN') %}<a class="btn btn-primary"
                                                 href="{{ path('theme_edit', { 'id': entity.id }) }}">Edit</a>{% endif %}
         </div>
     {% endfor %}

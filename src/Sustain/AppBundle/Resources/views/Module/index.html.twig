@@ -1,39 +1,40 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Modules{% endblock %}
+{% block title %}{{ application_name }} Modules Index {% endblock %}
 
 {% block body -%}
-    <h1 style="display: inline-block;">Modules</h1>
-    {% if is_granted('ROLE_ADMIN') %}
-        <a class="btn btn-primary pull-right" href="{{ path('module_new') }}">New Module</a>
-    {% endif %}
+    <div class="col-sm-10">
+        <h1>Modules</h1>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-primary pull-right" href="{{ path('module_new') }}">New Module</a>
+        {% endif %}
 
-    <div class="alert alert-info alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                    aria-hidden="true">&times;</span></button>
-        These modules have been designed for one to three class periods.
-        Click on a title for access to learning objectives,
-        activities, resources, assessments, and lecture content.
-    </div>
-
-    {% for entity in entities %}
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3><a href="{{ path('module_show', { 'id': entity.id }) }}">{{ entity.name|raw }}</a></h3>
-                {% for tag in entity.tags %}
-                    <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
-                                {{ tag.name }}
-                                </span>
-                {% endfor %}
-            </div>
-            <div class="panel-body">
-
-                {{ entity.description|raw }}
-
-            </div>
+        <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            These modules have been designed for one to three class periods.
+            Click on a title for access to learning objectives,
+            activities, resources, assessments, and lecture content.
         </div>
 
-    {% endfor %}
+        {% for entity in entities %}
 
+            <div class="card">
+                <div class="card-block">
+                    <h3><a href="{{ path('module_show', { 'id': entity.id }) }}">{{ entity.name|raw }}</a></h3>
+                    {% for tag in entity.tags %}
+                        <span class="btn btn-default btn-sm" style="background-color: {{ tag.color }};color:white;">
+                                {{ tag.name }}
+                                </span>
+                    {% endfor %}
+                </div>
+                <div class="card-block">
+
+                    {{ entity.description|raw }}
+
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
 {% endblock %}

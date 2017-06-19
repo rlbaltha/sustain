@@ -1,6 +1,16 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: services.yml }
+
+parameters:
+    locale: en
+    be_simple.sso_auth.client.option.curlopt_sslversion.value: 0
+
+
+services:
+    fos_user.doctrine_registry:
+        alias: doctrine
 
 framework:
     #esi:             ~
@@ -93,6 +103,16 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+be_simple_sso_auth:
+    admin_sso:
+        protocol:
+            id: cas
+            version: 2
+        server:
+            id: cas
+            login_url: https://cas.uga.edu/cas/login
+            logout_url: https://cas.uga.edu/cas/logout
+            validation_url: https://cas.uga.edu/cas/serviceValidate
 
 be_simple_sso_auth:
     admin_sso:
@@ -117,7 +137,6 @@ fos_user:
         sender_name:    %app_name%
     service:
         user_manager:   fos_user.user_manager.default
-
 
 # Doctrine extensions
 stof_doctrine_extensions:
@@ -155,6 +174,23 @@ knp_snappy:
         binary:     %wkhtmltopdf_path%
         options:    []
 
+google:
+    analytics:
+        enhanced_ecommerce: false
+        session_auto_started: true
+        trackers:
+            default:
+                name: WatershedUGAAnalytics
+                accountId: UA-90853771-1
+                domain: watershed.uga.edu
+                setSiteSpeedSampleRate: 5
+                allowAnchor: true
+                allowHash: true
+                includeNamePrefix: false
+                plugins:
+                    - 'linkid'
+        whitelist: [ 'q', 'utm_source', 'utm_medium', 'utm_term', 'utm_content', 'utm_campaign' ]
+
 ivory_ck_editor:
     configs:
         editor_default:
@@ -173,9 +209,10 @@ ivory_ck_editor:
             startupFocus: true
             toolbar: "toolbar_page"
             removePlugins: "elementspath,contextmenu,liststyle,tabletools"
-            allowedContent: 'p h2 h3 h4 img{text-align,margin-left}(*); a[href,target,name]{*}(*); table th tr td strong em; ol ul li span(*){font-size,font-family,color,background-color}; img[*]{*}; div(*);iframe{*}[*];'
+            allowedContent: 'p h2 h3 h4 img{text-align,margin-left}(*); a[href,target,name]{*}(*); table{*}(*); th tr td strong em; ol ul li span(*){font-size,font-family,color,background-color}; img[*]{*}; div(*);iframe{*}[*];'
             disableNativeSpellChecker: false
             height: 500
+            stylesSet: 'styles:../../bundles/app/js/ckeditor_styles.js'
     toolbars:
         configs:
             toolbar_default: [ ['Bold','Italic','Underline','Strike','JustifyLeft','JustifyCenter','JustifyRight','TextColor','BGColor','FontSize'],['Link','Unlink','NumberedList','BulletedList','Outdent','Indent','Image','MediaEmbed'],[ 'Undo', 'Redo','RemoveFormat'] ]

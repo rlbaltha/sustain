@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block sidebar %}{% endblock %}
+{% block body %}
+
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container-fluid">
+
+        <!-- Two columns of text below the carousel -->
+
+
+        <div class="row">
+            {% if announcement is defined %}
+            <div class="col-sm-12" style="margin-top: -5em">
+                        {{ announcement.body|raw }}
+            </div>
+            {% endif %}
+
+            <div class="col-sm-6">
+                <h2>Contact US</h2>
+                <div class="card">
+                    <div class="card-block">
+                        <p>If you have questions, please send an email to watershed@uga.edu. </p>
+                    </div>
+                </div>
+
+                <h2>Join our mailing list!</h2>
+                <div class="card">
+                    <div class="card-block">
+
+
+                        <p>Please send your name and email to <strong>watershed@uga.edu</strong> to get email updates on
+                            Watershed UGA. Please note if you are a
+                            student,
+                            a member of the community, or a faculty member in the email. </p>
+                    </div>
+                </div>
+
+                <h2>Events</h2>
+                <div class="card">
+                    <div class="card-block">
+                        <iframe style="border:none;width:100%;"
+                                src="https://uga.givepulse.com/w/23030146caeb82fa4b1288952c5df633?"></iframe>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-block">
+                        <a title="Events" href="{{ path('event') }}">See all upcoming events</a>
+                        {% for event in events %}
+                            <h3>{{ event.title }}</h3>
+                            <p>{% if event.start %}{{ event.start|date("l, F d") }} {{ event.start|date("g:i A") }}{% endif %}</p>
+                            <p>{% if event.location!='' %}{{ event.location }}{% endif %}</p>
+                            <p>{{ event.teaser|raw }}</p>
+                            <hr/>
+                        {% else %}
+                            <p>There are no events at this time. Please check back soon.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-block">
+                        <a class="twitter-timeline" href="https://twitter.com/WatershedUGA"
+                           data-widget-id="644610687554162689">Tweets
+                            by @WatershedUGA</a>
+                        <script>!function (d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                                if (!d.getElementById(id)) {
+                                    js = d.createElement(s);
+                                    js.id = id;
+                                    js.src = p + "://platform.twitter.com/widgets.js";
+                                    fjs.parentNode.insertBefore(js, fjs);
+                                }
+                            }(document, "script", "twitter-wjs");</script>
+                    </div>
+                </div>
+
+                <h3>Watch our Introductory Video</h3>
+                <div class="card">
+                    <div class="card-block">
+                        <div class="embed-responsive embed-responsive-4by3">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/mZvlSWSNsJw?rel=0"
+                                    frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.col-sm-6 -->
+
+            <div class="col-sm-6 ">
+
+
+
+                <h2>Stories</h2>
+
+                <div class="card">
+                    <div class="card-block">
+                        <a href="{{ path('section') }}">Read all our stories</a>
+                        {% for page in pages %}
+                            <h3>{{ page.teaserImageCaption }}</h3>
+                            <a href="{{ path('page_show', {id:page.id}) }}"
+                               title="Read more about {{ page.menuName }} ">
+                                <img src="{{ page.teaserImage }}" class="img-responsive img-thumbnail"
+                                     alt="{{ page.menuName }}">
+                            </a>
+
+                            <div class="caption">
+                                <p>{{ page.teaser|raw }}</p>
+                            </div>
+                            <a href="{{ path('page_show', {id:page.id}) }}"
+                               title="Read more about {{ page.menuName }} ">
+                                Read more about {{ page.teaserImageCaption }}
+                            </a>
+                            <hr/>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div><!-- /.col-sm-6 -->
+        </div><!-- /.row -->
+
+
+    </div><!-- /.container -->
+
+
+{% endblock %}

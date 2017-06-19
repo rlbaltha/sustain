@@ -1,33 +1,37 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}Profiles{% endblock %}
+{% block title %}{{ application_name }} Profiles{% endblock %}
 
 {% block body -%}
-    <h1>Profiles</h1>
+    <div class="col-sm-12">
+        <h1>Profiles</h1>
 
-    <div class="alert alert-info alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        Click on a name for the role of the Watershed UGA affiliate, research collaboration and opportunities, and contact information.
-    </div>
+        <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            Click on a name for the role of the Watershed UGA affiliate, research collaboration and opportunities, and
+            contact information.
+        </div>
 
 
-
-    <table class="table">
-        <thead>
+        <table class="table">
+            <thead>
             <tr>
                 <th>Name</th>
                 <th>School/College/Unit</th>
                 <th>Research</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('public_profile', { 'id': entity.id }) }}">{{ entity.lastname }}, {{ entity.firstname }}</a></td>
-                <td>{{ entity.college|raw }}</td>
-                <td> {{ entity.research|raw }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    {% endblock %}
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('public_profile', { 'id': entity.id }) }}">{{ entity.lastname }}, {{ entity.firstname }}</a></td>
+                    <td>{{ entity.college|raw }}</td>
+                    <td> {{ entity.research|raw }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

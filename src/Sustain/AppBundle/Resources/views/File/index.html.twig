@@ -1,74 +1,84 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
-{% block title %}Resources{% endblock %}
+{% block title %}{{ application_name }} Watershed Files Index{% endblock %}
 
 {% block body %}
+    <div class="col-sm-10">
 
-    <h1 style="display: inline-block;">Resources</h1>
-    {% if is_granted('ROLE_ADMIN') %}
-        <a class="btn btn-primary pull-right" id='file_new_upload' title='Upload Resource' href="{{ path('file_new') }}"><i class="glyphicon
+
+        <h1>Files</h1>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-primary pull-right" id='file_new_upload' title='Upload Resource'
+               href="{{ path('file_new') }}"><i class="glyphicon
         glyphicon-upload"></i> Upload
-            Resource</a>
-        <a class="btn btn-primary pull-right" id='file_new_upload' title='Upload Resource' href="{{ path('file_new', {'type': 'link'}) }}"><i
-                    class="glyphicon glyphicon-link"></i>
-            Link to
-            Resource</a>
-    {% endif %}
+                Resource</a>
+            <a class="btn btn-primary pull-right" id='file_new_upload' title='Upload Resource'
+               href="{{ path('file_new', {'type': 'link'}) }}"><i
+                        class="glyphicon glyphicon-link"></i>
+                Link to
+                Resource</a>
+        {% endif %}
 
 
+        <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            The files here include module activities, website resources, maps, background readings, and others. Click on
+            the title to download.
+        </div>
 
-    <div class="alert alert-info alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        Resources consist of module activities, website resources, maps, background readings, and others. Click on the title to download.
-    </div>
+        <!--
+        <span class="sr-only">Search for resources.</span><gcse:search></gcse:search>
+        -->
 
-    <!--
-    <span class="sr-only">Search for resources.</span><gcse:search></gcse:search>
-    -->
-
-    <table id="file_list" class="col-sm-12 table">
-        <thead>
-        <tr class="file">
-            <th><span>Title</span></th>
-            <th class="hidden-xs">Labels</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        {% for file in files %}
-
+        <table id="file_list" class="table">
+            <thead>
             <tr class="file">
-                <td>
-                    {% if file.url is null %}
-                    <span class="label label-info" data-toggle="tooltip" title="This an {{ file.ext }} file ">{{ file.ext }}</span>
-                    <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
-                        {{ file.name }}
-                    </a>
-                    {% else %}
-                        <span class="label label-info" data-toggle="tooltip" title="This an link to a resource">Link</span>
-                        <a class="" href="{{ file.url }}" title="Go to  {{ file.name }}" target="_blank">
-                            {{ file.name }}
-                        </a>
-                    {% endif %}
-                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                    {% if file.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
-                    <a class="pull-right" href="{{ path('file_edit', { 'id': file.id}) }}" title="Edit {{ file.name }}">
-                        Settings
-                    </a>
-                    {% endif %}
-                    {% endif %}
-                    {{ file.description|raw }}
-                </td>
-                <td class="labels hidden-xs">
-                    {% for tag in file.tags %}
-                        <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                <th><span>Title</span></th>
+                <th class="hidden-xs">Tags</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for file in files %}
+
+                <tr>
+                    <td>
+                        {% if file.url is null %}
+                            <span class="btn btn-info btn-sm"  data-toggle="tooltip"
+                                  title="This an {{ file.ext }} file ">{{ file.ext }}</span>
+                            <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
+                                {{ file.name }}
+                            </a>
+                        {% else %}
+                            <span class="label label-info" data-toggle="tooltip"
+                                  title="This an link to a resource">Link</span>
+                            <a class="" href="{{ file.url }}" title="Go to  {{ file.name }}" target="_blank">
+                                {{ file.name }}
+                            </a>
+                        {% endif %}
+                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                            {% if file.isOwner(app.user.username) or is_granted('ROLE_ADMIN') %}
+                                <a class="btn btn-primary btn-sm pull-xs-right" href="{{ path('file_edit', { 'id': file.id}) }}"
+                                   title="Edit {{ file.name }}">
+                                    Settings
+                                </a>
+                            {% endif %}
+                        {% endif %}
+                        {{ file.description|raw }}
+                    </td>
+                    <td class="labels hidden-xs">
+                        {% for tag in file.tags %}
+                            <span class="btn btn-secondary btn-sm margin-right" style="background-color: {{ tag.color }}; color:white;">
                                 {{ tag.name }}
                                 </span>
-                    {% endfor %}
-                </td>
-            </tr>
+                        {% endfor %}
+                    </td>
+                </tr>
 
-        {% endfor %}
-        </tbody>
-    </table>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
 {% endblock %}

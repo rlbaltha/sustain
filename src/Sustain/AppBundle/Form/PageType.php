@@ -16,6 +16,7 @@ class PageType extends AbstractType
     {
         $builder
             ->add('menuName','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Title Page for Menus'),))
+            ->add('link','text', array('required'=> false, 'attr' => array('class' => 'text form-control', 'placeholder' => 'Link URL'),))
             ->add('teaser', 'ckeditor', array('config_name' => 'editor_simple',))
             ->add('teaserImage','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Image for homepage teaser'),))
             ->add('teaserImageCaption','text', array('attr' => array('class' => 'text form-control', 'placeholder' => 'Caption for teaser image'),))

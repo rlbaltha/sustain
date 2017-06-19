@@ -10,68 +10,87 @@
 
 
 {% block sidebar %}
-    {% if 'event' in app.request.attributes.get('_route') or 'opportunity' in app.request.attributes.get('_route') or 'page' in app.request.attributes.get('_route')
-    or 'section' in app.request.attributes.get('_route') %}
-        <ul class="nav nav-sidebar list-unstyled" style="margin-top: 20px;">
-            <li><a href="{{ path('event') }}">Events</a></li>
-            <li><a href="{{ path('opportunity', {'type': 'service'}) }}">Partners</a></li>
-            <li><a href="{{ path('opportunity', {'type': 'intern'} ) }}">Internships</a></li>
-            <li><a href="{{ path('page_show', { 'id': 10 }) }}">Service Learning</a></li>
-            <li><a href="{{ path('section') }}">Stories</a></li>
+    <nav class="col-sm-2 hidden-xs-down bg-faded sidebar">
 
-            {% if 'page_show' in app.request.attributes.get('_route') %}
-                <hr/>
-                {% if entity.section %}{{ entity.section.name }}
-                {% for page in entity.section.pages %}
-                    <li><a href="{{ path('page_show', { 'id': page.id }) }}">{{ page.menuName }}</a></li>
-                {% endfor %}
+        {% if 'opportunity' in app.request.attributes.get('_route') or 'page' in app.request.attributes.get('_route') %}
+            <ul class="nav nav-pills flex-column">
+                {% if 'page_show' in app.request.attributes.get('_route') %}
+                    {% if entity.section %}
+                        <li class="nav-item">{{ entity.section.name }}</li>
+                        <hr/>
+                        {% for page in entity.section.pages %}
+                            <li class="nav-item">
+                                {% if page.link != '' %}
+                                    <a class="nav-link" href="{{ page.link }}">{{ page.menuName }}</a>
+
+                                {% else %}
+                                    <a class="nav-link"
+                                       href="{{ path('page_show', { 'id': page.id }) }}">{{ page.menuName }}</a>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-        </ul>
-    {% endif %}
-
-
-
-    {% if categories is defined %}
-        <h2 style="font-size: medium">Labels</h2>
-        {% for category in categories %}
-            {{ category.name }}
-            {% for tag in category.tags %}
-                {% if 'file' in app.request.attributes.get('_route') %}
-                    <a href="{{ path('files_by_tag', {'tag': tag.id}) }}"><span class="label label-default margin-right" style="background-color: {{ tag.color }};
-                                ">{{ tag.name }}</span></a>
-                {% elseif 'module' in app.request.attributes.get('_route') %}
-                    <a href="{{ path('modules_by_tag', {'tag': tag.id}) }}"><span class="label label-default margin-right" style="background-color: {{ tag.color }};
-                                ">{{ tag.name }}</span></a>
-                {% elseif 'objective' in app.request.attributes.get('_route') %}
-                    <a href="{{ path('objectives_by_tag', {'tag': tag.id}) }}"><span class="label label-default margin-right"
-                                                                                     style="background-color: {{ tag.color }};
-                                                                                             ">{{ tag.name }}</span></a>
-                {% elseif 'activity' in app.request.attributes.get('_route') %}
-                    <a href="{{ path('activity_by_tag', {'tag': tag.id}) }}"><span class="label label-default margin-right"
-                                                                                   style="background-color: {{ tag.color }};
-                                                                                           ">{{ tag.name }}</span></a>
-                {% else %}
-                    <span class="label label-default margin-right" style="background-color: {{ tag.color }};">{{ tag.name }}</span>
-                {% endif %}
-            {% endfor %}
+            </ul>
+        {% endif %}
+        {% if 'module' in app.request.attributes.get('_route') or 'objective' in app.request.attributes.get('_route')
+        or 'file' in app.request.attributes.get('_route')  or 'activity' in app.request.attributes.get('_route')
+        or 'map' in app.request.attributes.get('_route') %}
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item"><a class="nav-link" href="{{ path('module') }}">Modules</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('activity') }}">Activities</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('file') }}">Files</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('mapset') }}">Maps</a></li>
+            </ul>
+        {% endif %}
+        {% if categories is defined %}
             <hr/>
-        {% endfor %}
-    {% endif %}
+            <h2 style="font-size: medium">Tags</h2>
+            {% for category in categories %}
+                {{ category.name }}:
+                {% for tag in category.tags %}
+                    {% if 'file' in app.request.attributes.get('_route') %}
+                        <a href="{{ path('files_by_tag', {'tag': tag.id}) }}"><span
+                                    class="btn btn-default btn-sm margin-right" style="background-color: {{ tag.color }}; color:white;
+                                    ">{{ tag.name }}</span></a>
+                    {% elseif 'module' in app.request.attributes.get('_route') %}
+                        <a href="{{ path('modules_by_tag', {'tag': tag.id}) }}"><span
+                                    class="btn btn-default btn-sm margin-right" style="background-color: {{ tag.color }}; color:white;
+                                    ">{{ tag.name }}</span></a>
+                    {% elseif 'objective' in app.request.attributes.get('_route') %}
+                        <a href="{{ path('objectives_by_tag', {'tag': tag.id}) }}"><span
+                                    class="btn btn-default btn-sm margin-right"
+                                    style="background-color: {{ tag.color }}; color:white;
+                                            ">{{ tag.name }}</span></a>
+                    {% elseif 'activity' in app.request.attributes.get('_route') %}
+                        <a href="{{ path('activity_by_tag', {'tag': tag.id}) }}"><span
+                                    class="btn btn-default btn-sm margin-right"
+                                    style="background-color: {{ tag.color }}; color:white;
+                                            ">{{ tag.name }}</span></a>
+                    {% else %}
+                        <span class="btn btn-default btn-sm margin-right"
+                              style="background-color: {{ tag.color }}; color:white;">{{ tag.name }}</span>
+                    {% endif %}
+                {% endfor %}
+                <hr/>
+            {% endfor %}
+        {% endif %}
 
-    {% if is_granted('ROLE_ADMIN') %}
-        <hr/>
-        <ul class="nav nav-sidebar list-unstyled">
-            <li>Labels</li>
-            <li><a href="{{ path('tag') }}"> List Labels</a></li>
-            <li><a href="{{ path('tag_new') }}">New Label</a></li>
-            <li><a href="{{ path('category') }}"> List Categories</a></li>
-            <li><a href="{{ path('category_new') }}">New Category</a></li>
-            <li>Pages</li>
-            <li><a href="{{ path('section') }}"> List Sections</a></li>
-            <li><a href="{{ path('section_new') }}">New Section</a></li>
-            <li><a href="{{ path('page') }}"> List Pages</a></li>
-            <li><a href="{{ path('page_new') }}">New Page</a></li>
-        </ul>
-    {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <hr/>
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item"><a class="nav-link" href="{{ path('announcement_edit', {'id': 1}) }}">Announcement</a></li>
+                <li class="nav-item">Labels</li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('tag') }}"> List Labels</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('tag_new') }}">New Label</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('category') }}"> List Categories</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('category_new') }}">New Category</a></li>
+                <li class="nav-item">Pages</li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('section') }}"> List Sections</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('section_new') }}">New Section</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('page') }}"> List Pages</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('page_new') }}">New Page</a></li>
+            </ul>
+        {% endif %}
+    </nav>
 {% endblock %}

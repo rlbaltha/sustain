@@ -2,27 +2,30 @@
 
 {% block javascripts %}
     {{ parent() }}
-<script src="{{ asset('bundles/app/js/bootstrap-filestyle.min.js') }}"></script>
-<script language="javascript">
-    $(document).ready(function () {
-        $(":file").filestyle();
-        $('#sustain_appbundle_file_file').on('change', function () {
-            var filename = $('input[type=file]').val().replace(/C:\\fakepath\\/i, '');
-            var file = filename.substr(0, filename.lastIndexOf('.')) || filename;
-            $('#sustain_appbundle_file_name').val(file);
-            var a=(this.files[0].size/1024/1024);
-            var filesize = Math.round(a * 100) / 100
-            if(a > 50) {
-                alert('Your file is ' + filesize + ' MB.  It must be no larger than 50 MB.');
-            };
+    <script src="{{ asset('bundles/app/js/bootstrap-filestyle.min.js') }}"></script>
+    <script language="javascript">
+        $(document).ready(function () {
+            $(":file").filestyle();
+            $('#sustain_appbundle_file_file').on('change', function () {
+                var filename = $('input[type=file]').val().replace(/C:\\fakepath\\/i, '');
+                var file = filename.substr(0, filename.lastIndexOf('.')) || filename;
+                $('#sustain_appbundle_file_name').val(file);
+                var a = (this.files[0].size / 1024 / 1024);
+                var filesize = Math.round(a * 100) / 100
+                if (a > 50) {
+                    alert('Your file is ' + filesize + ' MB.  It must be no larger than 50 MB.');
+                }
+                ;
+            });
         });
-    });
-</script>
+    </script>
 {% endblock %}
 
 {% block body -%}
-    <h1>Upload/Link</h1>
+    <div class="col-sm-10">
+        <h1>Upload/Link</h1>
 
+        {{ form(form) }}
+    </div>
 
-    {{ form(form) }}
 {% endblock %}

@@ -2,8 +2,11 @@
 
 namespace Sustain\UserBundle\Entity;
 
+use BeSimple\SsoAuthBundle\Security\Core\User\UserFactoryInterface;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * User
@@ -11,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="sustain_user")
  * @ORM\Entity(repositoryClass="Sustain\UserBundle\Entity\UserRepository")
  */
-class User extends BaseUser
+class User extends BaseUser implements AdvancedUserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -43,7 +46,7 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+     * @ORM\Column(name="photo", type="string", length=510, nullable=true)
      */
     private $photo;
 

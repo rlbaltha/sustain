@@ -3,10 +3,11 @@
 {% block title %}Resources{% endblock %}
 
 {% block body -%}
-    <h1>File</h1>
+    <div class="col-sm-10">
+        <h1>File</h1>
 
-    <table class="record_properties">
-        <tbody>
+        <table class="record_properties">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ entity.id }}</td>
@@ -35,20 +36,21 @@
                 <th>Updated</th>
                 <td>{{ entity.updated|date('Y-m-d H:i:s') }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
         <ul class="record_actions">
-    <li>
-        <a href="{{ path('file') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('file_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+            <li>
+                <a href="{{ path('file') }}">
+                    Back to the list
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('file_edit', { 'id': entity.id }) }}">
+                    Edit
+                </a>
+            </li>
+            <li>{{ form(delete_form) }}</li>
+        </ul>
+    </div>
 {% endblock %}

@@ -31,6 +31,13 @@ class Event
     /**
      * @var string
      *
+     * @ORM\Column(name="location", type="string", length=255)
+     */
+    private $location;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="teaser", type="text")
      */
     private $teaser;
@@ -61,7 +68,7 @@ class Event
      *
      * @ORM\Column(name="color", type="string", length=255)
      */
-    private $color;
+    private $color='green';
 
 
     /**
@@ -257,5 +264,29 @@ class Event
     public function getOpportunities()
     {
         return $this->opportunities;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     *
+     * @return Event
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }

@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <div class="col-sm-10">
+        <h1>Carousel edit</h1>
+
+        {{ form(edit_form) }}
+
+        <ul class="record_actions">
+            <li>
+                <a href="{{ path('carousel') }}">
+                    Back to the list
+                </a>
+            </li>
+            <li>{{ form(delete_form) }}</li>
+        </ul>
+    </div>
+{% endblock %}

@@ -190,7 +190,6 @@ class Section
     /**
      * Get image
      *
-     * @return string 
      */
     public function getImage()
     {

@@ -1,19 +1,22 @@
 {% extends '::base.html.twig' %}
 
+{% block title %}{{ application_name }} Profile {{ entity.firstname }} {{ entity.lastname }}{% endblock %}
+
 {% block body -%}
 
     <div class="well col-sm-12">
-        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-        {% if is_granted('ROLE_ADMIN') or app.user.username==entity.username %}
-            <a class="btn btn-default pull-right" href="{{ path('user_edit', { 'id': entity.id }) }}">Edit</a>
+        {% if app.user %}
+            {% if is_granted('ROLE_ADMIN') or app.user.username==entity.username %}
+                <a class="btn btn-primary pull-right" href="{{ path('user_edit', { 'id': entity.id }) }}">Edit</a>
+            {% endif %}
         {% endif %}
-        {% endif %}
+
 
         <h2>{{ entity.firstname }} {{ entity.lastname }}</h2>
-
-        <img src="{{ entity.photo }}" class="pull-right img-rounded img-responsive" style="max-width: 350px;" alt="Responsive image of {{ entity.firstname }}
-         {{ entity
-        .lastname }}">
+        {% if entity.photo !='' or entity.photo != null %}
+        <img src="{{ entity.photo }}" class="pull-right img-rounded img-responsive" style="max-width: 350px;"
+             alt="Responsive image of {{ entity.firstname }} {{ entity.lastname }}">
+        {% endif %}
         <h3>Email</h3>
         {{ entity.email }}
         <h3>Bio</h3>
@@ -23,16 +26,16 @@
         <h3>Research</h3>
         {{ entity.research|raw }}
         {% if entity.involvement !='' %}
-        <h3>Involvement in Watershed UGA</h3>
-        {{ entity.involvement|raw }}
+            <h3>Involvement in Watershed UGA</h3>
+            {{ entity.involvement|raw }}
         {% endif %}
         {% if entity.courses !='' %}
-        <h3>Courses incorporating Watershed UGA</h3>
-        {{ entity.courses|raw }}
+            <h3>Courses incorporating Watershed UGA</h3>
+            {{ entity.courses|raw }}
         {% endif %}
         {% if entity.collaboration !='' %}
-        <h3>Collaboration with other faculty</h3>
-        {{ entity.collaboration|raw }}
+            <h3>Collaboration with other faculty</h3>
+            {{ entity.collaboration|raw }}
         {% endif %}
         <hr/>
 

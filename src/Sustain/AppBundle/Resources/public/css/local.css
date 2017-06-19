@@ -1,91 +1,51 @@
-.full  {
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-}
-
 body {
     background: transparent;
-    font-family: 'Open Sans', 'Arial', 'sans-serif';
+    font-family: 'Raleway', 'Arial', 'sans-serif';
 }
 
-.navbar-brand, h1, h2, h3 {
-    font-family: 'Josefin Sans', 'Arial', 'sans-serif';
+h1, h2, h3 {
+    font-family: 'Raleway', 'Arial', 'sans-serif';
 }
 
-
-.center {
-    margin: 0 auto;
+.sidebar {
+    padding-left: 2rem;
 }
 
-.margin-top {
-    margin-top: 1%;
+.row {
+    min-height: 100vh;
+}
+.col-sm-10 {
+    padding: 2em
 }
 
-
-div.checkbox > label {
-    padding-left: 5px;
-    padding-right: 5px;
+.col-sm-12 {
+    padding: 2em;
 }
 
-.checkbox input[type="checkbox"] {
-    position: inherit;
-    margin-left: 10px;
+.col-sm-6 {
+    padding: 2em;
+    padding-top: 0;
 }
 
-div.radio > label {
-    padding-left: 5px;
-    padding-right: 5px;
+.col-sm-4 {
+    padding: 2em;
 }
 
-.radio input[type="radio"] {
-    position: inherit;
-    margin-left: 10px;
+.navbar {
+    background-color: #0b58a2;
 }
 
-.caption > h3 {
-    color:black
+.sidebar {
+    background-color: #0b58a2;
+    color:white
 }
 
-.caption > p {
-    color:black
-}
-
-h1 {
-    font-size: 28px;
+.sidebar a, .sidebar h2 {
+    color:white
 }
 
 h2 {
-    font-size: 22px;
-}
-
-.table {
-    background-color: #f8f8f8;
-}
-
-form {
-    padding: 10px;
-    background-color: #f8f8f8;
-    border: 1px solid #e3e3e3;
-    border-radius: 4px;
-}
-
-.fc-content {
-    cursor: pointer;
-}
-
-form div div  {
-    margin-bottom: 25px;
-}
-
-.table {
-    background-color: white;
-    border: 1px solid #dddddd;
-}
-
-.bold {
-    font-weight: bold;
+    padding:.5em;
 }
 
 
@@ -108,121 +68,108 @@ form div div  {
     margin-bottom: -10px;
 }
 
+/**********  Forms **********/
 
-/********** Media Queries **********/
 
-@media (max-width: 1199px) {
-    .navbar .nav > li > a {
-        padding-left: 7px;
-        padding-right: 7px;
+div.radio > label {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.radio input[type="radio"] {
+    position: inherit;
+    margin-left: 10px;
+}
+
+div.checkbox > label {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.checkbox input[type="checkbox"] {
+    position: inherit;
+    margin-left: 15px;
+}
+
+form div div {
+    margin-bottom: 20px;
+}
+
+input + label {
+    margin-right: 15px;
+}
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+    margin-bottom: 4rem;
+}
+
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+    height: 32rem;
+    background-color: #777;
+}
+.carousel-item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 32rem;
+}
+
+
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+    z-index: 10;
+    position: absolute;
+    bottom: 0;
+    left:0;
+    background: rgba(0, 0, 0, .75);
+    width:100vw;
+
+}
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+.marketing h2 {
+    font-weight: normal;
+}
+.marketing .col-lg-4 p {
+    margin-right: .75rem;
+    margin-left: .75rem;
+}
+
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 40em) {
+    /* Bump up size of carousel content */
+    .carousel-caption p {
+        margin-bottom: 1.25rem;
+        font-size: 1.25rem;
+        line-height: 1.4;
+    }
+
+    .featurette-heading {
+        font-size: 50px;
     }
 }
 
-@media (max-width: 920px) {
-    .navbar .nav > li > a {
-        padding-left: 3px;
-        padding-right: 3px;
-        font-size: smaller;
-    }
-}
-
-
-@media (max-width: 800px) {
-    .navbar .nav > li > a {
-        padding-left: 2px;
-        padding-right: 2px;
-        font-size: smaller;
-    }
-}
-
-/********** navbar *******************/
-
-.sidebar {
-    background-color: #154d81;
-    height: 95vh;
-    margin-top: -20px;
-    color: #ecf0f1;
-}
-
-.sidebar .nav li a {
-    color: #ecf0f1;
-}
-
-.sidebar .nav li a:hover {
-    color: #d8d1d1;
-    background-color: #2b78c0;
-}
-
-.navbar-default {
-    background-color: #154d81;
-    border-color: #2b78c0;
-}
-.navbar-default .navbar-brand {
-    color: #ecf0f1;
-}
-.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-    color: #d8d1d1;
-}
-.navbar-default .navbar-text {
-    color: #ecf0f1;
-}
-.navbar-default .navbar-nav > li > a {
-    color: #ecf0f1;
-}
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color: #d8d1d1;
-}
-.navbar-default .navbar-nav > li > .dropdown-menu {
-    background-color: #154d81;
-}
-.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
-    color: #ecf0f1;
-}
-.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
-.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
-    color: #d8d1d1;
-    background-color: #2b78c0;
-}
-.navbar-default .navbar-nav > li > .dropdown-menu > li > .divider {
-    background-color: #154d81;
-}
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    color: #d8d1d1;
-    background-color: #2b78c0;
-}
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    color: #d8d1d1;
-    background-color: #2b78c0;
-}
-.navbar-default .navbar-toggle {
-    border-color: #2b78c0;
-}
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-    background-color: #2b78c0;
-}
-.navbar-default .navbar-toggle .icon-bar {
-    background-color: #ecf0f1;
-}
-.navbar-default .navbar-collapse,
-.navbar-default .navbar-form {
-    border-color: #ecf0f1;
-}
-.navbar-default .navbar-link {
-    color: #ecf0f1;
-}
-.navbar-default .navbar-link:hover {
-    color: #d8d1d1;
-}
-
-@media (max-width: 767px) {
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-        color: #ecf0f1;
-    }
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-        color: #d8d1d1;
-    }
-    .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-        color: #d8d1d1;
-        background-color: #2b78c0;
+@media (min-width: 62em) {
+    .featurette-heading {
+        margin-top: 7rem;
     }
 }

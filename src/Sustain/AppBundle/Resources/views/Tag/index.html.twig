@@ -1,31 +1,34 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block body -%}
-    <h1>Labels</h1>
+    <div class="col-sm-10">
+        <h1>Labels</h1>
 
-    <table class="table">
-        <thead>
+        <table class="table">
+            <thead>
             <tr>
                 <th>Name</th>
                 <th>Category</th>
                 <th>Sortorder</th>
                 <th></th>
             </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td>
-                    <a style="font-size: large" href="{{ path('tag_show', { 'id': entity.id }) }}"><span class="label label-default margin-right"
-                                                                                            style="background-color: {{
-                        entity
-                        .color }};">{{ entity.name }}</span></a></td>
-                <td>{% if entity.category %}{{ entity.category.name }}{% endif %}</td>
-                <td>{{ entity.sortorder }}</td>
-                <td>{% if is_granted('ROLE_ADMIN') %}<a class="btn btn-default" href="{{ path('tag_edit', { 'id': entity.id }) }}">Edit</a>{% endif %}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    {% endblock %}
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td>
+                        <a style="font-size: large" href="{{ path('tag_show', { 'id': entity.id }) }}"><span
+                                    class="label label-default margin-right"
+                                    style="background-color: {{ entity
+                                    .color }};">{{ entity.name }}</span></a></td>
+                    <td>{% if entity.category %}{{ entity.category.name }}{% endif %}</td>
+                    <td>{{ entity.sortorder }}</td>
+                    <td>{% if is_granted('ROLE_ADMIN') %}<a class="btn btn-primary"
+                                                            href="{{ path('tag_edit', { 'id': entity.id }) }}">
+                                Edit</a>{% endif %}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

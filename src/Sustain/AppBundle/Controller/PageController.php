@@ -36,27 +36,32 @@ class PageController extends Controller
         );
     }
 
+
     /**
-     * Lists all Page entities.
+     * Displays the app landing page
      *
-     * @Route("/home", name="page_home")
+     * @Route("/landing", name="page_landing")
      * @Method("GET")
-     * @Template()
+     * @Template(":default:index.html.twig")
      */
-    public function homeAction()
+    public function landingAction()
     {
         $em = $this->getDoctrine()->getManager();
 
+        $carousel = $em->getRepository('AppBundle:Carousel')->findAll();
         $pages = $em->getRepository('AppBundle:Page')->findHome();
         $events = $em->getRepository('AppBundle:Event')->eventShortList();
+        $announcement = $em->getRepository('AppBundle:Announcement')->findAnnouncement();
+
 
         return array(
-            'pages' => $pages,
+            'carousel' => $carousel,
             'events' => $events,
+            'pages' => $pages,
+            'announcement' => $announcement,
         );
     }
-
-
+    
     /**
      * Lists all Page stories.
      *
@@ -80,7 +85,7 @@ class PageController extends Controller
      *
      * @Route("/", name="page_create")
      * @Method("POST")
-     * @Template("AppBundle:Page:new.html.twig")
+     * @Template("AppBundle:Shared:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -128,7 +133,7 @@ class PageController extends Controller
      *
      * @Route("/new", name="page_new")
      * @Method("GET")
-     * @Template()
+     * @Template("AppBundle:Shared:new.html.twig")
      */
     public function newAction()
     {
@@ -171,7 +176,7 @@ class PageController extends Controller
      *
      * @Route("/{id}/edit", name="page_edit")
      * @Method("GET")
-     * @Template()
+     * @Template("AppBundle:Shared:edit.html.twig")
      */
     public function editAction($id)
     {
@@ -216,7 +221,7 @@ class PageController extends Controller
      *
      * @Route("/{id}", name="page_update")
      * @Method("PUT")
-     * @Template("AppBundle:Page:edit.html.twig")
+     * @Template("AppBundle:Shared:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
