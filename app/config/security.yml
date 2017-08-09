@@ -2,58 +2,58 @@
 security:
 
 # dev security settings
-#    firewalls:
-#        main:
-#            pattern: ^/
-#            form_login:
-#                csrf_provider: security.csrf.token_manager
-#                default_target_path: /user/home
-#            logout:
-#                path:   /logout
-#                target: /home
-#            anonymous:    true
-#            switch_user: true
-#    providers:
-#        chain_provider:
-#            chain:
-#                providers: [fos_userbundle]
-#
-#        fos_userbundle:
-#            id: fos_user.user_provider.username
-#
-#    encoders:
-#        FOS\UserBundle\Model\UserInterface: bcrypt
-
-
     firewalls:
         main:
             pattern: ^/
-            trusted_sso:
-                manager: admin_sso
-                create_users: true
-                created_users_roles: [ 'ROLE_USER' ]
-                login_action: false
-                logout_action: false
-                login_path: /login
-                check_path: /login
-                failure_path: /register
-            provider: fos_userbundle
+            form_login:
+                csrf_provider: security.csrf.token_manager
+                default_target_path: /user/home
+            logout:
+                path:   /logout
+                target: /home
             anonymous:    true
             switch_user: true
-            logout:
-              path:   /logout
-              target: /
-
     providers:
         chain_provider:
             chain:
                 providers: [fos_userbundle]
 
         fos_userbundle:
-            id: sso_user_provider
+            id: fos_user.user_provider.username
 
     encoders:
-        FOS\UserBundle\Model\UserInterface: sha512
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+
+#    firewalls:
+#        main:
+#            pattern: ^/
+#            trusted_sso:
+#                manager: admin_sso
+#                create_users: true
+#                created_users_roles: [ 'ROLE_USER' ]
+#                login_action: false
+#                logout_action: false
+#                login_path: /login
+#                check_path: /login
+#                failure_path: /register
+#            provider: fos_userbundle
+#            anonymous:    true
+#            switch_user: true
+#            logout:
+#              path:   /logout
+#              target: /
+#
+#    providers:
+#        chain_provider:
+#            chain:
+#                providers: [fos_userbundle]
+#
+#        fos_userbundle:
+#            id: sso_user_provider
+#
+#    encoders:
+#        FOS\UserBundle\Model\UserInterface: sha512
 
     access_control:
 

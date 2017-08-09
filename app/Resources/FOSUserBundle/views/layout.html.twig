@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Sustainability UGA{% endblock %}</title>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}Watershed UGA{% endblock %}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 
+    <!-- Bootstrap CSS -->
     {% block stylesheets %}
-        {% stylesheets '@bootstrap_less' combine=true  output='css/compiled/main.css' %}
-        <link href="{{ asset_url }}" type="text/css" rel="stylesheet"/>{% endstylesheets %}
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+              crossorigin="anonymous">
+
+        <link type="text/css" rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <link type="text/css" rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.22.5/css/theme.bootstrap.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
         <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/local.css') }}">
     {% endblock %}
-
-    {% block javascripts %}
-        {% javascripts '@jquery_js' '@jqueryui_js' '@bootstrap_js' combine=true output='js/compiled/main.js' %}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-    {% endblock %}
+    {% include "GoogleBundle:Analytics:async.html.twig" %}
 </head>
 <body>
 <div class="col-sm-12 full" style="height: 100vh">
