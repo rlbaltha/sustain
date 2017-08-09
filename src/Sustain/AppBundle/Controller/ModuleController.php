@@ -60,7 +60,7 @@ class ModuleController extends Controller {
    *
    * @Route("/", name="module_create")
    * @Method("POST")
-   * @Template("AppBundle:Module:new.html.twig")
+   * @Template("AppBundle:Shared:new.html.twig")
    */
   public function createAction(Request $request) {
     $entity = new Module();
@@ -109,7 +109,7 @@ class ModuleController extends Controller {
    *
    * @Route("/new", name="module_new")
    * @Method("GET")
-   * @Template()
+   * @Template("AppBundle:Shared:new.html.twig")
    */
   public function newAction() {
     $entity = new Module();
@@ -152,7 +152,7 @@ class ModuleController extends Controller {
    *
    * @Route("/{id}/edit", name="module_edit")
    * @Method("GET")
-   * @Template()
+   * @Template("AppBundle:Shared:edit.html.twig")
    */
   public function editAction($id) {
     $em = $this->getDoctrine()->getManager();
@@ -200,7 +200,7 @@ class ModuleController extends Controller {
    *
    * @Route("/{id}", name="module_update")
    * @Method("PUT")
-   * @Template("AppBundle:Module:edit.html.twig")
+   * @Template("AppBundle:Shared:edit.html.twig")
    */
   public function updateAction(Request $request, $id) {
     $em = $this->getDoctrine()->getManager();
