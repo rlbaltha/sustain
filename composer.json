@@ -34,7 +34,8 @@
         "vich/uploader-bundle": "^1.6",
         "knplabs/knp-paginator-bundle": "dev-master",
         "h4cc/wkhtmltopdf-amd64" : "0.12.1",
-        "jms/serializer-bundle": "^1.1"
+        "jms/serializer-bundle": "^1.1",
+        "meinfernbus/google-bundle": "^0.1.0"
 
 
 
