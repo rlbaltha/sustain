@@ -19,17 +19,11 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "stof/doctrine-extensions-bundle": "dev-master",
-        "vich/uploader-bundle": "0.9.0",
-        "knplabs/knp-gaufrette-bundle": "0.2.*@dev",
+        "vich/uploader-bundle": "1.4.2",
         "knplabs/gaufrette": "0.2.*@dev",
         "knplabs/knp-paginator-bundle": "dev-master",
         "knplabs/knp-snappy-bundle": "dev-master",
         "egeloen/ckeditor-bundle": "2.*",
-        "components/jquery": "2.1.*",
-        "components/jqueryui": "1.11.*",
-        "twbs/bootstrap" : "*",
-        "oyejorge/less.php": "~1.5",
-        "packagist/yuicompressor-bin": "dev-master",
         "h4cc/wkhtmltopdf-amd64" : "0.12.1",
         "besimple/sso-auth-bundle": "*@dev",
         "jms/serializer-bundle": "^1.1",
@@ -63,9 +57,6 @@
         "symfony-assets-install": "symlink",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
-        },
-        "branch-alias": {
-            "dev-master": "2.3-dev"
         }
     }
 }

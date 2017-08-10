@@ -21,7 +21,6 @@
         <link href='https://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
         <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/local.css') }}">
     {% endblock %}
-    {% include "GoogleBundle:Analytics:async_universal.html.twig" %}
 </head>
 <body>
 
@@ -100,6 +99,12 @@
                 <li class="nav-item"><a class="nav-link" href="{{ path('section') }}">Stories</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ path('page_show', { 'id': 9 }) }}">Donate</a></li>
             </ul>
+            <a class="navbar-brand" target="_blank" href="https://www.instagram.com/watershed.uga">
+                <img title="Instagram" src="{{ asset('bundles/app/images/insta.gif') }}"/>
+            </a>
+            <a class="navbar-brand" target="_blank" href="https://www.facebook.com/watersheduga/">
+                <img title="Facebook" src="{{ asset('bundles/app/images/face.gif') }}"/>
+            </a>
 
             <ul class="navbar-nav mr-auto">
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
@@ -119,8 +124,6 @@
                     <a id="main_content" href="#main_nav">Skip to Top</a>
                 </li>
             </ul>
-            <a target="_blank" href="https://www.instagram.com/watershed.uga"><img title="Instagram" src="{{ asset('bundles/app/images/insta.png') }}"/> </a>
-            <a target="_blank"  href="https://www.facebook.com/watersheduga/"><img title="Facebook" src="{{ asset('bundles/app/images/face.png') }}"/> </a>
         </div>
     </nav>
 
