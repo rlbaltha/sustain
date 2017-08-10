@@ -21,7 +21,7 @@
 
         <p>{{ entity.description|raw }} </p>
         {% for tag in entity.tags %}
-            <span class="label label-default" style="background-color: {{ tag.color }};">
+            <span class="btn btn-info btn-sm" style="background-color: {{ tag.color }};">
                                 {{ tag.name }}
                                 </span>
         {% endfor %}

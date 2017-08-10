@@ -24,7 +24,7 @@
                     <p class="list-group-item-text">{{ entity.description|raw }}
 
                         {% for tag in entity.tags %}
-                            <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                            <span class="btn btn-default btn-sm margin-right" style="background-color: {{ tag.color }};">
                                 {{ tag.name }}
                                 </span>
                         {% endfor %}

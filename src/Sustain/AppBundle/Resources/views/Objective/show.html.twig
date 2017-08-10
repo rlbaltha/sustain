@@ -19,7 +19,7 @@
         {% endif %}
         <p>{{ entity.description|raw }} </p>
         {% for tag in entity.tags %}
-            <span class="label label-default" style="background-color: {{ tag.color }};">
+            <span class="btn btn-info btn-sm" style="background-color: {{ tag.color }};">
                                 {{ tag.name }}
                                 </span>
         {% endfor %}
@@ -32,7 +32,7 @@
                 <div class="card-block">
                     <h3><a href="{{ path('module_show', { 'id': entity.id }) }}">{{ entity.name|raw }}</a></h3>
                     {% for tag in entity.tags %}
-                        <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                        <span class="btn btn-default btn-sm margin-right" style="background-color: {{ tag.color }};color:white;">
                                 {{ tag.name }}
                                 </span>
                     {% endfor %}
@@ -61,13 +61,13 @@
                 <tr class="file">
                     <td>
                         {% if file.url is null %}
-                            <span class="label label-info" data-toggle="tooltip"
+                            <span class="btn btn-default btn-sm" data-toggle="tooltip"
                                   title="This an {{ file.ext }} file ">{{ file.ext }}</span>
                             <a class="" href="{{ path('file_get', { 'id': file.id}) }}" title="View {{ file.name }}">
                                 {{ file.name }}
                             </a>
                         {% else %}
-                            <span class="label label-info" data-toggle="tooltip"
+                            <span class="btn btn-default btn-sm" data-toggle="tooltip"
                                   title="This an link to a resource">Link</span>
                             <a class="" href="{{ file.url }}" title="Go to  {{ file.name }}" target="_blank">
                                 {{ file.name }}
@@ -76,7 +76,7 @@
                     </td>
                     <td class="labels hidden-xs">
                         {% for tag in file.tags %}
-                            <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                            <span class="btn btn-default btn-sm margin-right" style="background-color: {{ tag.color }};color:white;">
                                 {{ tag.name }}
                                 </span>
                         {% endfor %}
@@ -98,7 +98,7 @@
                     <p class="list-group-item-text">{{ entity.description|raw }}</p>
                 <span class="labels hidden-xs">
                     {% for tag in entity.tags %}
-                        <span class="label label-default margin-right" style="background-color: {{ tag.color }};">
+                        <span class="btn btn-default btn-sm margin-right" style="background-color: {{ tag.color }};color:white;">
                                 {{ tag.name }}
                                 </span>
                     {% endfor %}
