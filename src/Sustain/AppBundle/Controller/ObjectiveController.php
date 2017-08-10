@@ -62,7 +62,7 @@ class ObjectiveController extends Controller {
    *
    * @Route("/", name="objective_create")
    * @Method("POST")
-   * @Template("AppBundle:Objective:new.html.twig")
+   * @Template("AppBundle:Shared:new.html.twig")
    */
   public function createAction(Request $request) {
     $entity = new Objective();
@@ -111,7 +111,7 @@ class ObjectiveController extends Controller {
    *
    * @Route("/new", name="objective_new")
    * @Method("GET")
-   * @Template()
+   * @Template("AppBundle:Shared:new.html.twig")
    */
   public function newAction() {
     $entity = new Objective();
@@ -154,7 +154,7 @@ class ObjectiveController extends Controller {
    *
    * @Route("/{id}/edit", name="objective_edit")
    * @Method("GET")
-   * @Template()
+   * @Template("AppBundle:Shared:edit.html.twig")
    */
   public function editAction($id) {
     $em = $this->getDoctrine()->getManager();
@@ -201,7 +201,7 @@ class ObjectiveController extends Controller {
    *
    * @Route("/{id}", name="objective_update")
    * @Method("PUT")
-   * @Template("AppBundle:Objective:edit.html.twig")
+   * @Template("AppBundle:Shared:edit.html.twig")
    */
   public function updateAction(Request $request, $id) {
     $em = $this->getDoctrine()->getManager();
