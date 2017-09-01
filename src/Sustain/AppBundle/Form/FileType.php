@@ -40,7 +40,7 @@ class FileType extends AbstractType
                 }, 'expanded'=>true,'multiple'=>true, 'label'  => 'Select Objectives', 'attr' => array('class' => 'checkbox'),
             ))
             ->add('access', 'choice', array(
-                'choices'  => array('0' => 'Public', '1' => 'Faculty Only'),
+                'choices'  => array('0' => 'Public', '1' => 'Faculty Only', '2'=> 'Admin Only'),
                 'required' => true, 'expanded' => true, 'attr' => array('class' => 'radio')
             ))
         ;

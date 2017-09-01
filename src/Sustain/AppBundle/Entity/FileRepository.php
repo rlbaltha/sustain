@@ -36,6 +36,21 @@ class FileRepository extends EntityRepository
     public function findAllSorted() {
 
         return $this->createQueryBuilder('f')
+            ->andWhere('f.access < 2')
+            ->addOrderBy('f.name','ASC')
+            ->getQuery()
+            ->getResult();
+
+    }
+
+    /**
+     * Find files by tag
+     * @return File
+     */
+    public function findAdmin() {
+
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.access = 2')
             ->addOrderBy('f.name','ASC')
             ->getQuery()
             ->getResult();

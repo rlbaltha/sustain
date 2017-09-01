@@ -8,15 +8,21 @@
 
         <h1>Files</h1>
         {% if is_granted('ROLE_ADMIN') %}
-            <a class="btn btn-primary pull-right" id='file_new_upload' title='Upload Resource'
+            <a class="btn btn-primary pull-right" id='file_new_upload'
                href="{{ path('file_new') }}"><i class="glyphicon
         glyphicon-upload"></i> Upload
                 Resource</a>
-            <a class="btn btn-primary pull-right" id='file_new_upload' title='Upload Resource'
+            <a class="btn btn-primary pull-right" id='file_new_upload'
                href="{{ path('file_new', {'type': 'link'}) }}"><i
                         class="glyphicon glyphicon-link"></i>
                 Link to
                 Resource</a>
+            <a class="btn btn-primary pull-right" href="{{ path('file_admin') }}"><i
+                        class="glyphicon glyphicon-link"></i>
+                Admin resources</a>
+            <a class="btn btn-primary pull-right" href="{{ path('file') }}"><i
+                        class="glyphicon glyphicon-link"></i>
+                Public resources</a>
         {% endif %}
 
 
@@ -40,7 +46,7 @@
             </thead>
             <tbody>
 
-            {% for file in files %}
+            {% for file in files  %}
 
                 <tr>
                     <td>

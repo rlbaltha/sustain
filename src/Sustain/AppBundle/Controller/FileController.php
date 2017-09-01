@@ -39,6 +39,25 @@ class FileController extends Controller {
     );
   }
 
+    /**
+     * Lists all File entities.
+     *
+     * @Route("/admin", name="file_admin")
+     * @Method("GET")
+     * @Template("AppBundle:File:index.html.twig")
+     */
+    public function adminAction() {
+        $em = $this->getDoctrine()->getManager();
+
+        $files = $em->getRepository('AppBundle:File')->findAdmin();
+        $categories = $em->getRepository('AppBundle:Category')->findAll();
+
+        return array(
+            'files' => $files,
+            'categories' => $categories,
+        );
+    }
+
   /**
    * Lists all File entities.
    *
