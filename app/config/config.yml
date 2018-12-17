@@ -132,12 +132,6 @@ vich_uploader:
             inject_on_load: true # determines whether to inject a File instance upon load
 
 
-knp_snappy:
-    pdf:
-        enabled:    true
-        binary:     %wkhtmltopdf_path%
-        options:    []
-
 google:
     analytics:
         enhanced_ecommerce: false
