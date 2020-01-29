@@ -105,24 +105,24 @@
                 <img title="Facebook" src="{{ asset('bundles/app/images/face.gif') }}"/>
             </a>
 
-            <ul class="navbar-nav mr-auto">
-                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('user_profile') }}">My Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" title="Logout" href="{{ path('logout') }}">Logout</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" title="Login" href="{{ path('user_profile') }}">Login</a>
-                    </li>
-                {% endif %}
+{#            <ul class="navbar-nav mr-auto">#}
+{#                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{{ path('user_profile') }}">My Profile</a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" title="Logout" href="{{ path('logout') }}">Logout</a>#}
+{#                    </li>#}
+{#                {% else %}#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" title="Login" href="{{ path('user_profile') }}">Login</a>#}
+{#                    </li>#}
+{#                {% endif %}#}
 
-                <li id="skip">
-                    <a id="main_content" href="#main_nav">Skip to Top</a>
-                </li>
-            </ul>
+{#                <li id="skip">#}
+{#                    <a id="main_content" href="#main_nav">Skip to Top</a>#}
+{#                </li>#}
+{#            </ul>#}
         </div>
     </nav>
 
