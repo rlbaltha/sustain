@@ -19,12 +19,10 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Sustain\UserBundle\SustainUserBundle(),
             new BeSimple\SsoAuthBundle\BeSimpleSsoAuthBundle(),
-            new AntiMattr\GoogleBundle\GoogleBundle(),
             new Sustain\AppBundle\AppBundle(),
         );
 

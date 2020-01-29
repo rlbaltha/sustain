@@ -2,68 +2,67 @@
 security:
 
 # dev security settings
-#    firewalls:
-#        main:
-#            pattern: ^/
-#            form_login:
-#                csrf_provider: security.csrf.token_manager
-#                default_target_path: /user/home
-#            logout:
-#                path:   /logout
-#                target: /home
-#            anonymous:    true
-#            switch_user: true
-#    providers:
-#        chain_provider:
-#            chain:
-#                providers: [fos_userbundle]
-#
-#        fos_userbundle:
-#            id: fos_user.user_provider.username
-#
-#    encoders:
-#        FOS\UserBundle\Model\UserInterface: bcrypt
-
-
     firewalls:
         main:
             pattern: ^/
-            trusted_sso:
-                manager: admin_sso
-                create_users: true
-                created_users_roles: [ 'ROLE_USER' ]
-                login_action: false
-                logout_action: false
-                login_path: /login
-                check_path: /login
-                failure_path: /register
-            provider: fos_userbundle
+            form_login:
+                csrf_provider: security.csrf.token_manager
+                default_target_path: /user/home
+            logout:
+                path:   /logout
+                target: /home
             anonymous:    true
             switch_user: true
-            logout:
-              path:   /logout
-              target: /
-
     providers:
         chain_provider:
             chain:
                 providers: [fos_userbundle]
 
         fos_userbundle:
-            id: sso_user_provider
+            id: fos_user.user_provider.username
 
     encoders:
-        FOS\UserBundle\Model\UserInterface: sha512
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+
+#    firewalls:
+#        main:
+#            pattern: ^/
+#            trusted_sso:
+#                manager: admin_sso
+#                create_users: true
+#                created_users_roles: [ 'ROLE_USER' ]
+#                login_action: false
+#                logout_action: false
+#                login_path: /login
+#                check_path: /login
+#                failure_path: /register
+#            provider: fos_userbundle
+#            anonymous:    true
+#            switch_user: true
+#            logout:
+#              path:   /logout
+#              target: /
+#
+#    providers:
+#        chain_provider:
+#            chain:
+#                providers: [fos_userbundle]
+#
+#        fos_userbundle:
+#            id: sso_user_provider
+#
+#    encoders:
+#        FOS\UserBundle\Model\UserInterface: sha512
 
     access_control:
 
         #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/home, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/user/[0-9]*/edit, role: ROLE_USER }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/home, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: edit$, role: ROLE_ADMIN }
         - { path: new$, role: ROLE_ADMIN }
         - { path: delete$, role: ROLE_ADMIN }
@@ -71,4 +70,3 @@ security:
         - { path: update$, role: ROLE_ADMIN }
         - { path: ^/tag/, role: ROLE_ADMIN }
         - { path: ^/category/, role: ROLE_ADMIN }
-        - { path: ^/user/, role: ROLE_USER }
